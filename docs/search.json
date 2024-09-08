@@ -4,9 +4,9 @@
     "href": "index.html",
     "title": "Lab for Quantitative Methods - 3",
     "section": "",
-    "text": "Preface\nWelcome to Quantitative Methods - 3 (Govt 8003).\nThhe course material is available on the Canvas Page.\n\n1 + 1\n\n[1] 2",
+    "text": "Why are we here?\n\nThis web book is meant to be one stop-resource for course related labs and some interesting stuff. The detailed course material is available on the Canvas Page.\nYou can find here all the code, links to replication data, and notes from the lab session. We will be using R for all the analysis work in this course.\nI will update the session wise pages as we go through them.\nEveryone should have the following on their systems:\n\nR - Statistical Programming Language.\nRStudio - Interactive Development Environment for R.\n\\(\\LaTeX\\) (pronounced “LAY-tek” or “LAH-Tek) Typesetting tool for preparing high-quality professional documents.\n\nYou can check the installation of \\(\\LaTeX\\) for R by following the instructions here.\nIt would be useful if you are familiar with tidyverse framework. If not, or if you need a refresher, the online book here by Hadley Wickham is a great resource.\nLet’s begin!",
     "crumbs": [
-      "Preface"
+      "Why are we here?"
     ]
   },
   {
