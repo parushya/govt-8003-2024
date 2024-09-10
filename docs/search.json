@@ -66,7 +66,7 @@
     "section": "",
     "text": "Today’s Lab\nUsing example from AmeliaII\nUsing Amelia",
     "crumbs": [
-      "Session 2  - Missing Data"
+      "Session 2 - Missing Data"
     ]
   },
   {
@@ -76,7 +76,7 @@
     "section": "Paper:",
     "text": "Paper:\nMilner, Helen V., and Keiko Kubota. 2005. “Why the Move to Free Trade? Democracy and Trade Policy in the Developing Countries.” International Organization 59 (1): 107–43. https://www.jstor.org/stable/3877880.\n\nAbstract:\nRising international trade flows are a primary component of globalization. The liberalization of trade policy in many developing countries has helped foster the growth of these flows. Preceding and concurrent with this move to free trade, there has been a global movement toward democracy. We argue that these two trends are related: democratization of the political system reduces the ability of governments to use trade barriers as a strategy for building political support. Political leaders in labor-rich countries may prefer lower trade barriers as democracy increases. Empirical evidence supports our claim about the developing countries from 1970-99. Regime change toward democracy is associated with trade liberalization, controlling for many factors. Conventional explanations of economic reform, such as economic crises and external pressures, seem less salient. Democratization may have fostered globalization in this period.\nEstimation\nThe following code is not needed for exercise today. I have written the Latex equation to given an example of how to write multi line equations in paper. Also note, there are dependencies on some Latex packages which some of which I add between lines 28-38 in the code above.\n\\[\\begin{aligned}\ntradepolicy_{i,t} = \\beta_0 & + \\beta_1 REGIME_{i,t-1} + \\beta_3 IMF_{i,t-1} \\\\\n& + \\beta_4OFFICE_{i,t-1} + \\beta_5GDPPC_{i,t-1} \\\\\n& + \\beta_6LNPOP_{i,t-1} + \\beta_7ECCRISIS_{i,t-1} \\\\\n& + \\beta_8BPCRISIS_{i,t-1} + \\beta_9AVOPEN_{i,t-1} \\\\\n& + u_i + \\epsilon_{i,t}\n\\end{aligned}\\]\nIn the example from Amelia page, a modified dataset is used\n\n\n\nVariable\nDescription\n\n\n\n\nyear\nyear\n\n\ncountry\ncountry\n\n\ntariff\naverage tariff rates\n\n\npolity\nPolity IV Score[^polity]\n\n\npop\ntotal population\n\n\ngdp.pc\ngross domestic product per capita\n\n\nintresmi\ngross international reserves\n\n\nsigned\ndummy variable if signed an IMF agreement that year\n\n\nfivop\nmeasure of financial openness\n\n\nusheg\nmeasure of US hegemony[^hegemony]\n\n\n\n\n## library(Amelia) # Already loaded above, here just to remind\ndata(\"freetrade\")  # Modified dataset, included in the package",
     "crumbs": [
-      "Session 2  - Missing Data"
+      "Session 2 - Missing Data"
     ]
   },
   {
@@ -86,7 +86,7 @@
     "section": "Exploring data",
     "text": "Exploring data\n\n# Seeing aummary of all the variables\nsummary(freetrade)\n\n      year        country              tariff           polity      \n Min.   :1981   Length:171         Min.   :  7.10   Min.   :-8.000  \n 1st Qu.:1985   Class :character   1st Qu.: 16.30   1st Qu.:-2.000  \n Median :1990   Mode  :character   Median : 25.20   Median : 5.000  \n Mean   :1990                      Mean   : 31.65   Mean   : 2.905  \n 3rd Qu.:1995                      3rd Qu.: 40.80   3rd Qu.: 8.000  \n Max.   :1999                      Max.   :100.00   Max.   : 9.000  \n                                   NA's   :58       NA's   :2       \n      pop                gdp.pc           intresmi          signed      \n Min.   : 14105080   Min.   :  149.5   Min.   :0.9036   Min.   :0.0000  \n 1st Qu.: 19676715   1st Qu.:  420.1   1st Qu.:2.2231   1st Qu.:0.0000  \n Median : 52799040   Median :  814.3   Median :3.1815   Median :0.0000  \n Mean   :149904501   Mean   : 1867.3   Mean   :3.3752   Mean   :0.1548  \n 3rd Qu.:120888400   3rd Qu.: 2462.9   3rd Qu.:4.4063   3rd Qu.:0.0000  \n Max.   :997515200   Max.   :12086.2   Max.   :7.9346   Max.   :1.0000  \n                                       NA's   :13       NA's   :3       \n     fiveop          usheg       \n Min.   :12.30   Min.   :0.2558  \n 1st Qu.:12.50   1st Qu.:0.2623  \n Median :12.60   Median :0.2756  \n Mean   :12.74   Mean   :0.2764  \n 3rd Qu.:13.20   3rd Qu.:0.2887  \n Max.   :13.20   Max.   :0.3083  \n NA's   :18                      \n\n\n\nExploring missingness?\n\n## function to create table of missingness by variable \nmdesc &lt;- function(df) {\n\n  if (is.vector(df)) {\n    missing_col &lt;- sum(is.na(df))\n    total_col &lt;- length(df)\n    perc_missing_col &lt;- missing_col / total_col\n\n    out &lt;- data.frame(\n      'missing' = missing_col,\n      'total' = total_col,\n      'percent_missing' = perc_missing_col\n    )\n\n    return(out)\n  } else if (is.data.frame(df)) {\n    var_col &lt;- colnames(df)\n    missing_col &lt;- unlist(lapply(df, function(x) sum(is.na(x))))\n    total_col &lt;- nrow(df)\n    perc_missing_col &lt;- missing_col / total_col\n\n    out &lt;- data.frame(\n      'variable' = var_col,\n      'missing' = missing_col,\n      'total' = total_col,\n      'percent_missing' = perc_missing_col\n    )\n    rownames(out) &lt;- NULL\n    return(out)\n  } else {\n    stop('Please enter a vector or data.frame!')\n  }\n}\n\n# Missingness on DV\nmdesc(freetrade$tariff)\n\n  missing total percent_missing\n1      58   171       0.3391813\n\n# Missingness in whole dataset\nmdesc(freetrade)\n\n   variable missing total percent_missing\n1      year       0   171      0.00000000\n2   country       0   171      0.00000000\n3    tariff      58   171      0.33918129\n4    polity       2   171      0.01169591\n5       pop       0   171      0.00000000\n6    gdp.pc       0   171      0.00000000\n7  intresmi      13   171      0.07602339\n8    signed       3   171      0.01754386\n9    fiveop      18   171      0.10526316\n10    usheg       0   171      0.00000000",
     "crumbs": [
-      "Session 2  - Missing Data"
+      "Session 2 - Missing Data"
     ]
   },
   {
@@ -96,7 +96,7 @@
     "section": "Better way to explore missingness",
     "text": "Better way to explore missingness\nUsing VIM\n\n# install.packages(\"VIM\")\nlibrary(VIM)\n\nLoading required package: colorspace\n\n\nLoading required package: grid\n\n\nVIM is ready to use.\n\n\nSuggestions and bug-reports can be submitted at: https://github.com/statistikat/VIM/issues\n\n\n\nAttaching package: 'VIM'\n\n\nThe following object is masked from 'package:datasets':\n\n    sleep\n\nmice_plot &lt;- aggr(freetrade, col=c('skyblue','yellow'),\n                    numbers=TRUE, sortVars=TRUE,\n                    labels=names(freetrade), cex.axis=.7,\n                    gap=3, ylab=c(\"Missing data\",\"Pattern\"))\n\n\n\n\n\n\n\n\n\n Variables sorted by number of missings: \n Variable      Count\n   tariff 0.33918129\n   fiveop 0.10526316\n intresmi 0.07602339\n   signed 0.01754386\n   polity 0.01169591\n     year 0.00000000\n  country 0.00000000\n      pop 0.00000000\n   gdp.pc 0.00000000\n    usheg 0.00000000\n\n\n\nHow to read the output\nExample\nUsing ggmice\n\n## library(ggmice)\nsum(is.na(freetrade$gdp.pc))\n\n[1] 0\n\nggmice(freetrade, aes(gdp.pc,tariff )) + geom_point()\n\n\n\n\n\n\n\n\nThis can be useful in seeing patterns in missingness in the data.\nThe plot above shoes red marks on the x-axis for those values of gdp.pc for which the tariff value on y-axis is missing.\nIn this case, gdp.pc has no missing values. What if both axes have variables that have missing value. Look at the graph plot created by VIM to see any such variable.\nLet’s use tariff with variable fiveop.\n\nsum(is.na(freetrade$fiveop))\n\n[1] 18\n\nggmice(freetrade, aes(fiveop,tariff )) + geom_point()\n\n\n\n\n\n\n\n\nMore functionalities in the ggmice package",
     "crumbs": [
-      "Session 2  - Missing Data"
+      "Session 2 - Missing Data"
     ]
   },
   {
@@ -107,6 +107,16 @@
     "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Lall, Ranjit. 2017. “How Multiple Imputation Makes a\nDifference.” Political Analysis 24 (4): 414–33. https://doi.org/10.1093/pan/mpw020.",
+    "crumbs": [
+      "References"
     ]
   }
 ]
