@@ -269,8 +269,8 @@ window.Quarto = {
 </section>
 <section id="good-coding" class="level2">
 <h2 class="anchored" data-anchor-id="good-coding">Good Coding</h2>
-<p>Good programming or coding is closely related to the idea of Literate statistical programming. As <a href="https://academic.oup.com/comjnl/article/27/2/97/343244?login=false">Donald Knuth (1984)</a> defines, it is a way to write programs that focuses on explaining to human readers what we want the computers to do, rather than just instructing the computers to do so.</p>
-<p>Statitsical Programming , hence, is about formalizing your thinking about how you treat the data and using functional programming to automate such formalized tasks to be done repetitively. It improves efficiency, enhances reproducibility, and boosts creativity when it comes to finding new patterns in your data.</p>
+<p>Good programming or coding is closely related to the idea of Literate Statistical Programming. As <a href="https://academic.oup.com/comjnl/article/27/2/97/343244?login=false">Donald Knuth (1984)</a> defines, it is a way to write programs that focuses on explaining to human readers what we want the computers to do, rather than just instructing the computers to do so.</p>
+<p>Statistical Programming , hence, is about formalizing your thinking about how you treat the data and using functional programming to automate such formalized tasks to be done repetitively. It improves efficiency, enhances reproducibility, and boosts creativity when it comes to finding new patterns in your data.</p>
 <p>Guidelines for data and statistical analyses:<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <ol type="1">
 <li><strong>Accuracy</strong>: Write a code that reduces the chances of making an error and lets you catch one if it occurs.</li>
@@ -285,8 +285,8 @@ window.Quarto = {
 </section>
 <section id="latex" class="level2">
 <h2 class="anchored" data-anchor-id="latex"><span class="math inline">\(\LaTeX\)</span></h2>
-<p><a href="https://www.latex-project.org/about/"><span class="math inline">\(\LaTeX\)</span></a> (pronounced <em>“LAY-tek”</em> or <em>“LAH-Tek</em>) is a typesetting tool for preparing high-quality professional documents. It is the preferred typesetting tool used in high-end scientific documentation task. It gives you superior control over how your document look like, has enhanced capabilities to write technical specifications (Maths, stats, proofs, etc.), include code, and produces readily editable back-end documents.</p>
-<p>It is not a word-processing tool. It is a simple tool without too many priors about how the document should look like.</p>
+<p><a href="https://www.latex-project.org/about/"><span class="math inline">\(\LaTeX\)</span></a> (pronounced <em>“LAY-tek”</em> or <em>“LAH-Tek</em>) is a typesetting tool for preparing high-quality professional documents. It is the preferred typesetting tool used in high-end scientific documentation task.It is not a word-processing tool. It is a simple tool without too many priors about how the document should look like.</p>
+<p><span class="math inline">\(\LaTeX\)</span> gives us superior control over how your document look like, has enhanced capabilities to write technical specifications (Maths, stats, proofs, etc.), include code, and produces readily editable back-end documents.</p>
 <p>There are many interfaces that allow you to work with <span class="math inline">\(\LaTeX\)</span>. <a href="https://www.overleaf.com/">Overleaf</a> is a widely used online platform and <a href="https://www.xm1math.net/texmaker/index.html">Texmaker</a> is a popular offline application.</p>
 <p>However, RStudio has in-built capability to double as a <span class="math inline">\(\LaTeX\)</span> editor. Previously <code>RMarkdown</code> and now <code>Quarto</code> have capabilities that you can harness to achieve professional and beautifully typeset documents.</p>
 <p>Think of writing an equation like:<br>
@@ -384,7 +384,7 @@ funding: "The author received no specific funding for this work."
 </div>
 </div>
 </div>
-<p>Or, global settings for different formats of outputs like</p>
+<p>Or, global settings for different formats of outputs like <code>html</code> or <code>pdf</code>, as follows</p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -723,15 +723,21 @@ execute:
 keep_tex: true
 whitespace: small
 ---</code></pre>
-<p><strong>If you think your thought is not making sense, write it in</strong> <span class="math inline">\(\LaTeX\)</span>,</p>
-<p><strong>It will at least not make sense in a beautiful way.</strong></p>
+<blockquote class="blockquote">
+<p>“If you think your thought is not making sense, write it in** <span class="math inline">\(\LaTeX\)</span>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>It will at now not make sense in a beautiful way</p>
+</blockquote>
+<blockquote class="blockquote">
 <p>-Buddha (500 B.C.E.)</p>
+</blockquote>
 </section>
 </section>
 <section id="r-projects" class="level2">
 <h2 class="anchored" data-anchor-id="r-projects">R Projects</h2>
-<p>We used the <code>setwd()</code> command till now to trace the files we need in our work. As your work expands, projects will have multiple datasets to be loaded, different subsidiary scripts to be used, and multiple outputs to be saved.</p>
-<p>A first order problem related to both file management and reproducability of code is the usage of file paths. Using <strong>absolute paths</strong>, like <code>~/User/MyName/Documents/.....</code> becomes cumbersome and also inhibits efficiency of reproducability. Every time someone else runs the script, they will have to change the file paths in all the instances in Rscripts or <code>.qmd</code> file to locate the related datasets as well as other objects. Similarly, there would be issues with saving objects in new places. A partially efficient way we used till now involved using <code>setwd()</code> to direct R to a new working directory; this is also called usage of <strong>relative paths</strong></p>
+<p>We often use the <code>setwd()</code> command to trace the files we need in our work. As work expands, projects will have multiple datasets to be loaded, different subsidiary scripts to be used, and multiple outputs to be saved.</p>
+<p>A first order problem related to both file management and reproducability of code is the usage of file paths. Using <strong>absolute paths</strong>, like <code>~/User/MyName/Documents/.....</code> becomes cumbersome and also inhibits efficiency of reproducability. Every time someone else runs the script, they will have to change the file paths in all the instances in Rscripts or <code>.qmd</code> file to locate the related datasets as well as other objects. Similarly, there would be issues with saving objects in new places. A partially efficient way we use involves using <code>setwd()</code> to direct R to a new working directory; this is also called usage of <strong>relative paths</strong></p>
 <p><strong>R Projects</strong> is a built-in mechanism in RStudio for seamless file management and usage of relative paths.</p>
 <p>Let’s start by creating a new project. Click <code>File &gt; New Project</code>. Name the new project <code>govt-8003</code>.</p>
 <div class="cell">
