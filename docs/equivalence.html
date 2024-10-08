@@ -251,6 +251,7 @@ window.Quarto = {
   <li><a href="#how-does-the-equiv.t.test-function-work" id="toc-how-does-the-equiv.t.test-function-work" class="nav-link" data-scroll-target="#how-does-the-equiv.t.test-function-work">How does the <code>equiv.t.test</code> function work?</a></li>
   <li><a href="#illustration-used-in-hartman-and-hidalgo-2018" id="toc-illustration-used-in-hartman-and-hidalgo-2018" class="nav-link" data-scroll-target="#illustration-used-in-hartman-and-hidalgo-2018">Illustration used in Hartman and Hidalgo, 2018</a></li>
   </ul></li>
+  <li><a href="#how-to-run-equivalence-tests-on-your-own-data" id="toc-how-to-run-equivalence-tests-on-your-own-data" class="nav-link" data-scroll-target="#how-to-run-equivalence-tests-on-your-own-data">How to run equivalence tests on your own data?</a></li>
   <li><a href="#glossary-of-key-terms-in-hh-2018" id="toc-glossary-of-key-terms-in-hh-2018" class="nav-link" data-scroll-target="#glossary-of-key-terms-in-hh-2018">Glossary of Key Terms in H&amp;H 2018</a></li>
   </ul>
 </nav>
@@ -598,13 +599,35 @@ Reject the null hypothesis? FALSE, p-value of NA</code></pre>
 <pre><code>[1] 0.0685259</code></pre>
 </div>
 </div>
-<p>We currently did the equivalence test for one covariate <code>distance</code> only.</p>
+<p>We currently did the equivalence test for one covariate - <code>distance</code> - only.</p>
 <p>To understand for to run this for multiple covariates at once:</p>
 <ol type="1">
 <li><p>Download the replcication docket for Hartman and Hidalgo (2018) from <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYNSDG">here</a>.</p></li>
 <li><p>Open and follow the file <code>equivalence_replication_file.R</code>.</p></li>
 </ol>
 </section>
+</section>
+<section id="how-to-run-equivalence-tests-on-your-own-data" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-run-equivalence-tests-on-your-own-data">How to run equivalence tests on your own data?</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Since, the <code>equivtest</code> package from Hartman and Hidalgo is not on CRAN, downloading and installing it on different systems can create some issues on some of them.</p>
+<p>Following are the steps to do the same test without loading the package.</p>
+<ol type="1">
+<li><p>Download the <code>equiv-t-test.R</code> script from <a href="https://drive.google.com/file/d/1vEeuBmZiYoKSI_1NhEVqpfD1hbkRjqzP/view?usp=sharing">here</a>.</p></li>
+<li><p>Run the whole script after opening it in the same project window as your replication assignment. This would load three functions in your environment - <code>equiv.t.test</code>, <code>generate_plot</code>, and <code>run_equiv</code>.</p></li>
+</ol>
+<p>These functions are from the replication packet of <span class="citation" data-cites="hartmanEquivalenceApproachBalance2018">Hartman and Hidalgo (<a href="references.html#ref-hartmanEquivalenceApproachBalance2018" role="doc-biblioref">2018</a>)</span>.</p>
+<ol start="3" type="1">
+<li>Open the replcication docket for Hartman and Hidalgo (2018) from <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/RYNSDG">here</a>. Go through the file <code>equivalence_replication_file.R</code> from this docket to understand how the functions loaded in step 2 are used.</li>
+</ol>
+</div>
+</div>
+</div>
 </section>
 <section id="glossary-of-key-terms-in-hh-2018" class="level2">
 <h2 class="anchored" data-anchor-id="glossary-of-key-terms-in-hh-2018">Glossary of Key Terms in H&amp;H 2018</h2>
@@ -1087,7 +1110,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
