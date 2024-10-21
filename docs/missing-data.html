@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Session 3 - Missing Data and Multiple Imputation – Lab for Quantitative Methods - 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./equivalence.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="www/styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./missing-data.html">Session 3 - Missing Data and Multiple Imputation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Lab for Quantitative Methods - 3</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why are we here?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./latex-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 1 - <span class="math inline">\(\LaTeX\)</span> and Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./matching-equivalence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 2 - Matching and Equivalence</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./equivalence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Equivalence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missing-data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Session 3 - Missing Data and Multiple Imputation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#todays-lab" id="toc-todays-lab" class="nav-link active" data-scroll-target="#todays-lab">Today’s Lab</a></li>
+  <li><a href="#mechanisms-of-missingnness" id="toc-mechanisms-of-missingnness" class="nav-link" data-scroll-target="#mechanisms-of-missingnness">Mechanisms of Missingnness</a>
+  <ul class="collapse">
+  <li><a href="#mcar" id="toc-mcar" class="nav-link" data-scroll-target="#mcar">MCAR</a></li>
+  <li><a href="#mar" id="toc-mar" class="nav-link" data-scroll-target="#mar">MAR</a></li>
+  <li><a href="#nmar" id="toc-nmar" class="nav-link" data-scroll-target="#nmar">NMAR</a></li>
+  </ul></li>
+  <li><a href="#description-of-missingness" id="toc-description-of-missingness" class="nav-link" data-scroll-target="#description-of-missingness">Description of Missingness</a>
+  <ul class="collapse">
+  <li><a href="#using-custom-function" id="toc-using-custom-function" class="nav-link" data-scroll-target="#using-custom-function">Using Custom Function</a></li>
+  <li><a href="#using-vim-package" id="toc-using-vim-package" class="nav-link" data-scroll-target="#using-vim-package">Using <code>VIM</code> package</a></li>
+  <li><a href="#using-ggmicepackage" id="toc-using-ggmicepackage" class="nav-link" data-scroll-target="#using-ggmicepackage">Using <code>ggmice</code>package</a></li>
+  </ul></li>
+  <li><a href="#removal-of-missingness" id="toc-removal-of-missingness" class="nav-link" data-scroll-target="#removal-of-missingness">Removal of Missingness</a>
+  <ul class="collapse">
+  <li><a href="#hot-decking" id="toc-hot-decking" class="nav-link" data-scroll-target="#hot-decking">Hot-Decking</a></li>
+  <li><a href="#multiple-imputation" id="toc-multiple-imputation" class="nav-link" data-scroll-target="#multiple-imputation">Multiple Imputation</a></li>
+  <li><a href="#analysis-with-imputed-datasets" id="toc-analysis-with-imputed-datasets" class="nav-link" data-scroll-target="#analysis-with-imputed-datasets">Analysis with Imputed Datasets</a></li>
+  </ul></li>
+  <li><a href="#extra-stuff" id="toc-extra-stuff" class="nav-link" data-scroll-target="#extra-stuff">Extra Stuff</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Session 3 - Missing Data and Multiple Imputation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="amelia.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="amelia.jpg" class="img-fluid" style="width:100.0%"></a></p>
+<blockquote class="blockquote">
+<p>“When you lose something you can’t replace,<br>
+When you love someone, but it goes to waste,<br>
+Could it be worse?”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>- Chris Martin, ruminating about dataset with missing data points in <em>Fix You</em></p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Download the Lab folder from <a href="https://drive.google.com/file/d/1br4BqPWDJ0XgYYKwb1nTRe9TL7TwiL7v/view?usp=sharing">here</a>.</p></li>
+<li><p>Run the <code>.RProj</code> file.</p></li>
+<li><p>Open <code>8003-missingdata-multipleimputations-10212024.qmd</code>.</p></li>
+</ol>
+</div>
+</div>
+<section id="todays-lab" class="level2">
+<h2 class="anchored" data-anchor-id="todays-lab">Today’s Lab</h2>
+<ol type="1">
+<li><p>Mechanisms of Missingnness</p></li>
+<li><p>Description of Missingness</p></li>
+<li><p>Removal of Missingness</p></li>
+</ol>
+<ul>
+<li>Hot Decking</li>
+<li>Multiple Imputation</li>
+<li>Analysis with Imputed Datasets</li>
+</ul>
+</section>
+<section id="mechanisms-of-missingnness" class="level2">
+<h2 class="anchored" data-anchor-id="mechanisms-of-missingnness">Mechanisms of Missingnness</h2>
+<p>In data, missingness has been classified into three types based on the data generating mechanism leading to the occurrence of missingness (Rubin 1976, Little 2021). The following set-up explains them using DAGs.</p>
+<p>Suppose there is an outcome of interest - Vote for Far-Right Candidate (<span class="math inline">\(Y\)</span>). An explanatory variable of interest is <span class="math inline">\(Age\)</span>. An indicator variable (<span class="math inline">\(R_Y\)</span>) captures the reporting of <span class="math inline">\(Y\)</span>, and <span class="math inline">\(Y_{Latent}\)</span> is a latent variable which captures the intention to vote for far right candidate.</p>
+<section id="mcar" class="level3">
+<h3 class="anchored" data-anchor-id="mcar">MCAR</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dag_nomiss <span class="ot">&lt;-</span> <span class="fu">dagify</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  Y <span class="sc">~</span> Y_l <span class="sc">+</span> R_Y,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  Y_l <span class="sc">~</span> Age,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure =</span> <span class="st">"Age"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="st">"Y"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> <span class="fu">list</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="at">Age =</span> <span class="dv">1</span>, <span class="at">R_Y =</span> <span class="dv">2</span>, <span class="at">Y_l =</span> <span class="dv">2</span>, <span class="at">Y =</span> <span class="dv">3</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="at">Age =</span> <span class="dv">0</span>, <span class="at">R_Y =</span> <span class="dv">1</span>, <span class="at">Y_l =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">Y =</span> <span class="dv">0</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>(mcar <span class="ot">&lt;-</span> <span class="fu">ggdag</span>(dag_nomiss) <span class="sc">+</span> <span class="fu">theme_dag</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="missing-data_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mar" class="level3">
+<h3 class="anchored" data-anchor-id="mar">MAR</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MAR</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dag_nomiss_1 <span class="ot">&lt;-</span> <span class="fu">dagify</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  Y <span class="sc">~</span> Y_l <span class="sc">+</span> R_Y,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  Y_l <span class="sc">~</span> Age,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  R_Y <span class="sc">~</span> Age,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure =</span> <span class="st">"Age"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="st">"Y"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> <span class="fu">list</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="at">Age =</span> <span class="dv">1</span>, <span class="at">R_Y =</span> <span class="dv">2</span>, <span class="at">Y_l =</span> <span class="dv">2</span>, <span class="at">Y =</span> <span class="dv">3</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="at">Age =</span> <span class="dv">0</span>, <span class="at">R_Y =</span> <span class="dv">1</span>, <span class="at">Y_l =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">Y =</span> <span class="dv">0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>(mar <span class="ot">&lt;-</span> <span class="fu">ggdag</span>(dag_nomiss_1) <span class="sc">+</span> <span class="fu">theme_dag</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="missing-data_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="nmar" class="level3">
+<h3 class="anchored" data-anchor-id="nmar">NMAR</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NMAR</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>dag_nomiss_2 <span class="ot">&lt;-</span> <span class="fu">dagify</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  Y <span class="sc">~</span> Y_l <span class="sc">+</span> R_Y,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  Y_l <span class="sc">~</span> Age,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  R_Y <span class="sc">~</span> Age,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  R_Y <span class="sc">~</span> Y_l,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">exposure =</span> <span class="st">"Age"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="st">"Y"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">coords =</span> <span class="fu">list</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="at">Age =</span> <span class="dv">1</span>, <span class="at">R_Y =</span> <span class="dv">2</span>, <span class="at">Y_l =</span> <span class="dv">2</span>, <span class="at">Y =</span> <span class="dv">3</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">c</span>(<span class="at">Age =</span> <span class="dv">0</span>, <span class="at">R_Y =</span> <span class="dv">1</span>, <span class="at">Y_l =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">Y =</span> <span class="dv">0</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>(nmar <span class="ot">&lt;-</span> <span class="fu">ggdag</span>(dag_nomiss_2) <span class="sc">+</span> <span class="fu">theme_dag</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="missing-data_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="description-of-missingness" class="level2">
+<h2 class="anchored" data-anchor-id="description-of-missingness">Description of Missingness</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this and the rest of the lab today we will use the paper and dataset used by <span class="citation" data-cites="honakerAmeliaIIProgram2011">Honaker, King, and Blackwell (<a href="references.html#ref-honakerAmeliaIIProgram2011" role="doc-biblioref">2011</a>)</span> in their vignette for <a href="https://cran.r-project.org/web/packages/Amelia/vignettes/using-amelia.html">Amelia II</a></p>
+<section id="paper" class="level3">
+<h3 class="anchored" data-anchor-id="paper">Paper:</h3>
+<p>Milner, Helen V., and Keiko Kubota. 2005. “Why the Move to Free Trade? Democracy and Trade Policy in the Developing Countries.” <em>International Organization</em> 59 (1): 107–43. <a href="https://www.jstor.org/stable/3877880" class="uri">https://www.jstor.org/stable/3877880</a>.</p>
+</section>
+<section id="abstract" class="level3">
+<h3 class="anchored" data-anchor-id="abstract">Abstract:</h3>
+<p>Rising international trade flows are a primary component of globalization. The liberalization of trade policy in many developing countries has helped foster the growth of these flows. Preceding and concurrent with this move to free trade, there has been a global movement toward democracy. We argue that these two trends are related: democratization of the political system reduces the ability of governments to use trade barriers as a strategy for building political support. Political leaders in labor-rich countries may prefer lower trade barriers as democracy increases. Empirical evidence supports our claim about the developing countries from 1970-99. Regime change toward democracy is associated with trade liberalization, controlling for many factors. Conventional explanations of economic reform, such as economic crises and external pressures, seem less salient. Democratization may have fostered globalization in this period.</p>
+</section>
+</div>
+</div>
+<p><strong>Estimation</strong></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Model Specification</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Latex Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><span class="math display">\[\begin{aligned}
+tradepolicy_{i,t} = \beta_0 &amp; + \beta_1 REGIME_{i,t-1} + \beta_3 IMF_{i,t-1} \\
+&amp; + \beta_4OFFICE_{i,t-1} + \beta_5GDPPC_{i,t-1} \\
+&amp; + \beta_6LNPOP_{i,t-1} + \beta_7ECCRISIS_{i,t-1} \\
+&amp; + \beta_8BPCRISIS_{i,t-1} + \beta_9AVOPEN_{i,t-1} \\
+&amp; + u_i + \epsilon_{i,t}
+\end{aligned}\]</span></p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><em>The following code is not needed for exercise today. I have written the Latex equation to given an example of how to write multi line equations in paper. Also note, there are dependencies on some Latex packages which some of which I add between lines 28-38 in the code above.</em></p>
+<pre><code>$$\begin{aligned}
+tradepolicy_{i,t} = \beta_0 &amp; + \beta_1 REGIME_{i,t-1} + \beta_3 IMF_{i,t-1} \\
+&amp; + \beta_4OFFICE_{i,t-1} + \beta_5GDPPC_{i,t-1} \\
+&amp; + \beta_6LNPOP_{i,t-1} + \beta_7ECCRISIS_{i,t-1} \\
+&amp; + \beta_8BPCRISIS_{i,t-1} + \beta_9AVOPEN_{i,t-1} \\
+&amp; + u_i + \epsilon_{i,t}
+\end{aligned}$$</code></pre>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><strong>In the example from Amelia page, a modified dataset is used</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>year</code></td>
+<td style="text-align: left;">year</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>country</code></td>
+<td style="text-align: left;">country</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>tariff</code></td>
+<td style="text-align: left;">average tariff rates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>polity</code></td>
+<td style="text-align: left;">Polity IV Score[^polity]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>pop</code></td>
+<td style="text-align: left;">total population</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>gdp.pc</code></td>
+<td style="text-align: left;">gross domestic product per capita</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>intresmi</code></td>
+<td style="text-align: left;">gross international reserves</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>signed</code></td>
+<td style="text-align: left;">dummy variable if signed an IMF agreement that year</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>fivop</code></td>
+<td style="text-align: left;">measure of financial openness</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>usheg</code></td>
+<td style="text-align: left;">measure of US hegemony[^hegemony]</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## library(Amelia) # Already loaded above, here just to remind</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"freetrade"</span>)  <span class="co"># Modified dataset, included in the package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Seeing summary of all the variables</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(freetrade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      year        country              tariff           polity      
+ Min.   :1981   Length:171         Min.   :  7.10   Min.   :-8.000  
+ 1st Qu.:1985   Class :character   1st Qu.: 16.30   1st Qu.:-2.000  
+ Median :1990   Mode  :character   Median : 25.20   Median : 5.000  
+ Mean   :1990                      Mean   : 31.65   Mean   : 2.905  
+ 3rd Qu.:1995                      3rd Qu.: 40.80   3rd Qu.: 8.000  
+ Max.   :1999                      Max.   :100.00   Max.   : 9.000  
+                                   NA's   :58       NA's   :2       
+      pop                gdp.pc           intresmi          signed      
+ Min.   : 14105080   Min.   :  149.5   Min.   :0.9036   Min.   :0.0000  
+ 1st Qu.: 19676715   1st Qu.:  420.1   1st Qu.:2.2231   1st Qu.:0.0000  
+ Median : 52799040   Median :  814.3   Median :3.1815   Median :0.0000  
+ Mean   :149904501   Mean   : 1867.3   Mean   :3.3752   Mean   :0.1548  
+ 3rd Qu.:120888400   3rd Qu.: 2462.9   3rd Qu.:4.4063   3rd Qu.:0.0000  
+ Max.   :997515200   Max.   :12086.2   Max.   :7.9346   Max.   :1.0000  
+                                       NA's   :13       NA's   :3       
+     fiveop          usheg       
+ Min.   :12.30   Min.   :0.2558  
+ 1st Qu.:12.50   1st Qu.:0.2623  
+ Median :12.60   Median :0.2756  
+ Mean   :12.74   Mean   :0.2764  
+ 3rd Qu.:13.20   3rd Qu.:0.2887  
+ Max.   :13.20   Max.   :0.3083  
+ NA's   :18                      </code></pre>
+</div>
+</div>
+<section id="using-custom-function" class="level3">
+<h3 class="anchored" data-anchor-id="using-custom-function">Using Custom Function</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to calculate missingness in a vector or data frame</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mdesc <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the input is a vector</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.vector</span>(df)) {</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the number of missing values in the vector</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    missing_col <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(df))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the total number of elements in the vector</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    total_col <span class="ot">&lt;-</span> <span class="fu">length</span>(df)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the percentage of missing values</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    perc_missing_col <span class="ot">&lt;-</span> missing_col <span class="sc">/</span> total_col</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a data frame summarizing the missingness statistics for the vector</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">'missing'</span> <span class="ot">=</span> missing_col,           <span class="co"># Number of missing values</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">'total'</span> <span class="ot">=</span> total_col,               <span class="co"># Total number of elements</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>      <span class="st">'percent_missing'</span> <span class="ot">=</span> perc_missing_col <span class="co"># Percentage of missing values</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the result</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the input is a data frame</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">is.data.frame</span>(df)) {</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the column names of the data frame (variables)</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    var_col <span class="ot">&lt;-</span> <span class="fu">colnames</span>(df)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the number of missing values for each column</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    missing_col <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">lapply</span>(df, <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x))))</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the total number of rows in the data frame (same for all variables)</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    total_col <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the percentage of missing values for each column</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    perc_missing_col <span class="ot">&lt;-</span> missing_col <span class="sc">/</span> total_col</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create a data frame summarizing the missingness statistics for each variable</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    out <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>      <span class="st">'variable'</span> <span class="ot">=</span> var_col,              <span class="co"># Name of the variable (column)</span></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>      <span class="st">'missing'</span> <span class="ot">=</span> missing_col,           <span class="co"># Number of missing values in the column</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>      <span class="st">'total'</span> <span class="ot">=</span> total_col,               <span class="co"># Total number of rows in the data frame</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>      <span class="st">'percent_missing'</span> <span class="ot">=</span> perc_missing_col <span class="co"># Percentage of missing values</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove row names for cleaner output</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rownames</span>(out) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Return the result</span></span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(out)</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># If the input is neither a vector nor a data frame, return an error</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">'Please enter a vector or data.frame!'</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Missingness on DV</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mdesc</span>(freetrade<span class="sc">$</span>tariff)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  missing total percent_missing
+1      58   171       0.3391813</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Missingness in whole dataset</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mdesc</span>(freetrade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   variable missing total percent_missing
+1      year       0   171      0.00000000
+2   country       0   171      0.00000000
+3    tariff      58   171      0.33918129
+4    polity       2   171      0.01169591
+5       pop       0   171      0.00000000
+6    gdp.pc       0   171      0.00000000
+7  intresmi      13   171      0.07602339
+8    signed       3   171      0.01754386
+9    fiveop      18   171      0.10526316
+10    usheg       0   171      0.00000000</code></pre>
+</div>
+</div>
+</section>
+<section id="using-vim-package" class="level3">
+<h3 class="anchored" data-anchor-id="using-vim-package">Using <code>VIM</code> package</h3>
+<p><strong>Aggregation Plots</strong></p>
+<p>Aggregation plots provide a high-level overview of missingness int he dataset. Together the two plots below show missingness in the individual variables as well as joint-missingness in the data.</p>
+<p>This code is using the <code>aggr</code> function to perform exploratory data analysis on the <code>freetrade</code> dataset. The numbers argument is set to <code>TRUE</code>, which means that the function will display the number of missing values for each variable in the dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("VIM")</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(VIM)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>mice_plot <span class="ot">&lt;-</span> <span class="fu">aggr</span>(freetrade, <span class="at">col=</span><span class="fu">c</span>(<span class="st">'skyblue'</span>,<span class="st">'yellow'</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">numbers=</span><span class="cn">TRUE</span>, <span class="at">sortVars=</span><span class="cn">TRUE</span>,<span class="at">prop =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels=</span><span class="fu">names</span>(freetrade), <span class="at">cex.axis=</span>.<span class="dv">7</span>,<span class="at">interactive =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">gap=</span><span class="dv">3</span>, <span class="at">ylab=</span><span class="fu">c</span>(<span class="st">"Missing data"</span>,<span class="st">"Pattern"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="missing-data_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Variables sorted by number of missings: 
+ Variable      Count
+   tariff 0.33918129
+   fiveop 0.10526316
+ intresmi 0.07602339
+   signed 0.01754386
+   polity 0.01169591
+     year 0.00000000
+  country 0.00000000
+      pop 0.00000000
+   gdp.pc 0.00000000
+    usheg 0.00000000</code></pre>
+</div>
+</div>
+<p><strong>Spinogram and Spineplot</strong></p>
+<p>Spine plots from the <code>VIM</code> packages let’s us go deeper into invetigating missingness in the data between combination of any two variables. The utilities in <code>ggmice</code> package (covered in next section) performs similar task with different visual tools.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spineMiss</span>(freetrade[, <span class="fu">c</span>(<span class="st">"polity"</span>, <span class="st">"tariff"</span>)],<span class="at">interactive =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="missing-data_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The relative width of the bars for different <code>polity</code> scores the frequency of this category in the dataset. Within each bar, the missing proportion of earnings is shown, while the shadowed bar on the right-hand side presents this proportion for the whole dataset.</p>
+<p>Similarly, let’s try with variable <code>fiveop</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spineMiss</span>(freetrade[, <span class="fu">c</span>(<span class="st">"fiveop"</span>, <span class="st">"tariff"</span>)],<span class="at">interactive =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="missing-data_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The variable <code>fiveop</code> is a numeric variable, The function automatically creates bins in this plot.</p>
+<p><strong>Parallel Boxplot</strong></p>
+<p>Parallel boxplots subset the data into two. One for <em>missing</em> values and another for <em>observed</em> values of the supplied variables. In these two subsets the distribution of the second variable is displayed via boxplots. It is particularly useful to understand the pattern of missingness and whether it could possibly be leading to biasing of results if we choose to perform listwise deletion.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pbox</span>(freetrade[, <span class="fu">c</span>(<span class="st">"tariff"</span>, <span class="st">"fiveop"</span>)],<span class="at">interactive =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in createPlot(main, sub, xlab, ylab, labels, ca$at): not enough space
+to display frequencies</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="missing-data_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The white box is the overall distribution of <code>tariff</code> in the complete dataset.The blue box represents distribution of <code>tariff</code> for observed values of <code>fiveop</code> and the red box for missing values of <code>fiveop</code>. The relative width of the boxes reflects the sizes of the subsets on which they are based: the wider blue box means there are more observed than missing values in <code>fiveop</code>. Other than that, the two boxes look similar to each other and also the overall white box. This suggests that missing race information has no impact on the distribution of earnings.</p>
+<p>While the blue box appears similar to overall plot, the red box shows a distribution different from them. This gives us an indication that the data is not MCAR. The missingness in <code>fiveop</code> is possibly systematically associated to other variables. In the world of MAR and MNAR we would need to be cautious of just dropping the rows with missingness in <code>fiveop</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>More functions from VIM graphic utilities <a href="https://cran.r-project.org/web/packages/VIM/vignettes/VisualImp.html">here</a>.</p>
+<p><a href="https://www.datacamp.com/tutorial/visualize-data-vim-package">How to read the output</a></p>
+</div>
+</div>
+</section>
+<section id="using-ggmicepackage" class="level3">
+<h3 class="anchored" data-anchor-id="using-ggmicepackage">Using <code>ggmice</code>package</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## library(ggmice)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(freetrade<span class="sc">$</span>fiveop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmice</span>(freetrade, <span class="fu">aes</span>(gdp.pc,tariff )) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="missing-data_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This function can again be useful in seeing patterns in missingness in the data.</p>
+<p>The plot above shoes red marks on the x-axis for those values of <code>gdp.pc</code> for which the <code>tariff</code> value on y-axis is missing.</p>
+<p>In this case, <code>gdp.pc</code> has no missing values. What if both axes have variables that have missing value. Let’s look at the plot created by VIM to look for two such variables that have jointly missing values.</p>
+<p>Let’s use <code>tariff</code> with variable <code>fiveop</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(freetrade<span class="sc">$</span>fiveop))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmice</span>(freetrade, <span class="fu">aes</span>(fiveop,tariff )) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="missing-data_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>More functionalities in the <a href="https://cran.r-project.org/web/packages/ggmice/vignettes/ggmice.html"><code>ggmice</code> package</a></p>
+</div>
+</div>
+</section>
+</section>
+<section id="removal-of-missingness" class="level2">
+<h2 class="anchored" data-anchor-id="removal-of-missingness">Removal of Missingness</h2>
+<p>Most packages perform listwise/case-wise deletion. This is the strategy of complete-case analysis. Revisit the slides from class and <span class="citation" data-cites="lallHowMultipleImputation2017">Lall (<a href="references.html#ref-lallHowMultipleImputation2017" role="doc-biblioref">2017</a>)</span> to undertsand why this is pernicious - causes bias and reduces efficiency - in short.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(tariff <span class="sc">~</span> polity <span class="sc">+</span> pop <span class="sc">+</span> gdp.pc <span class="sc">+</span> year <span class="sc">+</span> country,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> freetrade))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country, 
+    data = freetrade)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.7640  -3.2595   0.0868   2.5983  18.3097 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         1.973e+03  4.016e+02   4.912 3.61e-06 ***
+polity             -1.373e-01  1.821e-01  -0.754    0.453    
+pop                -2.021e-07  2.542e-08  -7.951 3.23e-12 ***
+gdp.pc              6.096e-04  7.442e-04   0.819    0.415    
+year               -8.705e-01  2.084e-01  -4.176 6.43e-05 ***
+countryIndonesia   -1.823e+02  1.857e+01  -9.819 2.98e-16 ***
+countryKorea       -2.204e+02  2.078e+01 -10.608  &lt; 2e-16 ***
+countryMalaysia    -2.245e+02  2.171e+01 -10.343  &lt; 2e-16 ***
+countryNepal       -2.163e+02  2.247e+01  -9.629 7.74e-16 ***
+countryPakistan    -1.554e+02  1.982e+01  -7.838 5.63e-12 ***
+countryPhilippines -2.040e+02  2.088e+01  -9.774 3.75e-16 ***
+countrySriLanka    -2.091e+02  2.210e+01  -9.460 1.80e-15 ***
+countryThailand    -1.961e+02  2.095e+01  -9.358 2.99e-15 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.221 on 98 degrees of freedom
+  (60 observations deleted due to missingness)
+Multiple R-squared:  0.9247,    Adjusted R-squared:  0.9155 
+F-statistic: 100.3 on 12 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(estimatr)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.lm.r <span class="ot">&lt;-</span> <span class="fu">lm_robust</span>(tariff <span class="sc">~</span> polity <span class="sc">+</span> pop <span class="sc">+</span> gdp.pc,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> freetrade,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">fixed_effects =</span> year,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">clusters =</span> country))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm_robust(formula = tariff ~ polity + pop + gdp.pc, data = freetrade, 
+    clusters = country, fixed_effects = year)
+
+Standard error type:  CR2 
+
+Coefficients:
+         Estimate Std. Error t value Pr(&gt;|t|)   CI Lower  CI Upper    DF
+polity  9.933e-01  5.954e-01   1.668   0.1963 -9.303e-01 2.917e+00 2.923
+pop     3.075e-08  1.850e-08   1.662   0.2449 -5.304e-08 1.145e-07 1.899
+gdp.pc -2.168e-03  1.560e-03  -1.390   0.3072 -9.369e-03 5.032e-03 1.865
+
+Multiple R-squared:  0.5238 ,   Adjusted R-squared:  0.4114
+Multiple R-squared (proj. model):  0.415 ,  Adjusted R-squared (proj. model):  0.277 
+F-statistic (proj. model): 4.069 on 3 and 8 DF,  p-value: 0.04992</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's see how many observations final models have </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(model.lm<span class="sc">$</span>model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 111</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(model.lm.r<span class="sc">$</span>nobs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 111</code></pre>
+</div>
+</div>
+<section id="hot-decking" class="level3">
+<h3 class="anchored" data-anchor-id="hot-decking">Hot-Decking</h3>
+<p>A hot-deck imputation is a method for handling missing data where missing values in a dataset are imputed by values from similar records (donors) within the same dataset. The idea is to “borrow” values from observed (non-missing) data. Two common variations are the sequential hot-deck and random hot-deck algorithms.</p>
+<p>In the sequential hot-deck method, the missing value is filled with the most recent observed value from a similar case, which is often nearby in the data (usually within sorted rows or groups). In the random hot-deck method, the missing value is imputed by randomly selecting a value from a set of similar cases (donors) that have valid (non-missing) values.</p>
+<p>Hot-deck imputation could generally introduce bias is the missing values are too frequent, akin to mean imputation but now with the same value. Sequential imputation is more prone to increased bias as compared to random imputation. The latter generally has more variability in the imputed vector. However, random imputation is computationally more complex. Also, random selection from observed value could lead to varying results depending on the random choice in each new instanc eof imputation on the same dataset.</p>
+<p>For more details, read <span class="citation" data-cites="andridgeReviewHotDeck2010">Andridge and Little (<a href="references.html#ref-andridgeReviewHotDeck2010" role="doc-biblioref">2010</a>)</span>.</p>
+<p><code>VIM</code> has an inbuilt function for hot-decking called <code>hotdeck()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>imputed.freetrade <span class="ot">&lt;-</span> <span class="fu">hotdeck</span>(freetrade)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.lm.hotdeck <span class="ot">&lt;-</span> <span class="fu">lm</span>(tariff <span class="sc">~</span> polity <span class="sc">+</span> pop <span class="sc">+</span> gdp.pc <span class="sc">+</span> year <span class="sc">+</span> country,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> imputed.freetrade))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country, 
+    data = imputed.freetrade)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-45.003  -7.041  -3.447   5.862  81.247 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)         8.548e+02  6.656e+02   1.284   0.2010  
+polity             -5.482e-01  3.670e-01  -1.494   0.1373  
+pop                -4.203e-08  4.648e-08  -0.904   0.3673  
+gdp.pc              1.143e-04  1.482e-03   0.077   0.9386  
+year               -3.836e-01  3.459e-01  -1.109   0.2692  
+countryIndonesia   -6.346e+01  3.269e+01  -1.941   0.0540 .
+countryKorea       -6.831e+01  3.733e+01  -1.830   0.0691 .
+countryMalaysia    -7.001e+01  3.847e+01  -1.820   0.0707 .
+countryNepal       -6.523e+01  3.940e+01  -1.655   0.0998 .
+countryPakistan    -2.594e+01  3.516e+01  -0.738   0.4617  
+countryPhilippines -6.309e+01  3.701e+01  -1.705   0.0902 .
+countrySriLanka    -5.645e+01  3.910e+01  -1.444   0.1508  
+countryThailand    -5.550e+01  3.697e+01  -1.501   0.1353  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 15.47 on 158 degrees of freedom
+Multiple R-squared:  0.4759,    Adjusted R-squared:  0.4361 
+F-statistic: 11.96 on 12 and 158 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of rows</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(model.lm.hotdeck<span class="sc">$</span>model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 171</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The imputation can be improved with more substantive knowledge. Read the documentation of function with <code>?hotdeck</code>.</p>
+<p>The paper with detailed discussion of various imoutation methods including K-Nearest Neighbor and Regression Imputation <span class="citation" data-cites="kowarikImputationPackageVIM2016">(<a href="references.html#ref-kowarikImputationPackageVIM2016" role="doc-biblioref">Kowarik and Templ 2016</a>)</span> has detailed information of hot-decking as well as other imputation methods.</p>
+</div>
+</div>
+</section>
+<section id="multiple-imputation" class="level3">
+<h3 class="anchored" data-anchor-id="multiple-imputation">Multiple Imputation</h3>
+<blockquote class="blockquote">
+<p>“Lights will guide you home,<br>
+And ignite your bones<br>
+And I will try to fix you”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>- <span class="citation" data-cites="honakerAmeliaIIProgram2011">Honaker, King, and Blackwell (<a href="references.html#ref-honakerAmeliaIIProgram2011" role="doc-biblioref">2011</a>)</span> responding to Chris Martin while introducing Amelia package</p>
+</blockquote>
+<p>Multiple imputation, is a statistical technique for handling missing data by creating several (multiple) different plausible datasets (imputations), analyzing each of them, and then combining the results to produce estimates that account for the uncertainty introduced by the missing data <span class="citation" data-cites="honakerAmeliaIIProgram2011">(<a href="references.html#ref-honakerAmeliaIIProgram2011" role="doc-biblioref">Honaker, King, and Blackwell 2011</a>)</span>.</p>
+<p>Amelia II performs multiple imputations and allows for comuting estimates across multiple imputed datasets while capturing uncertainties at both imputed value as well as multiple datasets.</p>
+<p><strong>Which Vairables to choose for Imputation Model</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="do">## How many variables? Do we need to go through reduction? </span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(freetrade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 171  10</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From Amelia Webpage:</p>
+<p>When performing multiple imputation, the first step is to identify the variables to include in the imputation model. It is crucial to include at least as much information as will be used in the analysis model. That is, any variable that will be in the analysis model should also be in the imputation model. This includes any transformations or interactions of variables that will appear in the analysis model.</p>
+<p>In fact, it is often useful to add more information to the imputation model than will be present when the analysis is run. Since imputation is predictive, any variables that would increase predictive power should be included in the model, even if including them in the analysis model would produce bias in estimating a causal effect (such as for post-treatment variables) or collinearity would preclude determining which variable had a relationship with the dependent variable (such as including multiple alternate measures of GDP). In our case, we include all the variables in <code>freetrade</code> in the imputation model, even though our analysis model focuses on <code>polity</code>, <code>pop</code> and <code>gdp.pc</code>.</p>
+</div>
+</div>
+<p><strong>How many imputations?</strong></p>
+<p>Amelia II creators recommend that unless the rate of missingness is very high in the dataset, m = 5 where m represents number of imputed datsets should be enough <span class="citation" data-cites="honakerAmeliaIIProgram2011">(<a href="references.html#ref-honakerAmeliaIIProgram2011" role="doc-biblioref">Honaker, King, and Blackwell 2011, pp2</a>)</span>. However, in practical applications <span class="citation" data-cites="lallHowMultipleImputation2017">Lall (<a href="references.html#ref-lallHowMultipleImputation2017" role="doc-biblioref">2017</a>)</span> suggets to be more cautious of this approach as it could produce some divergence in the results (pp.&nbsp;426) and suggest calculating <span class="math inline">\(\gamma\)</span> - the average missignness rate in the dataset - and then chose an <span class="math inline">\(m\)</span> roughly equal to this rate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## What is average percentage of missing data?</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#m is equal to the average missing-data rate of all variables in the imputation model</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>NAs <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.vector</span>(<span class="fu">apply</span>(x, <span class="dv">2</span>, <span class="cf">function</span>(x) <span class="fu">length</span>(<span class="fu">which</span>(<span class="fu">is.na</span>(x)))))</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">NAs</span>(freetrade)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0  0 58  2  0  0 13  3 18  0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">NAs</span>(freetrade)<span class="sc">/</span><span class="fu">nrow</span>(freetrade))<span class="sc">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.497076</code></pre>
+</div>
+</div>
+<p>So, in this case we can safely take <span class="math inline">\(m=5\)</span>.</p>
+<p><strong>Creating Imputed Datasets</strong></p>
+<p>To create multiple imputations in Amelia, we can simply run</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">20230918</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>a.out <span class="ot">&lt;-</span> <span class="fu">amelia</span>(freetrade,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">m =</span> <span class="dv">5</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">ts =</span> <span class="st">"year"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">cs =</span> <span class="st">"country"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-- Imputation 1 --
+
+  1  2  3  4  5  6  7  8  9 10 11 12
+
+-- Imputation 2 --
+
+  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16
+
+-- Imputation 3 --
+
+  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16
+
+-- Imputation 4 --
+
+  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+
+-- Imputation 5 --
+
+  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>a.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Amelia output with 5 imputed datasets.
+Return code:  1 
+Message:  Normal EM convergence. 
+
+Chain Lengths:
+--------------
+Imputation 1:  12
+Imputation 2:  16
+Imputation 3:  16
+Imputation 4:  15
+Imputation 5:  10</code></pre>
+</div>
+</div>
+<p>The output gives some information about how the algorithm ran. Each of the imputed datasets is now in the list <code>a.out$imputations</code>.</p>
+<p><code>a.out</code> is a list object with 5 imputed datsets stored in it. We can access any of those imputations by using the synatx <code>a.out$imputations[[&lt;number&gt;]]</code> or <code>a.out$imputations$imp&lt;number&gt;</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See the number of rows</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(a.out<span class="sc">$</span>imputations<span class="sc">$</span>imp1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 171</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(a.out<span class="sc">$</span>imputations[[<span class="dv">2</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 171</code></pre>
+</div>
+</div>
+<p>We can access variables in different imputations to coompare the distribution with the original variable’s distribution.</p>
+<p>Let’s plot a histogram of the <code>tariff</code> variable from the 3rd imputation,</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Original</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Imputed <span class="math inline">\(3^{rd}\)</span> Dataset</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Combined</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(freetrade, <span class="fu">aes</span>(tariff)) <span class="sc">+</span><span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 58 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="missing-data_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(a.out<span class="sc">$</span>imputations[[<span class="dv">3</span>]], <span class="fu">aes</span>(tariff)) <span class="sc">+</span><span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="missing-data_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Compare with original data</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>comb.tariff <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="at">tariff =</span> a.out<span class="sc">$</span>imputations[[<span class="dv">3</span>]]<span class="sc">$</span>tariff, <span class="at">df =</span> <span class="st">"impute.3"</span>),</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="at">tariff =</span> freetrade<span class="sc">$</span>tariff, <span class="at">df =</span> <span class="st">"original"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">tariff =</span> <span class="fu">as.numeric</span>(tariff))</span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(comb.tariff, <span class="fu">aes</span>(tariff, <span class="at">fill =</span> df)) <span class="sc">+</span><span class="fu">geom_histogram</span>(<span class="at">position =</span> <span class="st">'identity'</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 58 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="missing-data_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Question: Why are red bars higher than green bars in the comibined plot?</p>
+</div>
+</div>
+</div>
+<p><strong>Saving the imputed datasets</strong></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="in">save(a.out, file = "imputations.RData") # .RData file</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="in">write.amelia(obj = a.out, file.stem = "imputation-freetrade") # As five separate csvs</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Expansive Function</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># More expansive model</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Amelia model</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="co"># as2012.out &lt;- amelia(freetrade, # data </span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="co">#                      m = 5, # number of imputations </span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="co">#                      ts = "year",  # time series index</span></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co">#                      cs = "country", # cross section index</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a><span class="co">#                      polytime = 3, # third-order time polynomial</span></span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co">#                      lags = c("polity", "gdp.pc"), # lag variable</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="co">#                      ords =  "polity" # Ordinal Variable</span></span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co">#                      noms =  "polity" # If polity was a nominal variable</span></span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a><span class="co">#                      empri = 0.01*nrow(as)) # priors</span></span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Not running, just for explanation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Also, read sections on transformations,bounds, time-series-cross-section data (TSCS) and id-variables from the Amelia <a href="https://cran.r-project.org/web/packages/Amelia/vignettes/using-amelia.html">Website</a></p>
+</section>
+<section id="analysis-with-imputed-datasets" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-with-imputed-datasets">Analysis with Imputed Datasets</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recall the Linear Models we ran above</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country, 
+    data = freetrade)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.7640  -3.2595   0.0868   2.5983  18.3097 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)         1.973e+03  4.016e+02   4.912 3.61e-06 ***
+polity             -1.373e-01  1.821e-01  -0.754    0.453    
+pop                -2.021e-07  2.542e-08  -7.951 3.23e-12 ***
+gdp.pc              6.096e-04  7.442e-04   0.819    0.415    
+year               -8.705e-01  2.084e-01  -4.176 6.43e-05 ***
+countryIndonesia   -1.823e+02  1.857e+01  -9.819 2.98e-16 ***
+countryKorea       -2.204e+02  2.078e+01 -10.608  &lt; 2e-16 ***
+countryMalaysia    -2.245e+02  2.171e+01 -10.343  &lt; 2e-16 ***
+countryNepal       -2.163e+02  2.247e+01  -9.629 7.74e-16 ***
+countryPakistan    -1.554e+02  1.982e+01  -7.838 5.63e-12 ***
+countryPhilippines -2.040e+02  2.088e+01  -9.774 3.75e-16 ***
+countrySriLanka    -2.091e+02  2.210e+01  -9.460 1.80e-15 ***
+countryThailand    -1.961e+02  2.095e+01  -9.358 2.99e-15 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6.221 on 98 degrees of freedom
+  (60 observations deleted due to missingness)
+Multiple R-squared:  0.9247,    Adjusted R-squared:  0.9155 
+F-statistic: 100.3 on 12 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model.lm.r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm_robust(formula = tariff ~ polity + pop + gdp.pc, data = freetrade, 
+    clusters = country, fixed_effects = year)
+
+Standard error type:  CR2 
+
+Coefficients:
+         Estimate Std. Error t value Pr(&gt;|t|)   CI Lower  CI Upper    DF
+polity  9.933e-01  5.954e-01   1.668   0.1963 -9.303e-01 2.917e+00 2.923
+pop     3.075e-08  1.850e-08   1.662   0.2449 -5.304e-08 1.145e-07 1.899
+gdp.pc -2.168e-03  1.560e-03  -1.390   0.3072 -9.369e-03 5.032e-03 1.865
+
+Multiple R-squared:  0.5238 ,   Adjusted R-squared:  0.4114
+Multiple R-squared (proj. model):  0.415 ,  Adjusted R-squared (proj. model):  0.277 
+F-statistic (proj. model): 4.069 on 3 and 8 DF,  p-value: 0.04992</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now running with imputed datasets</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>imp.models <span class="ot">&lt;-</span> <span class="fu">with</span>( <span class="co"># Note this command</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  a.out,</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(tariff <span class="sc">~</span> polity <span class="sc">+</span> pop <span class="sc">+</span> gdp.pc <span class="sc">+</span> year <span class="sc">+</span> country)</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Analysis results with five imputed datsets</span></span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>imp.models[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country)
+
+Coefficients:
+       (Intercept)              polity                 pop              gdp.pc  
+         3.402e+03           1.314e-01          -1.253e-07           5.026e-04  
+              year    countryIndonesia        countryKorea     countryMalaysia  
+        -1.624e+00          -1.138e+02          -1.522e+02          -1.517e+02  
+      countryNepal     countryPakistan  countryPhilippines     countrySriLanka  
+        -1.384e+02          -9.973e+01          -1.398e+02          -1.370e+02  
+   countryThailand  
+        -1.311e+02  
+
+
+[[2]]
+
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country)
+
+Coefficients:
+       (Intercept)              polity                 pop              gdp.pc  
+         3.080e+03           6.137e-02          -4.630e-08          -2.889e-04  
+              year    countryIndonesia        countryKorea     countryMalaysia  
+        -1.500e+00          -5.777e+01          -7.636e+01          -7.796e+01  
+      countryNepal     countryPakistan  countryPhilippines     countrySriLanka  
+        -6.808e+01          -3.119e+01          -6.796e+01          -6.195e+01  
+   countryThailand  
+        -6.287e+01  
+
+
+[[3]]
+
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country)
+
+Coefficients:
+       (Intercept)              polity                 pop              gdp.pc  
+         2.769e+03           1.266e-01          -1.298e-07          -6.143e-04  
+              year    countryIndonesia        countryKorea     countryMalaysia  
+        -1.304e+00          -1.204e+02          -1.455e+02          -1.502e+02  
+      countryNepal     countryPakistan  countryPhilippines     countrySriLanka  
+        -1.459e+02          -1.010e+02          -1.419e+02          -1.353e+02  
+   countryThailand  
+        -1.341e+02  
+
+
+[[4]]
+
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country)
+
+Coefficients:
+       (Intercept)              polity                 pop              gdp.pc  
+         2.517e+03           6.279e-02          -1.128e-07           3.814e-04  
+              year    countryIndonesia        countryKorea     countryMalaysia  
+        -1.186e+00          -1.081e+02          -1.403e+02          -1.358e+02  
+      countryNepal     countryPakistan  countryPhilippines     countrySriLanka  
+        -1.304e+02          -8.434e+01          -1.260e+02          -1.245e+02  
+   countryThailand  
+        -1.192e+02  
+
+
+[[5]]
+
+Call:
+lm(formula = tariff ~ polity + pop + gdp.pc + year + country)
+
+Coefficients:
+       (Intercept)              polity                 pop              gdp.pc  
+         2.498e+03           9.533e-02          -2.128e-08          -4.360e-04  
+              year    countryIndonesia        countryKorea     countryMalaysia  
+        -1.219e+00          -3.874e+01          -5.313e+01          -5.325e+01  
+      countryNepal     countryPakistan  countryPhilippines     countrySriLanka  
+        -5.009e+01          -1.167e+01          -4.665e+01          -3.946e+01  
+   countryThailand  
+        -3.571e+01  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Similarly, lm_robust can be run with approprite modifications</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># BTW, see the class of created object</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(imp.models)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "amest"</code></pre>
+</div>
+</div>
+<p>We can combine the imputed estimates using Rubin Rules <span class="citation" data-cites="lallHowMultipleImputation2017 honakerAmeliaIIProgram2011">(<a href="references.html#ref-lallHowMultipleImputation2017" role="doc-biblioref">Lall 2017</a>; <a href="references.html#ref-honakerAmeliaIIProgram2011" role="doc-biblioref">Honaker, King, and Blackwell 2011</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">mi.combine</span>(imp.models, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 10
+   term    estimate std.error statistic p.value     df      r miss.info conf.low
+   &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 (Inter…  2.85e+3   6.87e+2    4.15   2.86e-4 2.76e1 0.615     0.421   4.26e+3
+ 2 polity   9.55e-2   2.98e-1    0.321  7.48e-1 1.73e4 0.0155    0.0153  6.79e-1
+ 3 pop     -8.71e-8   6.65e-8   -1.31   1.78e+0 8.78e0 2.08      0.730   6.38e-8
+ 4 gdp.pc  -9.10e-5   1.33e-3   -0.0685 1.05e+0 1.37e2 0.206     0.183   2.54e-3
+ 5 year    -1.37e+0   3.49e-1   -3.92   2.00e+0 3.25e1 0.541     0.387  -6.57e-1
+ 6 countr… -8.78e+1   4.84e+1   -1.81   1.89e+0 8.21e0 2.31      0.752   2.35e+1
+ 7 countr… -1.13e+2   5.84e+1   -1.94   1.91e+0 7.56e0 2.67      0.779   2.25e+1
+ 8 countr… -1.14e+2   5.87e+1   -1.94   1.91e+0 7.84e0 2.50      0.767   2.20e+1
+ 9 countr… -1.07e+2   5.81e+1   -1.84   1.90e+0 8.30e0 2.27      0.748   2.65e+1
+10 countr… -6.56e+1   5.37e+1   -1.22   1.74e+0 7.83e0 2.51      0.768   5.86e+1
+11 countr… -1.04e+2   5.70e+1   -1.83   1.89e+0 7.72e0 2.57      0.772   2.78e+1
+12 countr… -9.97e+1   5.93e+1   -1.68   1.87e+0 7.91e0 2.46      0.764   3.73e+1
+13 countr… -9.66e+1   5.74e+1   -1.68   1.87e+0 7.62e0 2.63      0.776   3.69e+1
+# ℹ 1 more variable: conf.high &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare with models with missing data</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model.lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   term               estimate std.error statistic  p.value
+   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+ 1 (Intercept)         1.97e+3   4.02e+2     4.91  3.61e- 6
+ 2 polity             -1.37e-1   1.82e-1    -0.754 4.53e- 1
+ 3 pop                -2.02e-7   2.54e-8    -7.95  3.23e-12
+ 4 gdp.pc              6.10e-4   7.44e-4     0.819 4.15e- 1
+ 5 year               -8.71e-1   2.08e-1    -4.18  6.43e- 5
+ 6 countryIndonesia   -1.82e+2   1.86e+1    -9.82  2.98e-16
+ 7 countryKorea       -2.20e+2   2.08e+1   -10.6   5.82e-18
+ 8 countryMalaysia    -2.25e+2   2.17e+1   -10.3   2.19e-17
+ 9 countryNepal       -2.16e+2   2.25e+1    -9.63  7.74e-16
+10 countryPakistan    -1.55e+2   1.98e+1    -7.84  5.63e-12
+11 countryPhilippines -2.04e+2   2.09e+1    -9.77  3.75e-16
+12 countrySriLanka    -2.09e+2   2.21e+1    -9.46  1.80e-15
+13 countryThailand    -1.96e+2   2.10e+1    -9.36  2.99e-15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model.lm.r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    term      estimate    std.error statistic   p.value      conf.low
+1 polity  9.932974e-01 5.954310e-01  1.668199 0.1962662 -9.302831e-01
+2    pop  3.074611e-08 1.849543e-08  1.662363 0.2448695 -5.304187e-08
+3 gdp.pc -2.168425e-03 1.559823e-03 -1.390174 0.3071929 -9.368722e-03
+     conf.high       df outcome
+1 2.916878e+00 2.922744  tariff
+2 1.145341e-07 1.898740  tariff
+3 5.031871e-03 1.864708  tariff</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model.lm.hotdeck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 5
+   term               estimate std.error statistic p.value
+   &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 (Intercept)         8.55e+2   6.66e+2    1.28    0.201 
+ 2 polity             -5.48e-1   3.67e-1   -1.49    0.137 
+ 3 pop                -4.20e-8   4.65e-8   -0.904   0.367 
+ 4 gdp.pc              1.14e-4   1.48e-3    0.0771  0.939 
+ 5 year               -3.84e-1   3.46e-1   -1.11    0.269 
+ 6 countryIndonesia   -6.35e+1   3.27e+1   -1.94    0.0540
+ 7 countryKorea       -6.83e+1   3.73e+1   -1.83    0.0691
+ 8 countryMalaysia    -7.00e+1   3.85e+1   -1.82    0.0707
+ 9 countryNepal       -6.52e+1   3.94e+1   -1.66    0.0998
+10 countryPakistan    -2.59e+1   3.52e+1   -0.738   0.462 
+11 countryPhilippines -6.31e+1   3.70e+1   -1.70    0.0902
+12 countrySriLanka    -5.64e+1   3.91e+1   -1.44    0.151 
+13 countryThailand    -5.55e+1   3.70e+1   -1.50    0.135 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install required packages if you haven't already</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("dplyr", "kableExtra", "tidyr"))</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming tidy outputs from the three models</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>tidy_lm <span class="ot">&lt;-</span> <span class="fu">tidy</span>(model.lm)</span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>tidy_lm_hotdeck <span class="ot">&lt;-</span> <span class="fu">tidy</span>(model.lm.hotdeck)</span>
+<span id="cb77-9"><a href="#cb77-9" aria-hidden="true" tabindex="-1"></a>tidy_amelia <span class="ot">&lt;-</span> out</span>
+<span id="cb77-10"><a href="#cb77-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-11"><a href="#cb77-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the tidy outputs into one data frame with model names</span></span>
+<span id="cb77-12"><a href="#cb77-12" aria-hidden="true" tabindex="-1"></a>combined_tidy <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb77-13"><a href="#cb77-13" aria-hidden="true" tabindex="-1"></a>  tidy_lm <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="st">"Complete-Case Model"</span>),</span>
+<span id="cb77-14"><a href="#cb77-14" aria-hidden="true" tabindex="-1"></a>  tidy_lm_hotdeck <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="st">"Hot-Deck Model"</span>),</span>
+<span id="cb77-15"><a href="#cb77-15" aria-hidden="true" tabindex="-1"></a>  tidy_amelia <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="st">"Amelia MI Model"</span>)</span>
+<span id="cb77-16"><a href="#cb77-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb77-17"><a href="#cb77-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-18"><a href="#cb77-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape the data to wide format</span></span>
+<span id="cb77-19"><a href="#cb77-19" aria-hidden="true" tabindex="-1"></a>wide_tidy <span class="ot">&lt;-</span> combined_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb77-20"><a href="#cb77-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Model, term, estimate, std.error, statistic, p.value) <span class="sc">%&gt;%</span></span>
+<span id="cb77-21"><a href="#cb77-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Model, <span class="at">values_from =</span> <span class="fu">c</span>(estimate, std.error, statistic, p.value),</span>
+<span id="cb77-22"><a href="#cb77-22" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_sep =</span> <span class="st">"_"</span>) <span class="co"># This will create column names like estimate_Complete-Case Model</span></span>
+<span id="cb77-23"><a href="#cb77-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-24"><a href="#cb77-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Create LaTeX table using kableExtra</span></span>
+<span id="cb77-25"><a href="#cb77-25" aria-hidden="true" tabindex="-1"></a>wide_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb77-26"><a href="#cb77-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kbl</span>( <span class="at">booktabs =</span> <span class="cn">TRUE</span>, <span class="at">caption =</span> <span class="st">"Combined Regression Models (Transposed)"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb77-27"><a href="#cb77-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="fu">c</span>(<span class="st">"hold_position"</span>, <span class="st">"striped"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Combined Regression Models (Transposed)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate_Complete-Case Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate_Hot-Deck Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate_Amelia MI Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error_Complete-Case Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error_Hot-Deck Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error_Amelia MI Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic_Complete-Case Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic_Hot-Deck Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic_Amelia MI Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value_Complete-Case Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value_Hot-Deck Model</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value_Amelia MI Model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">1972.6328639</td>
+<td style="text-align: right;">854.7823152</td>
+<td style="text-align: right;">2853.2141618</td>
+<td style="text-align: right;">401.6146966</td>
+<td style="text-align: right;">665.6451851</td>
+<td style="text-align: right;">687.1615407</td>
+<td style="text-align: right;">4.9117547</td>
+<td style="text-align: right;">1.2841411</td>
+<td style="text-align: right;">4.1521738</td>
+<td style="text-align: right;">0.0000036</td>
+<td style="text-align: right;">0.2009724</td>
+<td style="text-align: right;">0.0002857</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">polity</td>
+<td style="text-align: right;">-0.1372722</td>
+<td style="text-align: right;">-0.5481820</td>
+<td style="text-align: right;">0.0955053</td>
+<td style="text-align: right;">0.1821269</td>
+<td style="text-align: right;">0.3670367</td>
+<td style="text-align: right;">0.2975730</td>
+<td style="text-align: right;">-0.7537175</td>
+<td style="text-align: right;">-1.4935346</td>
+<td style="text-align: right;">0.3209475</td>
+<td style="text-align: right;">0.4528260</td>
+<td style="text-align: right;">0.1372916</td>
+<td style="text-align: right;">0.7482541</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pop</td>
+<td style="text-align: right;">-0.0000002</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">-0.0000001</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0000001</td>
+<td style="text-align: right;">-7.9508396</td>
+<td style="text-align: right;">-0.9041684</td>
+<td style="text-align: right;">-1.3103516</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.3672827</td>
+<td style="text-align: right;">1.7766806</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdp.pc</td>
+<td style="text-align: right;">0.0006096</td>
+<td style="text-align: right;">0.0001143</td>
+<td style="text-align: right;">-0.0000910</td>
+<td style="text-align: right;">0.0007442</td>
+<td style="text-align: right;">0.0014821</td>
+<td style="text-align: right;">0.0013298</td>
+<td style="text-align: right;">0.8191485</td>
+<td style="text-align: right;">0.0771009</td>
+<td style="text-align: right;">-0.0684692</td>
+<td style="text-align: right;">0.4146893</td>
+<td style="text-align: right;">0.9386408</td>
+<td style="text-align: right;">1.0544879</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">-0.8705461</td>
+<td style="text-align: right;">-0.3835607</td>
+<td style="text-align: right;">-1.3667123</td>
+<td style="text-align: right;">0.2084439</td>
+<td style="text-align: right;">0.3459319</td>
+<td style="text-align: right;">0.3487968</td>
+<td style="text-align: right;">-4.1764050</td>
+<td style="text-align: right;">-1.1087751</td>
+<td style="text-align: right;">-3.9183625</td>
+<td style="text-align: right;">0.0000643</td>
+<td style="text-align: right;">0.2692121</td>
+<td style="text-align: right;">1.9995679</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">countryIndonesia</td>
+<td style="text-align: right;">-182.3267131</td>
+<td style="text-align: right;">-63.4629764</td>
+<td style="text-align: right;">-87.7626156</td>
+<td style="text-align: right;">18.5678981</td>
+<td style="text-align: right;">32.6945826</td>
+<td style="text-align: right;">48.4445877</td>
+<td style="text-align: right;">-9.8194590</td>
+<td style="text-align: right;">-1.9410854</td>
+<td style="text-align: right;">-1.8116083</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0540276</td>
+<td style="text-align: right;">1.8933361</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">countryKorea</td>
+<td style="text-align: right;">-220.4438668</td>
+<td style="text-align: right;">-68.3121375</td>
+<td style="text-align: right;">-113.4919900</td>
+<td style="text-align: right;">20.7803472</td>
+<td style="text-align: right;">37.3302491</td>
+<td style="text-align: right;">58.3744290</td>
+<td style="text-align: right;">-10.6082860</td>
+<td style="text-align: right;">-1.8299406</td>
+<td style="text-align: right;">-1.9442073</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0691434</td>
+<td style="text-align: right;">1.9101103</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">countryMalaysia</td>
+<td style="text-align: right;">-224.5464768</td>
+<td style="text-align: right;">-70.0071325</td>
+<td style="text-align: right;">-113.7811609</td>
+<td style="text-align: right;">21.7107818</td>
+<td style="text-align: right;">38.4661918</td>
+<td style="text-align: right;">58.6693456</td>
+<td style="text-align: right;">-10.3426251</td>
+<td style="text-align: right;">-1.8199653</td>
+<td style="text-align: right;">-1.9393630</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0706569</td>
+<td style="text-align: right;">1.9108244</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">countryNepal</td>
+<td style="text-align: right;">-216.3338310</td>
+<td style="text-align: right;">-65.2287221</td>
+<td style="text-align: right;">-106.5699358</td>
+<td style="text-align: right;">22.4672149</td>
+<td style="text-align: right;">39.4037530</td>
+<td style="text-align: right;">58.0575005</td>
+<td style="text-align: right;">-9.6288673</td>
+<td style="text-align: right;">-1.6553936</td>
+<td style="text-align: right;">-1.8355929</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0998296</td>
+<td style="text-align: right;">1.8976104</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">countryPakistan</td>
+<td style="text-align: right;">-155.3509868</td>
+<td style="text-align: right;">-25.9447549</td>
+<td style="text-align: right;">-65.5886664</td>
+<td style="text-align: right;">19.8214313</td>
+<td style="text-align: right;">35.1617472</td>
+<td style="text-align: right;">53.6629118</td>
+<td style="text-align: right;">-7.8375262</td>
+<td style="text-align: right;">-0.7378688</td>
+<td style="text-align: right;">-1.2222346</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.4616887</td>
+<td style="text-align: right;">1.7428515</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">countryPhilippines</td>
+<td style="text-align: right;">-204.0378373</td>
+<td style="text-align: right;">-63.0907583</td>
+<td style="text-align: right;">-104.4628202</td>
+<td style="text-align: right;">20.8758293</td>
+<td style="text-align: right;">37.0069339</td>
+<td style="text-align: right;">56.9810714</td>
+<td style="text-align: right;">-9.7738794</td>
+<td style="text-align: right;">-1.7048361</td>
+<td style="text-align: right;">-1.8332899</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0901904</td>
+<td style="text-align: right;">1.8945536</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">countrySriLanka</td>
+<td style="text-align: right;">-209.0534653</td>
+<td style="text-align: right;">-56.4481324</td>
+<td style="text-align: right;">-99.6524394</td>
+<td style="text-align: right;">22.0994094</td>
+<td style="text-align: right;">39.0953614</td>
+<td style="text-align: right;">59.2852871</td>
+<td style="text-align: right;">-9.4596856</td>
+<td style="text-align: right;">-1.4438575</td>
+<td style="text-align: right;">-1.6808966</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.1507590</td>
+<td style="text-align: right;">1.8682816</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">countryThailand</td>
+<td style="text-align: right;">-196.0930793</td>
+<td style="text-align: right;">-55.4976001</td>
+<td style="text-align: right;">-96.6075914</td>
+<td style="text-align: right;">20.9539028</td>
+<td style="text-align: right;">36.9685047</td>
+<td style="text-align: right;">57.3985862</td>
+<td style="text-align: right;">-9.3583082</td>
+<td style="text-align: right;">-1.5012130</td>
+<td style="text-align: right;">-1.6831005</td>
+<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.1352963</td>
+<td style="text-align: right;">1.8672833</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter out the intercept, as it's typically not included in coefficient plots</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>combined_tidy_filtered <span class="ot">&lt;-</span> combined_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">!=</span> <span class="st">"(Intercept)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(term,<span class="st">"^country"</span>))</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coefficient plot</span></span>
+<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_tidy_filtered, <span class="fu">aes</span>(<span class="at">x =</span> term, <span class="at">y =</span> estimate, <span class="at">color =</span> Model)) <span class="sc">+</span></span>
+<span id="cb78-8"><a href="#cb78-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.5</span>)) <span class="sc">+</span>  <span class="co"># Points for estimates</span></span>
+<span id="cb78-9"><a href="#cb78-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> estimate <span class="sc">-</span> std.error, <span class="at">ymax =</span> estimate <span class="sc">+</span> std.error), </span>
+<span id="cb78-10"><a href="#cb78-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.5</span>)) <span class="sc">+</span>  <span class="co"># Error bars for std errors</span></span>
+<span id="cb78-11"><a href="#cb78-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coefficient Plot of Combined Models"</span>,</span>
+<span id="cb78-12"><a href="#cb78-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Term"</span>,</span>
+<span id="cb78-13"><a href="#cb78-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Estimate"</span>,</span>
+<span id="cb78-14"><a href="#cb78-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Model"</span>) <span class="sc">+</span></span>
+<span id="cb78-15"><a href="#cb78-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb78-16"><a href="#cb78-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()  <span class="co"># Flip coordinates for better readability (optional)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="missing-data_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Just country fixed effects</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>combined_tidy_filtered_fe <span class="ot">&lt;-</span> combined_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(term,<span class="st">"^country"</span>))</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the coefficient plot</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(combined_tidy_filtered_fe, <span class="fu">aes</span>(<span class="at">x =</span> term, <span class="at">y =</span> estimate, <span class="at">color =</span> Model)) <span class="sc">+</span></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.5</span>)) <span class="sc">+</span>  <span class="co"># Points for estimates</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> estimate <span class="sc">-</span> std.error, <span class="at">ymax =</span> estimate <span class="sc">+</span> std.error), </span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.5</span>)) <span class="sc">+</span>  <span class="co"># Error bars for std errors</span></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Coefficient Plot of Combined Models"</span>,</span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Term"</span>,</span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Estimate"</span>,</span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Model"</span>) <span class="sc">+</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()  <span class="co"># Flip coordinates for better readability (optional)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="missing-data_files/figure-html/unnamed-chunk-27-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="missing-data_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Trivia
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Any idea why the name is <strong>AMELIA</strong>?</p>
+</div>
+</div>
+<p><strong>Additional Resources</strong></p>
+<ol type="1">
+<li>Understanding Assumptions - <span class="citation" data-cites="littleMissingDataAssumptions2021">Little (<a href="references.html#ref-littleMissingDataAssumptions2021" role="doc-biblioref">2021</a>)</span></li>
+<li>Understanding Analysis - <span class="citation" data-cites="littleMissingDataAnalysis2024">Little (<a href="references.html#ref-littleMissingDataAnalysis2024" role="doc-biblioref">2024</a>)</span></li>
+<li>Expectation Maximization Algorithm - <span class="citation" data-cites="kingAnalyzingIncompletePolitical2001b">King et al. (<a href="references.html#ref-kingAnalyzingIncompletePolitical2001b" role="doc-biblioref">2001</a>)</span></li>
+<li><a href="https://rmisstastic.netlify.app/tutorials/josse_bookdown_dataanalysismissingr_2020">More tools to describe patterns of missingness</a></li>
+</ol>
+</section>
+</section>
+<section id="extra-stuff" class="level2">
+<h2 class="anchored" data-anchor-id="extra-stuff">Extra Stuff</h2>
+<p>Note on Expectation Utilization Algorithm <span class="citation" data-cites="kingAnalyzingIncompletePolitical2001b">(<a href="references.html#ref-kingAnalyzingIncompletePolitical2001b" role="doc-biblioref">King et al. 2001</a>)</span> which is employed in Amelia II.</p>
+<p>EM Algorithm for Multiple Imputation</p>
+<p>The Expectation-Maximization (EM) algorithm is a method for finding the maximum likelihood estimate of parameters in a statistical model when there is missing data. It’s an iterative process that involves two steps:</p>
+<ul>
+<li><p><strong>Expectation Step (E-step):</strong> In this step, the expected value of the complete-data log-likelihood function is calculated, conditional on the observed data and the current parameter estimates. This step imputes the missing data using predicted values based on the current parameter estimates.</p></li>
+<li><p><strong>Maximization Step (M-step):</strong> This step involves maximizing the expected complete-data log-likelihood function with respect to the parameters. The updated parameter estimates are then used in the next E-step.</p></li>
+</ul>
+<p>In the context of multiple imputation, the EM algorithm is used to estimate the parameters of the multivariate normal distribution assumed to underlie the data. These estimated parameters are then used to generate imputations for the missing data.</p>
+<p>The EM algorithm has several advantages, including:</p>
+<ul>
+<li><p><strong>Speed:</strong> EM is faster than other multiple imputation algorithms like the Imputation-Posterior (IP) algorithm.</p></li>
+<li><p><strong>Deterministic Convergence:</strong> EM converges deterministically, meaning that the objective function increases with every iteration and it avoids the convergence issues associated with stochastic algorithms like IP.</p></li>
+</ul>
+<p>However, EM also has some drawbacks:</p>
+<ul>
+<li><p><strong>Limited Output:</strong> EM only yields maximum posterior estimates of the parameters, rather than the entire posterior distribution.</p></li>
+<li><p><strong>Potential Bias:</strong> Using EM for multiple imputation can lead to biased estimates and downwardly biased standard errors because it ignores estimation uncertainty in the parameters.</p></li>
+</ul>
+<p>The modifications to original EM algorithm include:</p>
+<ul>
+<li><p><strong>EMs (EM with sampling):</strong> This method uses the asymptotic approximation of the posterior distribution of the parameters to generate multiple imputations. It is fast and produces independent imputations but can be inaccurate in small samples or with a large number of variables.</p></li>
+<li><p><strong>EMis (EM with importance resampling):</strong> This method uses importance resampling to improve the small sample performance of EMs by approximating the true (finite sample) posterior distribution of the parameters. EMis retains the advantages of IP and addresses the limitations of EM and EMs.<br>
+<br>
+<strong>Additonal Links</strong></p></li>
+</ul>
+<p>https://rmisstastic.netlify.app/tutorials/josse_bookdown_dataanalysismissingr_2020</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-andridgeReviewHotDeck2010" class="csl-entry" role="listitem">
+Andridge, Rebecca R., and Roderick J. A. Little. 2010. <span>“A Review of Hot Deck Imputation for Survey Non-Response.”</span> <em>International Statistical Review = Revue Internationale de Statistique</em> 78 (1): 40. <a href="https://doi.org/10.1111/j.1751-5823.2010.00103.x">https://doi.org/10.1111/j.1751-5823.2010.00103.x</a>.
+</div>
+<div id="ref-honakerAmeliaIIProgram2011" class="csl-entry" role="listitem">
+Honaker, James, Gary King, and Matthew Blackwell. 2011. <span>“<span><strong>Amelia</strong></span> II: A Program for Missing Data.”</span> <em>Journal of Statistical Software</em> 45 (7). <a href="https://doi.org/10.18637/jss.v045.i07">https://doi.org/10.18637/jss.v045.i07</a>.
+</div>
+<div id="ref-kingAnalyzingIncompletePolitical2001b" class="csl-entry" role="listitem">
+King, Gary, James Honaker, Anne Joseph, and Kenneth Scheve. 2001. <span>“Analyzing Incomplete Political Science Data: An Alternative Algorithm for Multiple Imputation.”</span> <em>American Political Science Review</em> 95 (1): 49–69. <a href="https://doi.org/10.1017/S0003055401000235">https://doi.org/10.1017/S0003055401000235</a>.
+</div>
+<div id="ref-kowarikImputationPackageVIM2016" class="csl-entry" role="listitem">
+Kowarik, Alexander, and Matthias Templ. 2016. <span>“Imputation with the <span><em>R</em></span> Package <span><strong>VIM</strong></span>.”</span> <em>Journal of Statistical Software</em> 74 (7). <a href="https://doi.org/10.18637/jss.v074.i07">https://doi.org/10.18637/jss.v074.i07</a>.
+</div>
+<div id="ref-lallHowMultipleImputation2017" class="csl-entry" role="listitem">
+Lall, Ranjit. 2017. <span>“How Multiple Imputation Makes a Difference.”</span> <em>Political Analysis</em> 24 (4): 414–33. <a href="https://doi.org/10.1093/pan/mpw020">https://doi.org/10.1093/pan/mpw020</a>.
+</div>
+<div id="ref-littleMissingDataAssumptions2021" class="csl-entry" role="listitem">
+Little, Roderick J. 2021. <span>“Missing Data Assumptions.”</span> <em>Annual Review of Statistics and Its Application</em> 8 (Volume 8, 2021): 89–107. <a href="https://doi.org/10.1146/annurev-statistics-040720-031104">https://doi.org/10.1146/annurev-statistics-040720-031104</a>.
+</div>
+<div id="ref-littleMissingDataAnalysis2024" class="csl-entry" role="listitem">
+———. 2024. <span>“Missing Data Analysis.”</span> <em>Annual Review of Clinical Psychology</em> 20 (1): 149–73. <a href="https://doi.org/10.1146/annurev-clinpsy-080822-051727">https://doi.org/10.1146/annurev-clinpsy-080822-051727</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./equivalence.html" class="pagination-link" aria-label="Equivalence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Equivalence</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","loop":false,"openEffect":"zoom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
