@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Session 4 - Sensitivity and Mediation – Lab for Quantitative Methods - 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./missing-data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="www/styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sensitivity-mediation.html">Session 4 - Sensitivity and Mediation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Lab for Quantitative Methods - 3</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why are we here?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./latex-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 1 - <span class="math inline">\(\LaTeX\)</span> and Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./matching-equivalence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 2 - Matching and Equivalence</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./equivalence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Equivalence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 3 - Missing Data and Multiple Imputation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensitivity-mediation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Session 4 - Sensitivity and Mediation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#todays-lab" id="toc-todays-lab" class="nav-link active" data-scroll-target="#todays-lab">Today’s Lab</a></li>
+  <li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis" class="nav-link" data-scroll-target="#sensitivity-analysis">Sensitivity Analysis</a>
+  <ul class="collapse">
+  <li><a href="#understanding-from-an-omitted-variable-bias-approachsensitivity-mediation-1" id="toc-understanding-from-an-omitted-variable-bias-approachsensitivity-mediation-1" class="nav-link" data-scroll-target="#understanding-from-an-omitted-variable-bias-approachsensitivity-mediation-1">Understanding from an Omitted Variable Bias Approach</a></li>
+  <li><a href="#how-to-perform-sensitivity-analysis" id="toc-how-to-perform-sensitivity-analysis" class="nav-link" data-scroll-target="#how-to-perform-sensitivity-analysis">How to perform sensitivity analysis</a></li>
+  <li><a href="#using-sensemakr-package" id="toc-using-sensemakr-package" class="nav-link" data-scroll-target="#using-sensemakr-package">Using <code>sensemakr</code> package</a></li>
+  <li><a href="#sensitivity-contour-plots-of-point-estimates-and-t-values" id="toc-sensitivity-contour-plots-of-point-estimates-and-t-values" class="nav-link" data-scroll-target="#sensitivity-contour-plots-of-point-estimates-and-t-values">Sensitivity contour plots of point estimates and t-values</a></li>
+  <li><a href="#sensitivity-plots-of-extreme-scenarios" id="toc-sensitivity-plots-of-extreme-scenarios" class="nav-link" data-scroll-target="#sensitivity-plots-of-extreme-scenarios">Sensitivity plots of extreme scenarios</a></li>
+  </ul></li>
+  <li><a href="#mediation-analysis" id="toc-mediation-analysis" class="nav-link" data-scroll-target="#mediation-analysis">Mediation Analysis</a>
+  <ul class="collapse">
+  <li><a href="#how-to-do-mediation-analysis" id="toc-how-to-do-mediation-analysis" class="nav-link" data-scroll-target="#how-to-do-mediation-analysis">How to do mediation analysis</a></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+  <li><a href="#using-mediation-package" id="toc-using-mediation-package" class="nav-link" data-scroll-target="#using-mediation-package">Using <code>mediation</code> package</a></li>
+  <li><a href="#interaction-between-the-treatment-and-the-mediator" id="toc-interaction-between-the-treatment-and-the-mediator" class="nav-link" data-scroll-target="#interaction-between-the-treatment-and-the-mediator">Interaction between the treatment and the mediator</a></li>
+  <li><a href="#sensitivity-analysis-for-sequential-ignorability." id="toc-sensitivity-analysis-for-sequential-ignorability." class="nav-link" data-scroll-target="#sensitivity-analysis-for-sequential-ignorability.">Sensitivity analysis for sequential ignorability.</a></li>
+  </ul></li>
+  <li><a href="#glossary-and-additional-notes" id="toc-glossary-and-additional-notes" class="nav-link" data-scroll-target="#glossary-and-additional-notes">Glossary and Additional Notes</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Session 4 - Sensitivity and Mediation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="bd-jb.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="bd-jb.webp" class="img-fluid" style="width:100.0%"></a></p>
+<blockquote class="blockquote">
+<p>“Yes, and how many years must a mountain exist,<br>
+Before it is washed to the sea?”,<br>
+</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>- Bob Dylan and Joan Baez, untangling the concept of sensitivity of parameter estimates [mountain] in relative terms [year] before the effect size is reduced to zero [washed to the sea], in <em>Blowin’ in the wind</em><br>
+<a href="https://www.usatoday.com/story/entertainment/music/2023/10/06/joan-baez-interview-i-am-a-noise-documentary-bob-dylan-family-secrets-musical-legacy/71075368007/">Picture Source</a></p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Download the Lab folder from <a href="https://drive.google.com/file/d/1br4BqPWDJ0XgYYKwb1nTRe9TL7TwiL7v/view?usp=sharing">here</a>.</p></li>
+<li><p>Run the <code>.RProj</code> file.</p></li>
+<li><p>Open <code>8003-missingdata-multipleimputations-10212024.qmd</code>.</p></li>
+</ol>
+</div>
+</div>
+<section id="todays-lab" class="level2">
+<h2 class="anchored" data-anchor-id="todays-lab">Today’s Lab</h2>
+<ol type="1">
+<li><p>Sensitivity Analysis using <a href="https://carloscinelli.com/sensemakr/articles/sensemakr.html"><code>sensemaker</code></a></p></li>
+<li><p>Mediation Analysis using <a href="https://cran.r-project.org/web/packages/mediation/vignettes/mediation.pdf"><code>mediation</code></a></p></li>
+</ol>
+<p><em>The links above redirect to online vignettes or paper that have the expanded codes and writeup used in today’s lab.</em></p>
+</section>
+<section id="sensitivity-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="sensitivity-analysis">Sensitivity Analysis</h2>
+<p>A technique for assessing the robustness of research findings to the potential influence of unobserved confounders.</p>
+<section id="understanding-from-an-omitted-variable-bias-approachsensitivity-mediation-1" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-from-an-omitted-variable-bias-approachsensitivity-mediation-1">Understanding from an Omitted Variable Bias Approach<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></h3>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Idea</strong>: How strong unobserved factor/s have to be to question our research conclusions (or at least provoke a rethinking)?</p>
+<p><strong>Or Put Differently:</strong></p>
+<p>How far along our results would hold before they are threatened by possible unobserved factors?</p>
+<p><strong>But..</strong></p>
+<p>Unobserved are well unobserved, so how do we quantify them?</p>
+<p><em>Ans</em>: <strong>In relative terms</strong>. That is, as some number of times of the observed controls.</p>
+</div>
+</div>
+</div>
+<p>As discussed in class, this has clear resemblance to discussion on Omitted Variable Bias. For a thorough conceptual reading, refer to <span class="citation" data-cites="cinelli">Cinelli, Ferwerda, and Hazlett (<a href="references.html#ref-cinelli" role="doc-biblioref">n.d.</a>)</span> and <span class="citation" data-cites="cinelli2020">Cinelli and Hazlett (<a href="references.html#ref-cinelli2020" role="doc-biblioref">2020</a>)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dagitty)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdag)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the updated DAG using dagitty</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>dag <span class="ot">&lt;-</span> <span class="fu">dagitty</span>(<span class="st">"dag {</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">  D -&gt; Y</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">  Z -&gt; D</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">  Z -&gt; Y</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st">  X -&gt; D</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st">  X -&gt; Y</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">}"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Set layout coordinates for nodes</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">coordinates</span>(dag) <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="at">D =</span> <span class="dv">1</span>, <span class="at">Y =</span> <span class="dv">3</span>, <span class="at">Z =</span> <span class="dv">2</span>, <span class="at">X =</span> <span class="dv">2</span>),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="at">D =</span> <span class="dv">2</span>, <span class="at">Y =</span> <span class="dv">2</span>, <span class="at">Z =</span> <span class="dv">3</span>, <span class="at">X =</span> <span class="dv">1</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the DAG to ggdag format</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>tidy_dag <span class="ot">&lt;-</span> <span class="fu">tidy_dagitty</span>(dag)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Add node type and colors</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>tidy_dag <span class="ot">&lt;-</span> tidy_dag <span class="sc">%&gt;%</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">node_type =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Z"</span> <span class="sc">~</span> <span class="st">"Unobserved"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Observed"</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">node_color =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Z"</span> <span class="sc">~</span> <span class="st">"red"</span>,       <span class="co"># Unobserved</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"X"</span> <span class="sc">~</span> <span class="st">"green"</span>,     <span class="co"># Observed confounder</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"#3498db"</span>           <span class="co"># Other observed variables</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the DAG with colors and a legend</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdag</span>(tidy_dag, <span class="at">text =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_edges</span>(<span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_node</span>(<span class="fu">aes</span>(<span class="at">fill =</span> node_color), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">12</span>, <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dag_text</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dag</span>() <span class="sc">+</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Highlighting Observed (Blue &amp; Green) and Unobserved (Red) Variables"</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Node Type"</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_identity</span>() <span class="sc">+</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If this is the Data Generating Mechanism or the true state of the world,</p>
+<p><span class="math display">\[
+Y = \hat\tau D +\boldsymbol{X}\hat\beta + \hat\gamma Z + \epsilon ....(1)
+\]</span> where Y is an n × 1 vector containing the outcome of interest for each of the n observations and D is an n × 1 treatment variable (which may be continuous or binary); X is an n × p matrix of observed (pretreatment) covariates including the constant; and Z is a single n × 1 unobserved covariate. However, since Z is unobserved, we are forced instead to estimate a restricted model:</p>
+<p><span class="math display">\[
+Y = \hat\tau_{res} D +\boldsymbol{X}\hat\beta_{res} + \hat\epsilon_{res}
+\]</span> where <span class="math inline">\(\tau_{res}\)</span> and <span class="math inline">\(\beta_{res}\)</span> are the coefficient estimates of the restricted ordinary least squares with only D and X, omitting Z, and <span class="math inline">\(\epsilon_{res}\)</span> its corresponding residual.</p>
+<p>Recall from Govt 8001 and Govt 8002<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> :</p>
+<p><span class="math display">\[
+\hat\tau_{res} = \hat\tau + \hat\gamma\hat\delta
+\]</span> where <span class="math inline">\(\hat\delta\)</span> is the coefficient on observed and included covariate <span class="math inline">\(X\)</span> in auxillary regression.</p>
+<p>Thus, bias is.</p>
+<p><span class="math display">\[
+\hat{Bias} = \hat\gamma\hat\delta
+\]</span> This recall of OVB provides intuition for sensitivity analysis. Omission of <span class="math inline">\(Z\)</span> affects determination of causality i.e.&nbsp;equation (1) has causal meaning only when <span class="math inline">\(Z\)</span> is included. As we have gone through lectures, if <span class="math inline">\(Z\)</span> is a confoudner, the supposedly <em>causal effect</em> of D is biased, unless it is included.</p>
+<p>However, as true in observational studies, while theoretically <span class="math inline">\(Z\)</span> si needed, in any instance of data collection it might be unobserved. Yet this does not preclude it from true scientific inquiry and consequentially, nor from peer/reviewer comments.</p>
+<p>Sensitivity analysis uses the idea of qunatifying the magnitude of bias in terms of statistics obtained in the restricted model for observed covrariates (<span class="math inline">\(X\)</span> in above model). In case of a single binary <span class="math inline">\(X\)</span> it could be said that a possible unobserved confounder <span class="math inline">\(Z\)</span>, if has an effect size of <span class="math inline">\(k\)</span> times of <span class="math inline">\(\hat\beta_{res}\)</span>, would soak away all the effect. However, in case of multiple <span class="math inline">\(Xs\)</span> and an unknown number of <span class="math inline">\(Zs\)</span>, both of which could be continuous, the OVB characterization of effect size comparisions could fail to provide interpretatble answers.</p>
+<p><span class="citation" data-cites="cinelli2020">Cinelli and Hazlett (<a href="references.html#ref-cinelli2020" role="doc-biblioref">2020</a>)</span> reparameterize the OVB formula, to partial <span class="math inline">\(R^2\)</span> values and other derivative sensitivity statistics, instead of of observed effect sizes in restricted model.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sensitivity Statistics.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Partial</strong> <span class="math inline">\(R^2\)</span> The proportion of variation in a dependent variable explained by an independent variable after controlling for other independent variables.</p>
+<p><strong>Robustness Value (RV)</strong> The minimum strength of association, measured in partial R2, that an unobserved confounder would need to have with both the treatment and the outcome to change the research conclusions. In essence, it tells you how strong the unobserved confounder needs to be to nullify the observed effect.</p>
+<p><strong>Bounding:</strong> A method for limiting the plausible range of values for the strength of association between an unobserved confounder and the treatment or outcome</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Intuitive explanation by Taylor Swift
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+<a href="https://twitter.com/hashtag/Throwback?src=hash&amp;ref_src=twsrc%5Etfw">#Throwback</a> to the good old days when <a href="https://twitter.com/hashtag/TaylorSwift?src=hash&amp;ref_src=twsrc%5Etfw">#TaylorSwift</a> explained Omitted Variable Bias to an audience of non-economists 🙃<a href="https://twitter.com/hashtag/Swifties?src=hash&amp;ref_src=twsrc%5Etfw">#Swifties</a> <a href="https://twitter.com/hashtag/EconSwifties?src=hash&amp;ref_src=twsrc%5Etfw">#EconSwifties</a> <a href="https://t.co/Ygz6uyqSYu">pic.twitter.com/Ygz6uyqSYu</a>
+</p>
+— Alexis H. Villacis (<span class="citation" data-cites="AHVillacis">(<a href="references.html#ref-AHVillacis" role="doc-biblioref"><strong>AHVillacis?</strong></a>)</span>) <a href="https://twitter.com/AHVillacis/status/1855661217022361645?ref_src=twsrc%5Etfw">November 10, 2024</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-perform-sensitivity-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-perform-sensitivity-analysis">How to perform sensitivity analysis</h3>
+<p>We will use <span class="citation" data-cites="hazlettAngryWearyHow2020">Hazlett (<a href="references.html#ref-hazlettAngryWearyHow2020" role="doc-biblioref">2020</a>)</span> as an illustrative example. The code and text below is adapted from the <a href="https://cran.r-project.org/web/packages/sensemakr/vignettes/sensemakr.html"><code>sensemakr</code> vignette</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Paper:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hazlett, C. (2020). Angry or Weary? How Violence Impacts Attitudes toward Peace among Darfurian Refugees. The Journal of Conflict Resolution, 64(5), 844–870. <a href="https://www.jstor.org/stable/48596931" class="uri">https://www.jstor.org/stable/48596931</a></p>
+<section id="abstract" class="level3">
+<h3 class="anchored" data-anchor-id="abstract">Abstract:</h3>
+<p>Does exposure to violence motivate individuals to support further violence or to seek peace? Such questions are central to our understanding of how conflicts evolve, terminate, and recur. Yet, convincing empirical evidence as to which response dominates—even in a specific case—has been elusive, owing to the inability to rule out confounding biases. This article employs a natural experiment based on the indiscriminacy of violence within villages in Darfur to examine how refugees’ experiences of violence affect their attitudes toward peace. The results are consistent with a pro-peace or “weary” response: individuals directly harmed by violence were more likely to report that peace is possible and less likely to demand execution of their enemies. This provides microlevel evidence supporting earlier country-level work on “war-weariness” and extends the growing literature on the effects of violence on individuals by including attitudes toward peace as an important outcome. These findings suggest that victims harmed by violence during war can play a positive role in settlement and reconciliation processes.</p>
+</section>
+</div>
+</div>
+<p><strong>Research Question</strong></p>
+<p>Whether, on average, being directly injured or maimed in this episode made individuals more likely to feel “vengeful” and unwilling to make peace with those who perpetrated this violence. Or, were those who directly suffered from such violence most motivated to see it end by making peace?</p>
+<p><strong>Model Specification</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+peacefactor = \beta_0 &amp; + \beta_1  directlyharmed
++ \beta_2  female + \beta_3  village \\
+&amp; + \beta_4  age + \beta_5  farmerdar + \beta_6  herderdar \\
+&amp; + \beta_7  pastvoted + \beta_8  hhsizedarfur + \epsilon
+\end{aligned}
+\]</span> where, <span class="math inline">\(peacefactor\)</span> is the outcome, <span class="math inline">\(directlyharmed\)</span> is the treatment of interest, and rest are observed controls.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("sensemakr")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sensemakr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load data from packages</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"darfur"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># runs regression model</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>darfur.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(peacefactor <span class="sc">~</span> directlyharmed  <span class="sc">+</span> <span class="co"># DV and Treatment</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                      female <span class="sc">+</span> village <span class="sc">+</span> <span class="co"># Confounders Observed</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                     age <span class="sc">+</span> farmer_dar <span class="sc">+</span> herder_dar <span class="sc">+</span> pastvoted <span class="sc">+</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                     hhsize_darfur, <span class="co"># Other Controls</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> darfur)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(darfur.model) # Shows whole result with Village FE</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>darfur.model<span class="sc">$</span>coefficients[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>] <span class="co"># Just the intercept, treatment, one observed covariate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   (Intercept) directlyharmed         female 
+    1.08189175     0.09731582    -0.23205144 </code></pre>
+</div>
+</div>
+<p>To make causal claim, we have to assume that above model completely identifies the process. That is, there is no unobserved confounding causing any bias. But as most cases that is a big sell, particularly in observational studies.</p>
+<p>Three possible confounders unobserved are location of bombing (<code>center</code>), wealth of individuals (<code>wealth</code>) and political ideology (<code>political_attitudes</code>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Think
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>How are they possible confounders?</p>
+</div>
+</div>
+<p>Additonally, all these factors could interact with each other or otherwise have non-linear effects.</p>
+<p>So, in an ideal world, we would want to run the following model:<br>
+<span class="math display">\[
+\begin{aligned}
+peacefactor = \beta_0 &amp; + \beta_1 directlyharmed + \beta_2 village + \beta_3 female \\
+&amp; + \beta_4 age + \beta_5 farmerDar + \beta_6 herderDar + \beta_7 pastvoted \\
+&amp; + \beta_8 hhsizeDarfur + \beta_9 center + \beta_{10} wealth + \beta_{11} politicalAttitudes \\
+&amp; + \beta_{12} (center * wealth) + \beta_{13} (center * politicalAttitudes) \\
+&amp; + \beta_{14} (wealth * politicalAttitudes) + \beta_{15} (center * wealth * politicalAttitudes) + \epsilon
+\end{aligned}
+\]</span></p>
+<p>Equivalent R code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>darfur.complete.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(peacefactor <span class="sc">~</span> directlyharmed  <span class="sc">+</span> village <span class="sc">+</span>  </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                              female <span class="sc">+</span> age <span class="sc">+</span> farmer_dar <span class="sc">+</span> herder_dar <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                              pastvoted <span class="sc">+</span>hhsize_darfur <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                              center<span class="sc">*</span>wealth<span class="sc">*</span>political_attitudes, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data =</span> darfur)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Just BTW, why is eval = FALSE in the code chunk header?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But we will get an error, as those measures are not there in data - because they were never measured.</p>
+<p><strong>Omitted Variable Bias is lurking!</strong></p>
+<p>However, recalling the idea from start of the class, we can estimate how much these or all unobserved confounders can affect our result/conclusions.</p>
+<p>“Or, more precisely, given an assumption on how strongly these and other omitted variables relate to the treatment and the outcome, how would including them have changed our inferences regarding the coefficient of directlyharmed?” - <span class="citation" data-cites="cinelli2020">Cinelli and Hazlett (<a href="references.html#ref-cinelli2020" role="doc-biblioref">2020</a>)</span></p>
+</section>
+<section id="using-sensemakr-package" class="level3">
+<h3 class="anchored" data-anchor-id="using-sensemakr-package">Using <code>sensemakr</code> package</h3>
+<p><em>The following text is from online vignette of <code>sensemaker</code> package.</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># runs sensemakr for sensitivity analysis</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># in the darfur example</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>darfur.sensitivity <span class="ot">&lt;-</span> <span class="fu">sensemakr</span>(<span class="at">model =</span> darfur.model, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">treatment =</span> <span class="st">"directlyharmed"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">benchmark_covariates =</span> <span class="st">"female"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">kd =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">ky =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">q =</span> <span class="dv">1</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">alpha =</span> <span class="fl">0.05</span>, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">reduce =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The arguments are:</p>
+<ul>
+<li><p><strong>model</strong>: the <code>lm</code> object with the outcome regression. In our case, <code>darfur.model</code>.</p></li>
+<li><p><strong>treatment</strong>: the name of the treatment variable. In our case, <code>"directlyharmed"</code>.</p></li>
+<li><p><strong>benchmark_covariates</strong>: the names of covariates that will be used to bound the plausible strength of the unobserved confounders. Here, we put <code>"female"</code>, which we argue to be among the main determinants of exposure to violence and find to be a strong determinant of attitudes towards peace.</p></li>
+<li><p><strong>kd</strong> and <strong>ky</strong>: these arguments parameterize how many times stronger the confounder is related to the treatment (<code>kd</code>) and to the outcome (<code>ky</code>) in comparison to the observed benchmark covariate (<code>female</code>). In our example, setting <code>kd = 1:3</code> and <code>ky = 1:3</code> means we want to investigate the maximum strength of a confounder once, twice, or three times as strong as female (in explaining treatment and outcome variation). If only <code>kd</code> is given, <code>ky</code> will be set equal to it by default.</p></li>
+<li><p><strong>q</strong>: this allows the user to specify what fraction of the effect estimate would have to be explained away to be problematic. Setting <code>q = 1</code>, as we do here, means that a reduction of 100% of the current effect estimate, that is, a true effect of <em>zero</em>, would be deemed problematic. The default is 1.</p></li>
+<li><p><strong>alpha</strong>: significance level of interest for making statistical inferences. The default is 0.05.</p></li>
+<li><p><strong>reduce</strong>: should we consider confounders acting towards <em>increasing</em> or <em>reducing</em> the absolute value of the estimate? The default is <code>reduce = TRUE</code>, which means we are considering confounders that pull the estimate towards (or through) zero.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simpler run of the code</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>darfur.sensitivity <span class="ot">&lt;-</span> <span class="fu">sensemakr</span>(<span class="at">model =</span> darfur.model, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">treatment =</span> <span class="st">"directlyharmed"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">benchmark_covariates =</span> <span class="st">"female"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">kd =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># printing the result in console</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>darfur.sensitivity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sensitivity Analysis to Unobserved Confounding
+
+Model Formula: peacefactor ~ directlyharmed + female + village + age + farmer_dar + 
+    herder_dar + pastvoted + hhsize_darfur
+
+Null hypothesis: q = 1 and reduce = TRUE 
+
+Unadjusted Estimates of ' directlyharmed ':
+  Coef. estimate: 0.09732 
+  Standard Error: 0.02326 
+  t-value: 4.18445 
+
+Sensitivity Statistics:
+  Partial R2 of treatment with outcome: 0.02187 
+  Robustness Value, q = 1 : 0.13878 
+  Robustness Value, q = 1 alpha = 0.05 : 0.07626 
+
+For more information, check summary.</code></pre>
+</div>
+</div>
+<p>The print method of <code>sensemakr</code> provides a quick review of the original (unadjusted) estimate along with three summary sensitivity statistics suited for <em>routine reporting</em>: the partial <span class="math inline">\(R^2\)</span> of the treatment with the outcome, the robustness value (RV) required to reduce the estimate entirely to zero (i.e.&nbsp;<span class="math inline">\(q=1\)</span>), and the RV beyond which the estimate would no longer be statistically distinguishable from zero at the 0.05 level (<span class="math inline">\(q=1\)</span>, <span class="math inline">\(\alpha=0.05\)</span>).</p>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Latex and HTML results</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ovb_minimal_reporting</span>(darfur.sensitivity, <span class="at">format =</span> <span class="st">"latex"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#ovb_minimal_reporting(darfur.sensitivity, format = "html")</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(darfur.sensitivity) <span class="co">#Verbose summary</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sensitivity Analysis to Unobserved Confounding</p>
+<p>Model Formula: peacefactor ~ directlyharmed + female + village + age + farmer_dar + herder_dar + pastvoted + hhsize_darfur</p>
+<p>Null hypothesis: q = 1 and reduce = TRUE – This means we are considering biases that reduce the absolute value of the current estimate. – The null hypothesis deemed problematic is H0:tau = 0</p>
+<p>Unadjusted Estimates of ‘directlyharmed’: Coef. estimate: 0.0973 Standard Error: 0.0233 t-value (H0:tau = 0): 4.1844</p>
+<p>Sensitivity Statistics: Partial R2 of treatment with outcome: 0.0219 Robustness Value, q = 1: 0.1388 Robustness Value, q = 1, alpha = 0.05: 0.0763</p>
+<p>Verbal interpretation of sensitivity statistics:</p>
+<p>– Partial R2 of the treatment with the outcome: an extreme confounder (orthogonal to the covariates) that explains 100% of the residual variance of the outcome, would need to explain at least 2.19% of the residual variance of the treatment to fully account for the observed estimated effect.</p>
+<p>– Robustness Value, q = 1: unobserved confounders (orthogonal to the covariates) that explain more than 13.88% of the residual variance of both the treatment and the outcome are strong enough to bring the point estimate to 0 (a bias of 100% of the original estimate). Conversely, unobserved confounders that do not explain more than 13.88% of the residual variance of both the treatment and the outcome are not strong enough to bring the point estimate to 0.</p>
+<p>– Robustness Value, q = 1, alpha = 0.05: unobserved confounders (orthogonal to the covariates) that explain more than 7.63% of the residual variance of both the treatment and the outcome are strong enough to bring the estimate to a range where it is no longer ‘statistically different’ from 0 (a bias of 100% of the original estimate), at the significance level of alpha = 0.05. Conversely, unobserved confounders that do not explain more than 7.63% of the residual variance of both the treatment and the outcome are not strong enough to bring the estimate to a range where it is no longer ‘statistically different’ from 0, at the significance level of alpha = 0.05.</p>
+<p>Bounds on omitted variable bias:</p>
+<p>–The table below shows the maximum strength of unobserved confounders with association with the treatment and the outcome bounded by a multiple of the observed explanatory power of the chosen benchmark covariate(s).</p>
+<p>Bound Label R2dz.x R2yz.dx Treatment Adjusted Estimate Adjusted Se 1x female 0.0092 0.1246 directlyharmed 0.0752 0.0219 2x female 0.0183 0.2493 directlyharmed 0.0529 0.0204 3x female 0.0275 0.3741 directlyharmed 0.0304 0.0187 Adjusted T Adjusted Lower CI Adjusted Upper CI 3.4389 0.0323 0.1182 2.6002 0.0130 0.0929 1.6281 -0.0063 0.0670</p>
+<p>These three sensitivity statistics provide a <em>minimal reporting</em> for sensitivity analysis. More precisely:</p>
+<ul>
+<li><p>The robustness value for bringing the point estimate of <code>directlyharmed</code> exactly to zero (<span class="math inline">\(RV_{q=1}\)</span>) is 13.9% . This means that unobserved confounders that explain 13.9% of the residual variance <em>both</em> of the treatment and of the outcome are sufficiently strong to explain away all the observed effect. On the other hand, unobserved confounders that <em>do not</em> explain at least 13.9% of the residual variance <em>both</em> of the treatment and of the outcome are not sufficiently strong to do so.</p></li>
+<li><p>The robustness value for testing the null hypothesis that the coefficient of <code>directlyharmed</code> is zero <span class="math inline">\((RV_{q =1, \alpha = 0.05})\)</span> falls to 7.6%. This means that unobserved confounders that explain 7.6% of the residual variance <em>both</em> of the treatment and of the outcome are sufficiently strong to bring the lower bound of the confidence interval to zero (at the chosen significance level of 5%). On the other hand, unobserved confounders that <em>do not</em> explain at least 7.6% of the residual variance <em>both</em> of the treatment and of the outcome are not sufficiently strong to do so.</p></li>
+<li><p>Finally, the partial <span class="math inline">\(R^2\)</span> of <code>directlyharmed</code> with <code>peacefactor</code> means that, in an <em>extreme scenario</em>, in which we assume that unobserved confounders explain <em>all</em> of the left out variance of the outcome, these unobserved confounders would need to explain at least 2.2% of the residual variance of the treatment to fully explain away the observed effect.</p></li>
+</ul>
+<p><strong>These are useful quantities that summarize what we need to know in order to safely rule out confounders that are deemed to be problematic</strong>. Interpreting these values requires domain knowledge about the data generating process. Therefore, we encourage researchers to argue about what are plausible bounds on the maximum explanatory power that unobserved confounders could have in a given application.</p>
+<p>Sometimes researchers may have a hard time making judgments regarding the <em>absolute strength</em> of a confounder, but may have grounds to make <em>relative claims</em>, for instance, by arguing that unobserved confounders are likely not multiple times stronger than a certain observed covariate. In our application, this is indeed the case. One could argue that, given the nature of the attacks, it is hard to imagine that unobserved confounding could explain much more of targeting than what was explained by the observed variable <code>female</code>.</p>
+<p>The lower corner of the table, thus, provides bounds on confounding as strong as female, <span class="math inline">\(R^2_{Y\sim Z| {\bf X}, D}\)</span> = 12.5%, and <span class="math inline">\(R^2_{D\sim Z| {\bf X} }\)</span> = 0.9%. Since both of those are below the RV, the table reveals that confounders as strong as <code>female</code> are not sufficient to explain away the observed estimate.</p>
+<p>Moreover, the bound on <span class="math inline">\(R^2_{D\sim Z| {\bf X} }\)</span> is below the partial <span class="math inline">\(R^2\)</span> of the treatment with the outcome, <span class="math inline">\(R^2_{Y \sim D |{\bf X}}\)</span>. This means that even an extreme confounder explaining all residual variation of the outcome and as strongly associated with the treatment as <code>female</code> would not be able to overturn the research conclusions.</p>
+<p>These results are exact for a single unobserved confounder, and conservative for multiple confounders, possibly acting non-linearly. Finally, the summary method for <code>sensemakr</code> provides an extensive report with verbal descriptions of all these analyses. Here, for instance, entering <code>summary(darfur.sensitivity)</code> produces verbose output similar to the text explanations in the last several paragraphs, so that researchers can directly cite or include such text in their reports.</p>
+<div style="page-break-after: always;"></div>
+</section>
+<section id="sensitivity-contour-plots-of-point-estimates-and-t-values" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-contour-plots-of-point-estimates-and-t-values">Sensitivity contour plots of point estimates and t-values</h3>
+<p>The previous sensitivity table provides a good summary of how robust the current estimate is to unobserved confounding. However, researchers may be willing to refine their analysis by visually exploring the whole range of possible estimates that confounders with different strengths could cause. For these, one can use the plot method for <code>sensemakr</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sensitivity contour plots?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sensitivity contour plots are graphical tools that visually represent the sensitivity of point estimates and t-values to varying levels of unobserved confounding. They help to visualize the potential impact of different types of confounders on the study results.</p>
+</div>
+</div>
+<p>We begin by examining the default plot type, contour plots for the point estimate.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(darfur.sensitivity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The horizontal axis shows the hypothetical residual share of variation of the treatment that unobserved confounding explains, <span class="math inline">\(R^2_{D\sim Z| {\bf X} }\)</span>. The vertical axis shows the hypothetical partial <span class="math inline">\(R^2\)</span> of unobserved confounding with the outcome, <span class="math inline">\(R^2_{Y\sim Z| {\bf X}, D}\)</span>. The contours show what would be the estimate for <code>directlyharmed</code> that one would have obtained in the full regression model including unobserved confounders with such hypothetical strengths. Note the plot is parameterized in way that hurts our preferred hypothesis, by pulling the estimate towards zero—the direction of the bias was set in the argument <code>reduce = TRUE</code> of <code>sensemakr()</code>.</p>
+<p>The bounds on the strength of confounding, determined by the parameter <code>kd = 1:3</code> in the call for <code>sensemakr()</code>, are also shown in the plot. Note that the plot reveals that the direction of the effect (positive) is robust to confounding once, twice or even three times as strong as the observed covariate <code>female</code>, although in this last case the magnitude of the effect is reduced to a third of the original estimate.</p>
+<p>We now examine the sensitivity of the <em>t-value</em> for testing the null hypothesis of zero effect. For this, it suffices to change the option <code>sensitivity.of = "t-value"</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(darfur.sensitivity, <span class="at">sensitivity.of =</span> <span class="st">"t-value"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot reveals that, at the 5% significance level, the null hypothesis of zero effect would still be rejected given confounders once or twice as strong as <code>female</code>. However, by contrast to the point-estimate, accounting for sampling uncertainty now means that the null hypothesis of zero effect <em>would not</em> be rejected with the inclusion of a confounder three times as strong as <code>female</code>.</p>
+</section>
+<section id="sensitivity-plots-of-extreme-scenarios" class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-plots-of-extreme-scenarios">Sensitivity plots of extreme scenarios</h3>
+<p>Sometimes researchers may be better equipped to make plausibility judgments about the strength of determinants of the treatment assignment mechanism, and have less knowledge about the determinants of the outcome. In those cases, sensitivity plots using <em>extreme scenarios</em> are a useful option. These are produced with the option <code>type = extreme</code>. Here one assumes confounding explains <strong>all</strong> or some large fraction of the residual variance of the outcome, then vary how strongly such confounding is hypothetically related to the treatment, to see how this affects the resulting point estimate. <!--and examine how the point estimate is affected under different hypothetical strenghts of the association of the confounder with the treatment. !--></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Extreme scenario sensitivity plots
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Extreme scenario sensitivity plots examine the sensitivity of the estimated effect under the conservative assumption that all or a large portion of the unexplained variance in the outcome is due to confounding. These plots help to explore the worst-case scenarios in terms of unobserved confounding.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(darfur.sensitivity, <span class="at">type =</span> <span class="st">"extreme"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="mediation-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="mediation-analysis">Mediation Analysis</h2>
+<p>Mediation analysis aims to explain the causal relationship between a treatment variable and an outcome variable while examining the intermediating mediatioe variable. That is, it is a way to understand possible <strong>causal mechanism</strong>. A causal mechanism is the process by which a treatment variable influences an outcome variable. It’s the “how” and “why” behind a cause-and-effect relationship.</p>
+<p>Mediation analysis uses Sequential Ignorability Assumption. Sequential ignorability is a crucial assumption for identifying causal mechanisms. Formally,</p>
+<p><span class="math display">\[
+\newcommand{\indep}{\perp \!\!\! \perp}
+\begin{align}
+    \{Y_i(t', m), M_i(t)\} &amp;\indep T_i \mid X_i = x, \tag{1} \\
+    Y_i(t', m) &amp;\indep M_i(t) \mid T_i = t, X_i = x, \tag{2}
+\end{align}
+\]</span></p>
+<p><span class="math inline">\(Eq.1\)</span> Treatment assignment is ignorable: Given pre-treatment confounders, the treatment is statistically independent of potential outcomes and mediators. This is similar to the “no omitted variable bias” assumption in causal effect estimation.</p>
+<p><span class="math inline">\(Eq.2\)</span>Mediator is ignorable: Given treatment status and pre-treatment confounders, the mediator is statistically independent of potential outcomes.</p>
+<p>The second assumption is particularly strict assumptions as it seeks to assume that there is a complete absence of any post as well and pre-treatment confounders (both measured and unmeasured).</p>
+<p>This assumption allows us to estimate the counterfactual outcomes we need to calculate the effects of the mediator, even though we cannot observe them directly.</p>
+<p>Conceptually, mediation is understood by decomposing the total causal effect of a treatment on an outcome into the indirect effect (through the mediator) and the direct effect (all other causal pathways). The indirect effect is also known as the causal mediation effect.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Decomposed effects
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Average Causal Mediation Effect (ACME)</strong>: The average change in the outcome variable that would occur if the mediator were changed from the value it would take under the control condition to the value it would take under the treatment condition, while holding the treatment variable constant.</p>
+<p><strong>Average Direct Effect (ADE)</strong>: The average change in the outcome variable that would occur due to the treatment, independent of any effect mediated through the mediator variable.</p>
+</div>
+</div>
+<section id="how-to-do-mediation-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-do-mediation-analysis">How to do mediation analysis</h3>
+<ol type="1">
+<li><p>Model mediator as function of <span class="math inline">\(Tr\)</span> and <span class="math inline">\(X\)</span>s.</p></li>
+<li><p>Model outcome as function of <span class="math inline">\(Mediator\)</span>, <span class="math inline">\(Tr\)</span>, and <span class="math inline">\(Xs\)</span>.</p></li>
+<li><p>Based on (1) produce two set of prediction values of mediators for <span class="math inline">\(Tr =1\)</span> and <span class="math inline">\(Tr = 0\)</span>.</p></li>
+<li><p>Make outcome predictions from (2).</p>
+<ul>
+<li><p>Outcome predicted under treatment using predicted mediator values under <span class="math inline">\(Tr=1\)</span>.</p></li>
+<li><p>Outcome predicted under treatment, now using predicted mediator values under <span class="math inline">\(Tr=0\)</span>.</p></li>
+<li><p>ACME is calculated using average difference between the above two.</p></li>
+</ul></li>
+</ol>
+<p>Refer to <span class="citation" data-cites="tingleyMediationPackageCausal2014">Tingley et al. (<a href="references.html#ref-tingleyMediationPackageCausal2014" role="doc-biblioref">2014</a>)</span> for thorough details of the code below. The details of the mediation analysis on framing experiment used as an example here is explained in <span class="citation" data-cites="imaiUnpackingBlackBox2011">Imai et al. (<a href="references.html#ref-imaiUnpackingBlackBox2011" role="doc-biblioref">2011</a>)</span> and the original framing experiment is from the paper by <span class="citation" data-cites="braderWhatTriggersPublic2008">Brader, Valentino, and Suhay (<a href="references.html#ref-braderWhatTriggersPublic2008" role="doc-biblioref">2008</a>)</span> .</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Paper:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Brader, T., Valentino, N. A., &amp; Suhay, E. (2008). What Triggers Public Opposition to Immigration? Anxiety, Group Cues, and Immigration Threat. <em>American Journal of Political Science</em>, <em>52</em>(4), 959–978. <a href="https://www.jstor.org/stable/25193860" class="uri">https://www.jstor.org/stable/25193860</a></p>
+<section id="abstract-1" class="level3">
+<h3 class="anchored" data-anchor-id="abstract-1">Abstract:</h3>
+<p>We examine whether and how elite discourse shapes mass opinion and action on immigration policy. One popular but untested suspicion is that reactions to news about the costs of immigration depend upon who the immigrants are. We confirm this suspicion in a nationally representative experiment: news about the costs of immigration boosts white opposition far more when Latino immigrants, rather than European immigrants, are featured. We find these group cues influence opinion and political action by triggering emotions-in particular, anxiety-not simply by changing beliefs about the severity of the immigration problem. A second experiment replicates these findings but also confirms their sensitivity to the stereotypic consistency of group cues and their context. While these results echo recent insights about the power of anxiety, they also suggest the public is susceptible to error and manipulation when group cues trigger anxiety independently of the actual threat posed by the group.</p>
+</section>
+</div>
+</div>
+</section>
+<section id="exploratory-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mediation)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data </span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"framing"</span>, <span class="at">package =</span> <span class="st">"mediation"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># codebook for dataset </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ?framing</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># treat - product of two treatment variables. Equal to one when the story focuses on costs and features Latino immigrants</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(framing, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(treat))) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Treatment"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Histogram of Treatment Groups"</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mediator - lower scores equal more negative emotion</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(framing, <span class="fu">aes</span>(<span class="at">x =</span>emo)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Mediator"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Mediator Distribution"</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-10-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># outcome - whether the subjects requested anti-immigration message to Congress on their behalf</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(framing, <span class="fu">aes</span>(<span class="at">x =</span><span class="fu">as.factor</span>(cong_mesg))) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Outcome"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="st">"Outcome Distribution"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-10-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># table of anxiousness about increased immigration vs. emotional scale mediator during experiment | See codebook</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">table</span>(framing<span class="sc">$</span>anx, framing<span class="sc">$</span>emo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">3</th>
+<th style="text-align: right;">4</th>
+<th style="text-align: right;">5</th>
+<th style="text-align: right;">6</th>
+<th style="text-align: right;">7</th>
+<th style="text-align: right;">8</th>
+<th style="text-align: right;">9</th>
+<th style="text-align: right;">10</th>
+<th style="text-align: right;">11</th>
+<th style="text-align: right;">12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">not asked</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">refused</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">very anxious</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">somewhat anxious</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">a little anxious</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">not anxious at all</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">22</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="using-mediation-package" class="level3">
+<h3 class="anchored" data-anchor-id="using-mediation-package">Using <code>mediation</code> package</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># naive model - using linear probability model</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>base.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(cong_mesg <span class="sc">~</span> treat <span class="sc">+</span> age <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> income, <span class="at">data =</span> framing)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(base.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+      function styleCell_2dfr73ap6b8vy531rocr(i, j, css_id) {
+        var table = document.getElementById("tinytable_2dfr73ap6b8vy531rocr");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_2dfr73ap6b8vy531rocr');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_2dfr73ap6b8vy531rocr(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_2dfr73ap6b8vy531rocr");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(0, 0, 'tinytable_css_idqjswhqffq9d23vce4dn0') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(0, 1, 'tinytable_css_idehacod39mwerm1eyfrym') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(1, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(1, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(2, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(2, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(3, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(3, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(4, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(4, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(5, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(5, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(6, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(6, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(7, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(7, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(8, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(8, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(9, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(9, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(10, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(10, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(11, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(11, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(12, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(12, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(13, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(13, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(14, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(14, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(15, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(15, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(16, 0, 'tinytable_css_id0cqbct1nnr5orypsl0bz') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(16, 1, 'tinytable_css_idgva888514bwjlexwpolf') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(17, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(17, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(18, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(18, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(19, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(19, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(20, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(20, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(21, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(21, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(22, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(22, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(23, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(23, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(24, 0, 'tinytable_css_id3bfw3w0y43ifpqyh4skq') })
+window.addEventListener('load', function () { styleCell_2dfr73ap6b8vy531rocr(24, 1, 'tinytable_css_idqhjihhlx9pu599zjpt2g') })
+    </script>
+
+    <style>
+    .table td.tinytable_css_idqjswhqffq9d23vce4dn0, .table th.tinytable_css_idqjswhqffq9d23vce4dn0 {  text-align: left;  border-bottom: solid 0.1em #d3d8dc; }
+    .table td.tinytable_css_idehacod39mwerm1eyfrym, .table th.tinytable_css_idehacod39mwerm1eyfrym {  text-align: center;  border-bottom: solid 0.1em #d3d8dc; }
+    .table td.tinytable_css_id3bfw3w0y43ifpqyh4skq, .table th.tinytable_css_id3bfw3w0y43ifpqyh4skq {  text-align: left; }
+    .table td.tinytable_css_idqhjihhlx9pu599zjpt2g, .table th.tinytable_css_idqhjihhlx9pu599zjpt2g {  text-align: center; }
+    .table td.tinytable_css_id0cqbct1nnr5orypsl0bz, .table th.tinytable_css_id0cqbct1nnr5orypsl0bz {  border-bottom: solid 0.05em black;  text-align: left; }
+    .table td.tinytable_css_idgva888514bwjlexwpolf, .table th.tinytable_css_idgva888514bwjlexwpolf {  border-bottom: solid 0.05em black;  text-align: center; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_2dfr73ap6b8vy531rocr" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">(1)</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)                    </td>
+                  <td>0.295   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.160) </td>
+                </tr>
+                <tr>
+                  <td>treat                          </td>
+                  <td>0.105   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.065) </td>
+                </tr>
+                <tr>
+                  <td>age                            </td>
+                  <td>0.002   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.002) </td>
+                </tr>
+                <tr>
+                  <td>educhigh school                </td>
+                  <td>-0.132  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.115) </td>
+                </tr>
+                <tr>
+                  <td>educsome college               </td>
+                  <td>-0.293  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.120) </td>
+                </tr>
+                <tr>
+                  <td>educbachelor's degree or higher</td>
+                  <td>-0.299  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.119) </td>
+                </tr>
+                <tr>
+                  <td>genderfemale                   </td>
+                  <td>-0.123  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.057) </td>
+                </tr>
+                <tr>
+                  <td>income                         </td>
+                  <td>0.020   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.008) </td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.                       </td>
+                  <td>265     </td>
+                </tr>
+                <tr>
+                  <td>R2                             </td>
+                  <td>0.081   </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.                        </td>
+                  <td>0.056   </td>
+                </tr>
+                <tr>
+                  <td>AIC                            </td>
+                  <td>348.5   </td>
+                </tr>
+                <tr>
+                  <td>BIC                            </td>
+                  <td>380.7   </td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.                       </td>
+                  <td>-165.262</td>
+                </tr>
+                <tr>
+                  <td>F                              </td>
+                  <td>3.243   </td>
+                </tr>
+                <tr>
+                  <td>RMSE                           </td>
+                  <td>0.45    </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using linear fit to estimate the effect of treatment on the mediator | Mediator</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>med.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(emo <span class="sc">~</span> treat <span class="sc">+</span> age <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> income, <span class="at">data =</span> framing)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(med.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+      function styleCell_a003pkhi8xxke0nramlj(i, j, css_id) {
+        var table = document.getElementById("tinytable_a003pkhi8xxke0nramlj");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_a003pkhi8xxke0nramlj');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_a003pkhi8xxke0nramlj(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_a003pkhi8xxke0nramlj");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(0, 0, 'tinytable_css_idnh5f29bt5h8o0j1g35mz') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(0, 1, 'tinytable_css_idd0uor0vabjq5ljlmhyfc') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(1, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(1, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(2, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(2, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(3, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(3, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(4, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(4, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(5, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(5, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(6, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(6, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(7, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(7, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(8, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(8, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(9, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(9, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(10, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(10, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(11, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(11, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(12, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(12, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(13, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(13, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(14, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(14, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(15, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(15, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(16, 0, 'tinytable_css_iddxdc5k0vzynvxq3tyoj7') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(16, 1, 'tinytable_css_idyslhlxk3kqks30yfqzq1') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(17, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(17, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(18, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(18, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(19, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(19, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(20, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(20, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(21, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(21, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(22, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(22, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(23, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(23, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(24, 0, 'tinytable_css_idkz49ea8k4xbnl0ugwng6') })
+window.addEventListener('load', function () { styleCell_a003pkhi8xxke0nramlj(24, 1, 'tinytable_css_id61706lj280eqjkyusph5') })
+    </script>
+
+    <style>
+    .table td.tinytable_css_idnh5f29bt5h8o0j1g35mz, .table th.tinytable_css_idnh5f29bt5h8o0j1g35mz {  text-align: left;  border-bottom: solid 0.1em #d3d8dc; }
+    .table td.tinytable_css_idd0uor0vabjq5ljlmhyfc, .table th.tinytable_css_idd0uor0vabjq5ljlmhyfc {  text-align: center;  border-bottom: solid 0.1em #d3d8dc; }
+    .table td.tinytable_css_idkz49ea8k4xbnl0ugwng6, .table th.tinytable_css_idkz49ea8k4xbnl0ugwng6 {  text-align: left; }
+    .table td.tinytable_css_id61706lj280eqjkyusph5, .table th.tinytable_css_id61706lj280eqjkyusph5 {  text-align: center; }
+    .table td.tinytable_css_iddxdc5k0vzynvxq3tyoj7, .table th.tinytable_css_iddxdc5k0vzynvxq3tyoj7 {  border-bottom: solid 0.05em black;  text-align: left; }
+    .table td.tinytable_css_idyslhlxk3kqks30yfqzq1, .table th.tinytable_css_idyslhlxk3kqks30yfqzq1 {  border-bottom: solid 0.05em black;  text-align: center; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_a003pkhi8xxke0nramlj" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">(1)</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)                    </td>
+                  <td>8.672   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.885) </td>
+                </tr>
+                <tr>
+                  <td>treat                          </td>
+                  <td>1.339   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.360) </td>
+                </tr>
+                <tr>
+                  <td>age                            </td>
+                  <td>0.002   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.010) </td>
+                </tr>
+                <tr>
+                  <td>educhigh school                </td>
+                  <td>-1.041  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.634) </td>
+                </tr>
+                <tr>
+                  <td>educsome college               </td>
+                  <td>-1.813  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.664) </td>
+                </tr>
+                <tr>
+                  <td>educbachelor's degree or higher</td>
+                  <td>-3.047  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.660) </td>
+                </tr>
+                <tr>
+                  <td>genderfemale                   </td>
+                  <td>0.070   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.314) </td>
+                </tr>
+                <tr>
+                  <td>income                         </td>
+                  <td>-0.035  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.042) </td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.                       </td>
+                  <td>265     </td>
+                </tr>
+                <tr>
+                  <td>R2                             </td>
+                  <td>0.190   </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.                        </td>
+                  <td>0.168   </td>
+                </tr>
+                <tr>
+                  <td>AIC                            </td>
+                  <td>1254.2  </td>
+                </tr>
+                <tr>
+                  <td>BIC                            </td>
+                  <td>1286.5  </td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.                       </td>
+                  <td>-618.123</td>
+                </tr>
+                <tr>
+                  <td>F                              </td>
+                  <td>8.590   </td>
+                </tr>
+                <tr>
+                  <td>RMSE                           </td>
+                  <td>2.49    </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using probit to estimate the effect of the mediator on the outcome | Outcome</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>out.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(cong_mesg <span class="sc">~</span> emo <span class="sc">+</span> treat <span class="sc">+</span> age <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> income, <span class="at">data =</span> framing, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="st">"probit"</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">modelsummary</span>(out.fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<!-- preamble start -->
+
+    <script>
+      function styleCell_2rjv8k7vx59t26awx5pf(i, j, css_id) {
+        var table = document.getElementById("tinytable_2rjv8k7vx59t26awx5pf");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_2rjv8k7vx59t26awx5pf');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_2rjv8k7vx59t26awx5pf(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_2rjv8k7vx59t26awx5pf");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(0, 0, 'tinytable_css_idpclbwwu5464ddips6q3c') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(0, 1, 'tinytable_css_id1oaqkjilaw44l6u680g1') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(1, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(1, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(2, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(2, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(3, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(3, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(4, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(4, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(5, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(5, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(6, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(6, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(7, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(7, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(8, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(8, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(9, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(9, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(10, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(10, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(11, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(11, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(12, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(12, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(13, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(13, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(14, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(14, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(15, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(15, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(16, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(16, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(17, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(17, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(18, 0, 'tinytable_css_id4246lvavey869i4szd2f') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(18, 1, 'tinytable_css_idtm1b4bu6mxxwm11lsxus') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(19, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(19, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(20, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(20, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(21, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(21, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(22, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(22, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(23, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(23, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(24, 0, 'tinytable_css_ido7mi8qfi7m4r2swvx33l') })
+window.addEventListener('load', function () { styleCell_2rjv8k7vx59t26awx5pf(24, 1, 'tinytable_css_id6s3xapin2ovq7cygv1bw') })
+    </script>
+
+    <style>
+    .table td.tinytable_css_idpclbwwu5464ddips6q3c, .table th.tinytable_css_idpclbwwu5464ddips6q3c {  text-align: left;  border-bottom: solid 0.1em #d3d8dc; }
+    .table td.tinytable_css_id1oaqkjilaw44l6u680g1, .table th.tinytable_css_id1oaqkjilaw44l6u680g1 {  text-align: center;  border-bottom: solid 0.1em #d3d8dc; }
+    .table td.tinytable_css_ido7mi8qfi7m4r2swvx33l, .table th.tinytable_css_ido7mi8qfi7m4r2swvx33l {  text-align: left; }
+    .table td.tinytable_css_id6s3xapin2ovq7cygv1bw, .table th.tinytable_css_id6s3xapin2ovq7cygv1bw {  text-align: center; }
+    .table td.tinytable_css_id4246lvavey869i4szd2f, .table th.tinytable_css_id4246lvavey869i4szd2f {  border-bottom: solid 0.05em black;  text-align: left; }
+    .table td.tinytable_css_idtm1b4bu6mxxwm11lsxus, .table th.tinytable_css_idtm1b4bu6mxxwm11lsxus {  border-bottom: solid 0.05em black;  text-align: center; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_2rjv8k7vx59t26awx5pf" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">(1)</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)                    </td>
+                  <td>-2.608  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.609) </td>
+                </tr>
+                <tr>
+                  <td>emo                            </td>
+                  <td>0.206   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.036) </td>
+                </tr>
+                <tr>
+                  <td>treat                          </td>
+                  <td>0.040   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.202) </td>
+                </tr>
+                <tr>
+                  <td>age                            </td>
+                  <td>0.006   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.006) </td>
+                </tr>
+                <tr>
+                  <td>educhigh school                </td>
+                  <td>-0.197  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.337) </td>
+                </tr>
+                <tr>
+                  <td>educsome college               </td>
+                  <td>-0.590  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.363) </td>
+                </tr>
+                <tr>
+                  <td>educbachelor's degree or higher</td>
+                  <td>-0.367  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.370) </td>
+                </tr>
+                <tr>
+                  <td>genderfemale                   </td>
+                  <td>-0.396  </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.175) </td>
+                </tr>
+                <tr>
+                  <td>income                         </td>
+                  <td>0.084   </td>
+                </tr>
+                <tr>
+                  <td>                               </td>
+                  <td>(0.026) </td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.                       </td>
+                  <td>265     </td>
+                </tr>
+                <tr>
+                  <td>AIC                            </td>
+                  <td>297.3   </td>
+                </tr>
+                <tr>
+                  <td>BIC                            </td>
+                  <td>329.5   </td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.                       </td>
+                  <td>-139.652</td>
+                </tr>
+                <tr>
+                  <td>F                              </td>
+                  <td>6.069   </td>
+                </tr>
+                <tr>
+                  <td>RMSE                           </td>
+                  <td>0.42    </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#we estimate ACME and ADE using the mediate function</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>med.out <span class="ot">&lt;-</span> <span class="fu">mediate</span>(med.fit, out.fit, <span class="at">treat =</span> <span class="st">"treat"</span>, <span class="at">mediator =</span> <span class="st">"emo"</span>, <span class="at">robustSE =</span> <span class="cn">TRUE</span>, <span class="at">sims =</span> <span class="dv">1000</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(med.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Causal Mediation Analysis 
+
+Quasi-Bayesian Confidence Intervals
+
+                         Estimate 95% CI Lower 95% CI Upper p-value    
+ACME (control)             0.0821       0.0321         0.14  &lt;2e-16 ***
+ACME (treated)             0.0827       0.0316         0.14  &lt;2e-16 ***
+ADE (control)              0.0151      -0.0950         0.14    0.81    
+ADE (treated)              0.0157      -0.1042         0.14    0.81    
+Total Effect               0.0978      -0.0228         0.22    0.11    
+Prop. Mediated (control)   0.7812      -3.4585         7.31    0.11    
+Prop. Mediated (treated)   0.8010      -3.1611         6.60    0.11    
+ACME (average)             0.0824       0.0312         0.14  &lt;2e-16 ***
+ADE (average)              0.0154      -0.0998         0.14    0.81    
+Prop. Mediated (average)   0.7911      -3.3096         6.95    0.11    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Sample Size Used: 265 
+
+
+Simulations: 1000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See the details of function</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#?mediate</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(med.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this example, the estimated ACMEs are statistically significantly different from zero but the estimated average direct and total effects are not. The results suggest that the treatment in the framing experiment may have increased emotional response, which in turn made subjects more likely to send a message to his or her member of Congress. Here, since the outcome is binary all estimated effects are expressed as the increase in probability that the subject sent a message to his or her Congress person.</p>
+</section>
+<section id="interaction-between-the-treatment-and-the-mediator" class="level3">
+<h3 class="anchored" data-anchor-id="interaction-between-the-treatment-and-the-mediator">Interaction between the treatment and the mediator</h3>
+<p>It is possible that the ACME takes different values depending on the baseline treatment status. In such a situation, we can add an interaction term between the treatment and mediator to the outcome model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#treatment and mediator interaction</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2014</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#the estimated ACME varies with treatment status</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>med.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(emo <span class="sc">~</span> treat <span class="sc">+</span> age <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> income, <span class="at">data =</span> framing)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>out.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(cong_mesg <span class="sc">~</span> emo <span class="sc">*</span> treat <span class="sc">+</span> age <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> income, <span class="at">data =</span> framing, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="st">"probit"</span>)) <span class="co"># adding interaction here</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>med.out <span class="ot">&lt;-</span> <span class="fu">mediate</span>(med.fit, out.fit, <span class="at">treat =</span> <span class="st">"treat"</span>, <span class="at">mediator =</span> <span class="st">"emo"</span>, <span class="at">robustSE =</span> <span class="cn">TRUE</span>, <span class="at">sims =</span> <span class="dv">1000</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># summary with interaction </span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(med.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Causal Mediation Analysis 
+
+Quasi-Bayesian Confidence Intervals
+
+                         Estimate 95% CI Lower 95% CI Upper p-value    
+ACME (control)            0.07512      0.02808         0.13  &lt;2e-16 ***
+ACME (treated)            0.09570      0.03502         0.17  &lt;2e-16 ***
+ADE (control)            -0.00761     -0.11916         0.11    0.86    
+ADE (treated)             0.01297     -0.11991         0.14    0.82    
+Total Effect              0.08809     -0.04365         0.22    0.18    
+Prop. Mediated (control)  0.72901     -5.06182         6.84    0.18    
+Prop. Mediated (treated)  0.97503     -5.33374         7.24    0.18    
+ACME (average)            0.08541      0.03482         0.14  &lt;2e-16 ***
+ADE (average)             0.00268     -0.11395         0.12    0.98    
+Prop. Mediated (average)  0.85202     -5.53193         6.94    0.18    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Sample Size Used: 265 
+
+
+Simulations: 1000 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(med.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-12-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#testing for the significance of the treatment-mediator interaction</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">test.TMint</span>(med.out, <span class="at">conf.level =</span> .<span class="dv">95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Test of ACME(1) - ACME(0) = 0
+
+data:  estimates from med.out
+ACME(1) - ACME(0) = 0.020577, p-value = 0.358
+alternative hypothesis: true ACME(1) - ACME(0) is not equal to 0
+95 percent confidence interval:
+ -0.03019934  0.07454068</code></pre>
+</div>
+</div>
+</section>
+<section id="sensitivity-analysis-for-sequential-ignorability." class="level3">
+<h3 class="anchored" data-anchor-id="sensitivity-analysis-for-sequential-ignorability.">Sensitivity analysis for sequential ignorability.</h3>
+<p>Recall <span class="math inline">\(\rho\)</span> i.e.&nbsp;the covariance between <span class="math inline">\(\epsilon_{i2}\)</span> and <span class="math inline">\(\epsilon_{i3}\)</span> from class slides. It forms a strong assumption in the traditonally followed Linear Structural Equation Modelling Method (LSEM) of determining mediation.</p>
+<p>More detailed discussion in the section <strong>Sensitivity Analysis</strong> in <span class="citation" data-cites="imaiUnpackingBlackBox2011">Imai et al. (<a href="references.html#ref-imaiUnpackingBlackBox2011" role="doc-biblioref">2011</a>, pp 774)</span>:</p>
+<blockquote class="blockquote">
+<p>“Imai, Keele, and Tingley (2010) and Imai, Keele, and Yamamoto (2010) propose a sensitivity analysis based on the correlation between <span class="math inline">\(\epsilon_{i2}\)</span>, the error for the mediation model, and <span class="math inline">\(\epsilon_{i3}\)</span> , the error for the outcome model, under a standard LSEM setting and several commonly used nonlinear models. They use ρ to denote the correlation across the two error terms. If sequential ignorability holds, all relevant pretreatment confounders have been conditioned on, and thus ρ equals zero. However, nonzero values of ρ imply departures from the sequential ignorability assumption and that some hidden confounder is biasing the ACME estimate.”.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sensitivity analysis for sequential ignorability</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>med.fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(emo <span class="sc">~</span> treat <span class="sc">+</span> age <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> income, <span class="at">data =</span> framing)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>out.fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(cong_mesg <span class="sc">~</span> emo <span class="sc">+</span> treat <span class="sc">+</span> age <span class="sc">+</span> educ <span class="sc">+</span> gender <span class="sc">+</span> income, <span class="at">data =</span> framing, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="st">"probit"</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>med.out <span class="ot">&lt;-</span> <span class="fu">mediate</span>(med.fit, out.fit, <span class="at">treat =</span> <span class="st">"treat"</span>, <span class="at">mediator =</span> <span class="st">"emo"</span>, <span class="at">robustSE =</span> <span class="cn">TRUE</span>, <span class="at">sims =</span> <span class="dv">1000</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>sens.out <span class="ot">&lt;-</span> <span class="fu">medsens</span>(med.out, <span class="at">rho.by =</span> <span class="fl">0.1</span>, <span class="at">effect.type =</span> <span class="st">"indirect"</span>, <span class="at">sims =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rho^2 * (1 - r.sq.m) * (1 - r.sq.y): Recycling array of length 1 in vector-array arithmetic is deprecated.
+  Use c() or as.vector() instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in err.cr.d^2 * (1 - r.sq.m) * (1 - r.sq.y): Recycling array of length 1 in vector-array arithmetic is deprecated.
+  Use c() or as.vector() instead.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sens.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mediation Sensitivity Analysis: Average Mediation Effect
+
+Sensitivity Region: ACME for Control Group
+
+     Rho ACME(control) 95% CI Lower 95% CI Upper R^2_M*R^2_Y* R^2_M~R^2_Y~
+[1,] 0.3        0.0055      -0.0076       0.0172         0.09       0.0493
+[2,] 0.4       -0.0094      -0.0265       0.0020         0.16       0.0877
+
+Rho at which ACME for Control Group = 0: 0.3
+R^2_M*R^2_Y* at which ACME for Control Group = 0: 0.09
+R^2_M~R^2_Y~ at which ACME for Control Group = 0: 0.0493 
+
+
+Sensitivity Region: ACME for Treatment Group
+
+     Rho ACME(treated) 95% CI Lower 95% CI Upper R^2_M*R^2_Y* R^2_M~R^2_Y~
+[1,] 0.3        0.0064      -0.0086        0.020         0.09       0.0493
+[2,] 0.4       -0.0113      -0.0319        0.002         0.16       0.0877
+
+Rho at which ACME for Treatment Group = 0: 0.3
+R^2_M*R^2_Y* at which ACME for Treatment Group = 0: 0.09
+R^2_M~R^2_Y~ at which ACME for Treatment Group = 0: 0.0493 </code></pre>
+</div>
+</div>
+<p>here rho.by = 0.1 specifies that ρ will vary from −0.9 to 0.9 by 0.1 increments, and effect.type = “indirect” means that sensitivity analysis is conducted for the ACME. Alternatively, specifying effect.type = “direct” performs sensitivity analysis for the ADE and “both” returns sensitivity analysis for the ACME and ADE.</p>
+<p>The tabular output from the summary function displays the values of ρ at which the confidence intervals contain zero for the ACME. For both the control and treatment conditions, the confidence intervals for the ACME contain zero when ρ equals 0.3 and 0.4.</p>
+<p>In the last section of tabular output, the first row captures the point at which the ACME is 0 as a function of the proportions of residual variance in the mediator and outcome explained by the hypothesized unobserved confounder. The second line uses the total variance instead of residual variance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plotting sensitivity</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#as a function of rho</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sens.out, <span class="at">sens.par =</span> <span class="st">"rho"</span>, <span class="at">main =</span> <span class="st">"Anxiety"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">0.2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-14-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-14-2.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#as a function of R2</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sens.out, <span class="at">sens.par =</span> <span class="st">"R2"</span>, <span class="at">r.type =</span> <span class="st">"total"</span>, <span class="at">sign.prod =</span> <span class="st">"positive"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in (1 - x$r.square.y) * seq(0, 1 - x$rho.by, 0.01): Recycling array of length 1 in array-vector arithmetic is deprecated.
+  Use c() or as.vector() instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-14-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-14-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="sensitivity-mediation_files/figure-html/unnamed-chunk-14-4.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="sensitivity-mediation_files/figure-html/unnamed-chunk-14-4.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When using the R2 statistic version of sensitivity analysis the user must specify whether the hypothesized confounder affects the mediator and outcome variables in the same direction or in different directions. This matters because the sensitivity analysis is in terms of the product of R2 statistics. In the current example, it is assumed that the confounder influences both variables in the same direction by setting sign.prod = “positive” (rather than sign.prod = “negative”).</p>
+<p>Substantive interpretation of the plots in <span class="citation" data-cites="imaiUnpackingBlackBox2011">Imai et al. (<a href="references.html#ref-imaiUnpackingBlackBox2011" role="doc-biblioref">2011</a>, pp 776)</span>.</p>
+</section>
+</section>
+<section id="glossary-and-additional-notes" class="level2">
+<h2 class="anchored" data-anchor-id="glossary-and-additional-notes">Glossary and Additional Notes</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sensitivity Analysis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Sensitivity by OVB perspective</strong> </p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/HZvZYywf3fg" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p><strong>Sensitivity for Instrumental Variable Regressions</strong> </p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/0b5VYWh8fN4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<p><strong>Omitted Variable Bias (OVB):</strong> The bias in the estimate of a treatment effect that arises when a variable that is correlated with both the treatment and the outcome is not included in the regression model.</p>
+<p><strong>Sensitivity Analysis:</strong> A technique used to assess the robustness of research findings to the potential influence of unobserved confounders. It involves examining how the results would change under different assumptions about the strength and nature of these confounders.</p>
+<p><strong>Partial R2:</strong> A statistical measure indicating the proportion of variance in the dependent variable uniquely explained by a specific independent variable, after controlling for other variables in the model.</p>
+<p><strong>Robustness Value (RV):</strong> A sensitivity measure developed by Cinelli and Hazlett (2020) that represents the minimum strength of association an unobserved confounder needs to have with both the treatment and outcome to change the study conclusions.</p>
+<p><strong>R2Y∼D|X:</strong> The partial R2 of the treatment with the outcome, representing the proportion of outcome variation uniquely explained by the treatment assignment.</p>
+<p><strong>Benchmarking:</strong> A method used in sensitivity analysis to gauge the plausible strength of unobserved confounders by comparing them to observed covariates.</p>
+<p><strong>Informal Benchmarking:</strong> A problematic approach to benchmarking where researchers use the observed statistics of an included covariate to speculate about the characteristics of the omitted variable. This can lead to inaccurate assessments of sensitivity due to the potential influence of the omitted variable on the observed covariate.</p>
+<p><strong>Bounding the Strength of Confounders:</strong> A technique proposed by Cinelli and Hazlett (2020) where researchers formally compare the explanatory power of an unobserved confounder to that of an observed covariate. This allows for establishing plausible limits on the potential influence of the unobserved confounder.</p>
+<p><strong>Extreme Scenario Sensitivity Analysis:</strong> An analysis where researchers consider the maximum possible strength of association an unobserved confounder could have with the outcome. This usually involves assuming the unobserved confounder explains all residual variation in the outcome.</p>
+<p><strong>Sensitivity Contour Plots:</strong> Graphical tools that visually display how point estimates, t-values, or other statistics change under different assumptions about the strength of association between the unobserved confounder and the treatment and outcome. These plots help visualize the sensitivity of the results to various confounding scenarios.</p>
+<p><strong>Bias Factor (BF):</strong> In the partial R2 parameterization, the BF quantifies the degree to which the treatment effect estimate is biased due to an unobserved confounder. It is calculated using the partial R2 values representing the associations between the confounder and the treatment and the confounder and the outcome.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mediation Analysis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Average Causal Mediation Effect (ACME):</strong> The average change in the outcome variable that would occur if the mediator were changed from the value it would take under the control condition to the value it would take under the treatment condition, while holding the treatment variable constant.</p>
+<p><strong>Average Direct Effect (ADE):</strong> The average change in the outcome variable that would occur due to the treatment, independent of any effect mediated through the mediator variable.</p>
+<p><strong>Causal Mechanism:</strong> The process by which a treatment variable influences an outcome variable, often involving intermediate variables or mediators.</p>
+<p><strong>Complier Average Mediation Effect (CACME):</strong> The ACME for the subset of individuals who comply with the encouragement in an encouragement design.</p>
+<p><strong>Encouragement Design:</strong> A research design where an encouragement variable is randomized to influence the mediator, allowing researchers to estimate the causal effect of the mediator on the outcome.</p>
+<p><strong>Mediator Variable:</strong> A variable that lies on the causal pathway between the treatment and outcome variables, representing the mechanism through which the treatment affects the outcome.</p>
+<p><strong>Potential Outcomes:</strong> The hypothetical outcomes that would occur for each individual under different treatment and mediator conditions.</p>
+<p><strong>Sequential Ignorability:</strong> The assumption that both the treatment and the mediator are effectively randomized, conditional on observed pre-treatment covariates, meaning there are no unobserved confounders.</p>
+<p><strong>Sensitivity Analysis:</strong> A technique used to assess the robustness of findings to potential violations of key assumptions, such as sequential ignorability, by examining how estimates change as the sensitivity parameters vary.</p>
+<p><strong>Single-Experiment Design:</strong> A research design where only the treatment variable is randomized, while the mediator is not manipulated.</p>
+<p><strong>Treatment Variable:</strong> The variable that is manipulated or changed in a study to observe its effect on the outcome variable.</p>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-baileyRealStatsUsing2021" class="csl-entry" role="listitem">
+Bailey, Michael A. 2021. <em>Real Stats: Using Econometrics for Political Science and Public Policy</em>. Second edition. New York: Oxford University Press.
+</div>
+<div id="ref-braderWhatTriggersPublic2008" class="csl-entry" role="listitem">
+Brader, Ted, Nicholas A. Valentino, and Elizabeth Suhay. 2008. <span>“What Triggers Public Opposition to Immigration? Anxiety, Group Cues, and Immigration Threat.”</span> <em>American Journal of Political Science</em> 52 (4): 959–78. <a href="https://www.jstor.org/stable/25193860">https://www.jstor.org/stable/25193860</a>.
+</div>
+<div id="ref-cinelli" class="csl-entry" role="listitem">
+Cinelli, Carlos, Jeremy Ferwerda, and Chad Hazlett. n.d. <span>“Sensemakr: Sensitivity Analysis Tools for OLS in R and Stata.”</span> <a href="https://doi.org/10.2139/ssrn.3588978">https://doi.org/10.2139/ssrn.3588978</a>.
+</div>
+<div id="ref-cinelli2020" class="csl-entry" role="listitem">
+Cinelli, Carlos, and Chad Hazlett. 2020. <span>“Making Sense of Sensitivity: Extending Omitted Variable Bias.”</span> <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 82 (1): 39–67. <a href="https://doi.org/10.1111/rssb.12348">https://doi.org/10.1111/rssb.12348</a>.
+</div>
+<div id="ref-hazlettAngryWearyHow2020" class="csl-entry" role="listitem">
+Hazlett, Chad. 2020. <span>“Angry or Weary? How Violence Impacts Attitudes Toward Peace Among Darfurian Refugees.”</span> <em>Journal of Conflict Resolution</em> 64 (5): 844–70. <a href="https://doi.org/10.1177/0022002719879217">https://doi.org/10.1177/0022002719879217</a>.
+</div>
+<div id="ref-imaiUnpackingBlackBox2011" class="csl-entry" role="listitem">
+Imai, Kosuke, Luke Keele, Dustin Tingley, and Teppei Yamamoto. 2011. <span>“Unpacking the Black Box of Causality: Learning about Causal Mechanisms from Experimental and Observational Studies.”</span> <em>American Political Science Review</em> 105 (4): 765–89. <a href="https://doi.org/10.1017/S0003055411000414">https://doi.org/10.1017/S0003055411000414</a>.
+</div>
+<div id="ref-tingleyMediationPackageCausal2014" class="csl-entry" role="listitem">
+Tingley, Dustin, Teppei Yamamoto, Kentaro Hirose, Luke Keele, and Kosuke Imai. 2014. <span>“<span><strong>Mediation</strong></span> : <span><em>R</em></span> Package for Causal Mediation Analysis.”</span> <em>Journal of Statistical Software</em> 59 (5). <a href="https://doi.org/10.18637/jss.v059.i05">https://doi.org/10.18637/jss.v059.i05</a>.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>For detailed explanation see the Video by Carlos Cinelli <a href="https://www.youtube.com/watch?v=HZvZYywf3fg">here</a> and read the paper <span class="citation" data-cites="cinelli2020">Cinelli and Hazlett (<a href="references.html#ref-cinelli2020" role="doc-biblioref">2020</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Also Page 141 in <span class="citation" data-cites="baileyRealStatsUsing2021">Bailey (<a href="references.html#ref-baileyRealStatsUsing2021" role="doc-biblioref">2021</a>)</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./missing-data.html" class="pagination-link" aria-label="Session 3 - Missing Data and Multiple Imputation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Session 3 - Missing Data and Multiple Imputation</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","openEffect":"zoom","closeEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
