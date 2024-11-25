@@ -244,6 +244,12 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./moderation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 5 - Moderation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -890,29 +896,29 @@ lm(formula = tariff ~ polity + pop + gdp.pc + year + country,
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--39.759  -5.824  -1.303   4.987  59.471 
+-51.083  -8.465  -3.631   4.985  51.150 
 
 Coefficients:
-                     Estimate Std. Error t value Pr(&gt;|t|)   
-(Intercept)         1.941e+03  6.289e+02   3.087  0.00239 **
-polity             -9.835e-02  3.378e-01  -0.291  0.77131   
-pop                 1.275e-08  4.412e-08   0.289  0.77300   
-gdp.pc              6.235e-04  1.411e-03   0.442  0.65911   
-year               -9.566e-01  3.268e-01  -2.927  0.00393 **
-countryIndonesia   -1.903e+01  3.097e+01  -0.615  0.53972   
-countryKorea       -2.453e+01  3.552e+01  -0.691  0.49083   
-countryMalaysia    -2.130e+01  3.651e+01  -0.583  0.56048   
-countryNepal       -3.447e+00  3.737e+01  -0.092  0.92664   
-countryPakistan     1.863e+01  3.335e+01   0.559  0.57715   
-countryPhilippines -1.477e+01  3.515e+01  -0.420  0.67481   
-countrySriLanka    -8.476e+00  3.710e+01  -0.228  0.81956   
-countryThailand    -1.163e+01  3.508e+01  -0.332  0.74069   
+                     Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)         1.809e+03  7.643e+02   2.366   0.0192 *
+polity             -5.764e-02  4.070e-01  -0.142   0.8876  
+pop                -1.257e-08  5.344e-08  -0.235   0.8143  
+gdp.pc              2.322e-03  1.700e-03   1.365   0.1740  
+year               -8.797e-01  3.972e-01  -2.215   0.0282 *
+countryIndonesia   -3.120e+01  3.751e+01  -0.832   0.4069  
+countryKorea       -5.641e+01  4.279e+01  -1.318   0.1894  
+countryMalaysia    -4.482e+01  4.418e+01  -1.014   0.3120  
+countryNepal       -2.872e+01  4.528e+01  -0.634   0.5269  
+countryPakistan    -2.030e+00  4.040e+01  -0.050   0.9600  
+countryPhilippines -3.575e+01  4.257e+01  -0.840   0.4023  
+countrySriLanka    -2.564e+01  4.494e+01  -0.571   0.5691  
+countryThailand    -2.940e+01  4.248e+01  -0.692   0.4898  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 14.69 on 158 degrees of freedom
-Multiple R-squared:  0.4864,    Adjusted R-squared:  0.4474 
-F-statistic: 12.47 on 12 and 158 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 17.79 on 158 degrees of freedom
+Multiple R-squared:  0.342, Adjusted R-squared:  0.2921 
+F-statistic: 6.845 on 12 and 158 DF,  p-value: 7.101e-10</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of rows</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(model.lm.hotdeck<span class="sc">$</span>model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1369,19 +1375,19 @@ Coefficients:
 <pre><code># A tibble: 13 × 5
    term               estimate std.error statistic p.value
    &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
- 1 (Intercept)         1.94e+3   6.29e+2    3.09   0.00239
- 2 polity             -9.84e-2   3.38e-1   -0.291  0.771  
- 3 pop                 1.27e-8   4.41e-8    0.289  0.773  
- 4 gdp.pc              6.24e-4   1.41e-3    0.442  0.659  
- 5 year               -9.57e-1   3.27e-1   -2.93   0.00393
- 6 countryIndonesia   -1.90e+1   3.10e+1   -0.615  0.540  
- 7 countryKorea       -2.45e+1   3.55e+1   -0.691  0.491  
- 8 countryMalaysia    -2.13e+1   3.65e+1   -0.583  0.560  
- 9 countryNepal       -3.45e+0   3.74e+1   -0.0922 0.927  
-10 countryPakistan     1.86e+1   3.34e+1    0.559  0.577  
-11 countryPhilippines -1.48e+1   3.51e+1   -0.420  0.675  
-12 countrySriLanka    -8.48e+0   3.71e+1   -0.228  0.820  
-13 countryThailand    -1.16e+1   3.51e+1   -0.332  0.741  </code></pre>
+ 1 (Intercept)         1.81e+3   7.64e+2    2.37    0.0192
+ 2 polity             -5.76e-2   4.07e-1   -0.142   0.888 
+ 3 pop                -1.26e-8   5.34e-8   -0.235   0.814 
+ 4 gdp.pc              2.32e-3   1.70e-3    1.37    0.174 
+ 5 year               -8.80e-1   3.97e-1   -2.21    0.0282
+ 6 countryIndonesia   -3.12e+1   3.75e+1   -0.832   0.407 
+ 7 countryKorea       -5.64e+1   4.28e+1   -1.32    0.189 
+ 8 countryMalaysia    -4.48e+1   4.42e+1   -1.01    0.312 
+ 9 countryNepal       -2.87e+1   4.53e+1   -0.634   0.527 
+10 countryPakistan    -2.03e+0   4.04e+1   -0.0502  0.960 
+11 countryPhilippines -3.57e+1   4.26e+1   -0.840   0.402 
+12 countrySriLanka    -2.56e+1   4.49e+1   -0.571   0.569 
+13 countryThailand    -2.94e+1   4.25e+1   -0.692   0.490 </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1436,31 +1442,31 @@ Coefficients:
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
 <td style="text-align: right;">1972.6328639</td>
-<td style="text-align: right;">1941.2100696</td>
+<td style="text-align: right;">1808.6074374</td>
 <td style="text-align: right;">2853.2141618</td>
 <td style="text-align: right;">401.6146966</td>
-<td style="text-align: right;">628.9041427</td>
+<td style="text-align: right;">764.2796306</td>
 <td style="text-align: right;">687.1615407</td>
 <td style="text-align: right;">4.9117547</td>
-<td style="text-align: right;">3.0866549</td>
+<td style="text-align: right;">2.3664211</td>
 <td style="text-align: right;">4.1521738</td>
 <td style="text-align: right;">0.0000036</td>
-<td style="text-align: right;">0.0023910</td>
+<td style="text-align: right;">0.0191731</td>
 <td style="text-align: right;">0.0002857</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">polity</td>
 <td style="text-align: right;">-0.1372722</td>
-<td style="text-align: right;">-0.0983508</td>
+<td style="text-align: right;">-0.0576378</td>
 <td style="text-align: right;">0.0955053</td>
 <td style="text-align: right;">0.1821269</td>
-<td style="text-align: right;">0.3377931</td>
+<td style="text-align: right;">0.4069957</td>
 <td style="text-align: right;">0.2975730</td>
 <td style="text-align: right;">-0.7537175</td>
-<td style="text-align: right;">-0.2911571</td>
+<td style="text-align: right;">-0.1416178</td>
 <td style="text-align: right;">0.3209475</td>
 <td style="text-align: right;">0.4528260</td>
-<td style="text-align: right;">0.7713131</td>
+<td style="text-align: right;">0.8875624</td>
 <td style="text-align: right;">0.7482541</td>
 </tr>
 <tr class="odd">
@@ -1469,163 +1475,163 @@ Coefficients:
 <td style="text-align: right;">0.0000000</td>
 <td style="text-align: right;">-0.0000001</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.0000000</td>
+<td style="text-align: right;">0.0000001</td>
 <td style="text-align: right;">0.0000001</td>
 <td style="text-align: right;">-7.9508396</td>
-<td style="text-align: right;">0.2889543</td>
+<td style="text-align: right;">-0.2352597</td>
 <td style="text-align: right;">-1.3103516</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.7729952</td>
+<td style="text-align: right;">0.8143118</td>
 <td style="text-align: right;">1.7766806</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">gdp.pc</td>
 <td style="text-align: right;">0.0006096</td>
-<td style="text-align: right;">0.0006235</td>
+<td style="text-align: right;">0.0023217</td>
 <td style="text-align: right;">-0.0000910</td>
 <td style="text-align: right;">0.0007442</td>
-<td style="text-align: right;">0.0014108</td>
+<td style="text-align: right;">0.0017003</td>
 <td style="text-align: right;">0.0013298</td>
 <td style="text-align: right;">0.8191485</td>
-<td style="text-align: right;">0.4419730</td>
+<td style="text-align: right;">1.3654607</td>
 <td style="text-align: right;">-0.0684692</td>
 <td style="text-align: right;">0.4146893</td>
-<td style="text-align: right;">0.6591131</td>
+<td style="text-align: right;">0.1740491</td>
 <td style="text-align: right;">1.0544879</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">year</td>
 <td style="text-align: right;">-0.8705461</td>
-<td style="text-align: right;">-0.9566206</td>
+<td style="text-align: right;">-0.8796578</td>
 <td style="text-align: right;">-1.3667123</td>
 <td style="text-align: right;">0.2084439</td>
-<td style="text-align: right;">0.3268482</td>
+<td style="text-align: right;">0.3971869</td>
 <td style="text-align: right;">0.3487968</td>
 <td style="text-align: right;">-4.1764050</td>
-<td style="text-align: right;">-2.9268043</td>
+<td style="text-align: right;">-2.2147201</td>
 <td style="text-align: right;">-3.9183625</td>
 <td style="text-align: right;">0.0000643</td>
-<td style="text-align: right;">0.0039302</td>
+<td style="text-align: right;">0.0282103</td>
 <td style="text-align: right;">1.9995679</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">countryIndonesia</td>
 <td style="text-align: right;">-182.3267131</td>
-<td style="text-align: right;">-19.0342589</td>
+<td style="text-align: right;">-31.1984004</td>
 <td style="text-align: right;">-87.7626156</td>
 <td style="text-align: right;">18.5678981</td>
-<td style="text-align: right;">30.9717088</td>
+<td style="text-align: right;">37.5146892</td>
 <td style="text-align: right;">48.4445877</td>
 <td style="text-align: right;">-9.8194590</td>
-<td style="text-align: right;">-0.6145692</td>
+<td style="text-align: right;">-0.8316316</td>
 <td style="text-align: right;">-1.8116083</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.5397232</td>
+<td style="text-align: right;">0.4068720</td>
 <td style="text-align: right;">1.8933361</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">countryKorea</td>
 <td style="text-align: right;">-220.4438668</td>
-<td style="text-align: right;">-24.5269140</td>
+<td style="text-align: right;">-56.4057422</td>
 <td style="text-align: right;">-113.4919900</td>
 <td style="text-align: right;">20.7803472</td>
-<td style="text-align: right;">35.5150745</td>
+<td style="text-align: right;">42.7949479</td>
 <td style="text-align: right;">58.3744290</td>
 <td style="text-align: right;">-10.6082860</td>
-<td style="text-align: right;">-0.6906057</td>
+<td style="text-align: right;">-1.3180468</td>
 <td style="text-align: right;">-1.9442073</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.4908266</td>
+<td style="text-align: right;">0.1893957</td>
 <td style="text-align: right;">1.9101103</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">countryMalaysia</td>
 <td style="text-align: right;">-224.5464768</td>
-<td style="text-align: right;">-21.2994334</td>
+<td style="text-align: right;">-44.8173839</td>
 <td style="text-align: right;">-113.7811609</td>
 <td style="text-align: right;">21.7107818</td>
-<td style="text-align: right;">36.5112315</td>
+<td style="text-align: right;">44.1825754</td>
 <td style="text-align: right;">58.6693456</td>
 <td style="text-align: right;">-10.3426251</td>
-<td style="text-align: right;">-0.5833666</td>
+<td style="text-align: right;">-1.0143678</td>
 <td style="text-align: right;">-1.9393630</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.5604783</td>
+<td style="text-align: right;">0.3119581</td>
 <td style="text-align: right;">1.9108244</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">countryNepal</td>
 <td style="text-align: right;">-216.3338310</td>
-<td style="text-align: right;">-3.4468224</td>
+<td style="text-align: right;">-28.7167923</td>
 <td style="text-align: right;">-106.5699358</td>
 <td style="text-align: right;">22.4672149</td>
-<td style="text-align: right;">37.3745774</td>
+<td style="text-align: right;">45.2816605</td>
 <td style="text-align: right;">58.0575005</td>
 <td style="text-align: right;">-9.6288673</td>
-<td style="text-align: right;">-0.0922237</td>
+<td style="text-align: right;">-0.6341815</td>
 <td style="text-align: right;">-1.8355929</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.9266371</td>
+<td style="text-align: right;">0.5268795</td>
 <td style="text-align: right;">1.8976104</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">countryPakistan</td>
 <td style="text-align: right;">-155.3509868</td>
-<td style="text-align: right;">18.6335962</td>
+<td style="text-align: right;">-2.0302496</td>
 <td style="text-align: right;">-65.5886664</td>
 <td style="text-align: right;">19.8214313</td>
-<td style="text-align: right;">33.3511892</td>
+<td style="text-align: right;">40.4032579</td>
 <td style="text-align: right;">53.6629118</td>
 <td style="text-align: right;">-7.8375262</td>
-<td style="text-align: right;">0.5587086</td>
+<td style="text-align: right;">-0.0502496</td>
 <td style="text-align: right;">-1.2222346</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.5771516</td>
+<td style="text-align: right;">0.9599869</td>
 <td style="text-align: right;">1.7428515</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">countryPhilippines</td>
 <td style="text-align: right;">-204.0378373</td>
-<td style="text-align: right;">-14.7732243</td>
+<td style="text-align: right;">-35.7463364</td>
 <td style="text-align: right;">-104.4628202</td>
 <td style="text-align: right;">20.8758293</td>
-<td style="text-align: right;">35.1458455</td>
+<td style="text-align: right;">42.5663859</td>
 <td style="text-align: right;">56.9810714</td>
 <td style="text-align: right;">-9.7738794</td>
-<td style="text-align: right;">-0.4203406</td>
+<td style="text-align: right;">-0.8397785</td>
 <td style="text-align: right;">-1.8332899</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.6748078</td>
+<td style="text-align: right;">0.4023015</td>
 <td style="text-align: right;">1.8945536</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">countrySriLanka</td>
 <td style="text-align: right;">-209.0534653</td>
-<td style="text-align: right;">-8.4763217</td>
+<td style="text-align: right;">-25.6410223</td>
 <td style="text-align: right;">-99.6524394</td>
 <td style="text-align: right;">22.0994094</td>
-<td style="text-align: right;">37.0962869</td>
+<td style="text-align: right;">44.9357276</td>
 <td style="text-align: right;">59.2852871</td>
 <td style="text-align: right;">-9.4596856</td>
-<td style="text-align: right;">-0.2284952</td>
+<td style="text-align: right;">-0.5706155</td>
 <td style="text-align: right;">-1.6808966</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.8195568</td>
+<td style="text-align: right;">0.5690709</td>
 <td style="text-align: right;">1.8682816</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">countryThailand</td>
 <td style="text-align: right;">-196.0930793</td>
-<td style="text-align: right;">-11.6314740</td>
+<td style="text-align: right;">-29.4046207</td>
 <td style="text-align: right;">-96.6075914</td>
 <td style="text-align: right;">20.9539028</td>
-<td style="text-align: right;">35.0849793</td>
+<td style="text-align: right;">42.4780017</td>
 <td style="text-align: right;">57.3985862</td>
 <td style="text-align: right;">-9.3583082</td>
-<td style="text-align: right;">-0.3315229</td>
+<td style="text-align: right;">-0.6922317</td>
 <td style="text-align: right;">-1.6831005</td>
 <td style="text-align: right;">0.0000000</td>
-<td style="text-align: right;">0.7406889</td>
+<td style="text-align: right;">0.4898079</td>
 <td style="text-align: right;">1.8672833</td>
 </tr>
 </tbody>
@@ -2191,7 +2197,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"zoom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

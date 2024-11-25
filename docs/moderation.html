@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Session 5 - Moderation – Lab for Quantitative Methods - 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./sensitivity-mediation.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="www/styles.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./moderation.html">Session 5 - Moderation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Lab for Quantitative Methods - 3</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why are we here?</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./latex-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 1 - <span class="math inline">\(\LaTeX\)</span> and Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./matching-equivalence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 2 - Matching and Equivalence</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./matching.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matching</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./equivalence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Equivalence</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missing-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 3 - Missing Data and Multiple Imputation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sensitivity-mediation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Session 4 - Sensitivity and Mediation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./moderation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Session 5 - Moderation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#todays-lab" id="toc-todays-lab" class="nav-link active" data-scroll-target="#todays-lab">Today’s Lab</a></li>
+  <li><a href="#heterogeneous-effects-of-same-treatment" id="toc-heterogeneous-effects-of-same-treatment" class="nav-link" data-scroll-target="#heterogeneous-effects-of-same-treatment">Heterogeneous Effects of Same Treatment</a>
+  <ul class="collapse">
+  <li><a href="#concepts-and-usage" id="toc-concepts-and-usage" class="nav-link" data-scroll-target="#concepts-and-usage">Concepts and Usage</a></li>
+  <li><a href="#key-differences-and-overlap" id="toc-key-differences-and-overlap" class="nav-link" data-scroll-target="#key-differences-and-overlap">Key Differences and Overlap</a></li>
+  </ul></li>
+  <li><a href="#how-to-analyse-moderation" id="toc-how-to-analyse-moderation" class="nav-link" data-scroll-target="#how-to-analyse-moderation">How to analyse Moderation?</a></li>
+  <li><a href="#moderation-using-interflex-package" id="toc-moderation-using-interflex-package" class="nav-link" data-scroll-target="#moderation-using-interflex-package">Moderation using <code>interflex</code> package</a>
+  <ul class="collapse">
+  <li><a href="#raw-lid-plots" id="toc-raw-lid-plots" class="nav-link" data-scroll-target="#raw-lid-plots">Raw LID Plots</a></li>
+  <li><a href="#binning-estimator" id="toc-binning-estimator" class="nav-link" data-scroll-target="#binning-estimator">Binning Estimator</a></li>
+  <li><a href="#kernel-estimator" id="toc-kernel-estimator" class="nav-link" data-scroll-target="#kernel-estimator">Kernel Estimator</a></li>
+  <li><a href="#estimation-with-fixed-effects" id="toc-estimation-with-fixed-effects" class="nav-link" data-scroll-target="#estimation-with-fixed-effects">Estimation with Fixed effects</a></li>
+  <li><a href="#visualizing-heterogeneity-in-effect" id="toc-visualizing-heterogeneity-in-effect" class="nav-link" data-scroll-target="#visualizing-heterogeneity-in-effect">Visualizing Heterogeneity in Effect</a></li>
+  <li><a href="#additional-notes-on-advanced-issues" id="toc-additional-notes-on-advanced-issues" class="nav-link" data-scroll-target="#additional-notes-on-advanced-issues">Additional Notes on Advanced Issues</a></li>
+  </ul></li>
+  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In-class Exercise</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Session 5 - Moderation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="gd.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="gd.jpg" class="img-fluid" style="width:100.0%"></a></p>
+<blockquote class="blockquote">
+<p>“… It’s something unpredictable<br>
+But in the end, it’s right<br>
+I hope you had the time of your life”,<br>
+</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>- Greenday, very early on realsing the potential of non-paramteric estimation from data in finding non-linearities, through the song <em>Good Riddance</em><br>
+</p>
+</blockquote>
+<div style="page-break-after: always;"></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Material
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Download the <code>8003-Moderation</code> Lab folder from <a href="https://drive.google.com/drive/u/1/folders/1EqpkkhdzwAysV7N4uEZCBdCD7iHK9_fM">here</a>.</p></li>
+<li><p>Run the <code>.RProj</code> file.</p></li>
+<li><p>Open <code>8003-moderation-11262024.qmd</code>.</p></li>
+</ol>
+</div>
+</div>
+<section id="todays-lab" class="level2">
+<h2 class="anchored" data-anchor-id="todays-lab">Today’s Lab</h2>
+<ol type="1">
+<li><p>Heterogeneous Effects of Same Treatment</p></li>
+<li><p>How to analyse moderation?</p></li>
+<li><p>Moderation using <code>interflex</code> package</p></li>
+<li><p>In-class Exercise</p></li>
+</ol>
+</section>
+<section id="heterogeneous-effects-of-same-treatment" class="level2">
+<h2 class="anchored" data-anchor-id="heterogeneous-effects-of-same-treatment">Heterogeneous Effects of Same Treatment</h2>
+<p>We have studied a a range of concepts (in this class and before) that look at how an expnlanatory variable (or <span class="math inline">\(treatment\)</span>) can have its relationship with dependent variable (or <span class="math inline">\(outcome\)</span>) vary according other another variable (moderator or mediator). A year and a half ago, it was covered as <span class="math inline">\(interactions\)</span> in Govt 8001, as <span class="math inline">\(moderator\)</span> in Govt 8002, and in Govt 8003 we have talked about <span class="math inline">\(treatment-effect-heterogeneity\)</span>. Additionally, we have also talked about <span class="math inline">\(mediation\)</span> which conceptually has a similar skeleton, with the major change being that of context i.e identifying whether and how the above relationship varies through a particular path (causal mechanisms, that it).</p>
+<p>Arguably, they have similarities in mechanics, both mathematically and statistically. The table below looks at how and when all these terms are used.</p>
+<section id="concepts-and-usage" class="level3">
+<h3 class="anchored" data-anchor-id="concepts-and-usage">Concepts and Usage</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 33%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Concept</strong></th>
+<th><strong>Question It Answers</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Treatment Effect Heterogeneity</strong></td>
+<td>Does the treatment effect vary across groups?</td>
+<td>A get-out-the-vote campaign is more effective in swing districts than in safe districts.</td>
+</tr>
+<tr class="even">
+<td><strong>Interaction</strong></td>
+<td>Does (X)’s effect on (Y) depend on (Z)?</td>
+<td>The effect of campaign spending ((X)) on voter turnout ((Y)) depends on voter education levels (<span class="math inline">\(Z\)</span>)).</td>
+</tr>
+<tr class="odd">
+<td><strong>Moderation</strong></td>
+<td>When or for whom does (X <span class="math inline">\(\to\)</span> Y)?</td>
+<td>The relationship between political advertisements ((X)) and voter persuasion ((Y)) is stronger for undecided voters ((Z)).</td>
+</tr>
+<tr class="even">
+<td><strong>Mediation</strong></td>
+<td>How or why does (X <span class="math inline">\(\to\)</span> Y)?</td>
+<td>Economic inequality ((X)) increases political polarization ((Y)) by reducing trust in institutions ((M)).</td>
+</tr>
+</tbody>
+</table>
+<p>Below, we see how despite having same mechanistic underpinnings, these terms have different usage and critically - different aims in knowledge production.</p>
+</section>
+<section id="key-differences-and-overlap" class="level3">
+<h3 class="anchored" data-anchor-id="key-differences-and-overlap">Key Differences and Overlap</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aspect</strong></th>
+<th><strong>Treatment Effect Heterogeneity</strong></th>
+<th><strong>Interaction</strong></th>
+<th><strong>Moderation</strong></th>
+<th><strong>Mediation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Focus</strong></td>
+<td>Studies <em>variability</em> in treatment effects across groups.</td>
+<td>Examines <em>joint effects</em>: Does (X)’s effect on (Y) depend on another variable?</td>
+<td>Examines <em>when</em>, <em>where</em>, or <em>for whom</em> (X <span class="math inline">\(\to\)</span> Y) occurs.</td>
+<td>Explains <em>how</em> or <em>why</em> (X <span class="math inline">\(\to\)</span> Y) happens.</td>
+</tr>
+<tr class="even">
+<td><strong>Key Question</strong></td>
+<td>Does the effect of (X) vary across subgroups?</td>
+<td>Do (X) and another variable combine to influence (Y)?</td>
+<td>Does a third variable influence the strength/direction of (X <span class="math inline">\(\to\)</span> Y)?</td>
+<td>What is the pathway from (X) to (Y)?</td>
+</tr>
+<tr class="odd">
+<td><strong>Causal or Statistical</strong></td>
+<td>Causal (subgroup differences).</td>
+<td>Statistical (interaction terms).</td>
+<td>Statistical (often causally interpreted).</td>
+<td>Causal (pathways/mechanisms).</td>
+</tr>
+<tr class="even">
+<td><strong>Methodology</strong></td>
+<td>Interaction terms, subgroup analysis.</td>
+<td>Interaction terms in regression.</td>
+<td>Interaction terms in regression.</td>
+<td>Path analysis, structural equation modeling.</td>
+</tr>
+<tr class="odd">
+<td><strong>Example</strong></td>
+<td>Get-out-the-vote campaigns are more effective in swing districts than safe ones.</td>
+<td>Campaign spending ((X)) affects voter turnout ((Y)) differently based on education ((Z)).</td>
+<td>Social media use ((X)) affects political knowledge ((Y)) more for younger voters ((Z)).</td>
+<td>Economic inequality ((X)) increases polarization ((Y)) via reduced institutional trust ((M)).</td>
+</tr>
+<tr class="even">
+<td><strong>Overlap</strong></td>
+<td>Can be explained by mediation (pathways) or tested via interactions.</td>
+<td>Often used to model both treatment heterogeneity and moderation.</td>
+<td>Moderation can influence mediation pathways (moderated mediation).</td>
+<td>Mechanisms can interact with moderators or vary across groups.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Treatment Effect Heterogeneity</strong> can arise due to both mediation and moderation.</p>
+<p><strong>Moderation</strong> occurs when the relationship between a treatment (or independent variable X) and an outcome (or dependent variable Y) changes depending on a third variable (the moderator Z). Moderation explains heterogeneity when the effect of the treatment on the outcome differs for different levels or categories of the moderator variable.</p>
+<p><strong>Mediation</strong> involves understanding how or why a treatment has an effect on the outcome through an intervening variable (the mediator M). Treatment effect heterogeneity can arise if the mediating pathway varies across different subgroups or conditions. Mediation explains heterogeneity when the process or pathway through which the treatment influences the outcome differs between subgroups.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose we are studying a <strong>voter turnout campaign</strong> (treatment X) and its impact on <strong>voter turnout</strong> (outcome Y).</p>
+<ul>
+<li><p><strong>Moderation Example</strong>: The effect of the campaign on voter turnout might be stronger for <strong>young voters</strong> than for <strong>older voters</strong>. Age (Z) moderates the effect of the treatment on the outcome.</p></li>
+<li><p><strong>Mediation Example</strong>: The campaign increases <strong>trust in the political system</strong> (mediator M), and trust is what drives higher voter turnout. However, the mediating effect of trust might be stronger for <strong>younger voters</strong> than for <strong>older voters</strong>, creating heterogeneity in the treatment effect due to the mediation pathway.</p></li>
+</ul>
+</div>
+</div>
+<p>Lastly, <strong>interaction</strong> is the statistical concept that underpins the investigation of either of these.</p>
+</section>
+</section>
+<section id="how-to-analyse-moderation" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-analyse-moderation">How to analyse Moderation?</h2>
+<p>Well, by including interaction term/s in our model.</p>
+<p><span class="math display">\[
+Y = \beta_0 + \beta_1 D + \beta_2 X + \beta_3 D \times X + \gamma \mathbf{Z} + \epsilon
+\]</span></p>
+<p>where, D is our binary treatment and X is a moderator (could be continuous or discrete), and <span class="math inline">\(\mathbf{Z}\)</span> are other control variables.</p>
+<p>This model allows for testing of conditional hypothesis of the form:</p>
+<p><span class="math inline">\(H_1\)</span>: The increase in <span class="math inline">\(Y\)</span> is associated with change in D when condition X is present, but not when X is absent.</p>
+<p>In a paper highly cited for formalizing the practice around usage and reporting of multiplicative-interaction models of the above form, <span class="citation" data-cites="bramborUnderstandingInteractionModels2006">Brambor, Clark, and Golder (<a href="references.html#ref-bramborUnderstandingInteractionModels2006" role="doc-biblioref">2006</a>)</span>, list out three instructions which have become a norm in analysis since then <span class="citation" data-cites="hainmuellerHowMuchShould2019a">(<a href="references.html#ref-hainmuellerHowMuchShould2019a" role="doc-biblioref">Hainmueller, Mummolo, and Xu 2019</a>)</span>. These are:</p>
+<ol type="1">
+<li>Include in the model all constitutive terms (D and X ) alongside the interaction term (D <span class="math inline">\(\times\)</span> X ).<br>
+</li>
+<li>Not interpret the coefficients on the constitutive terms (<span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span>) as unconditional marginal effects.<br>
+</li>
+<li>Compute substantively meaningful marginal effects and confidence intervals, ideally with a plot that shows how the conditional marginal effect of D on Y changes across levels of the moderator X.</li>
+</ol>
+<p><span class="citation" data-cites="hainmuellerHowMuchShould2019a">Hainmueller, Mummolo, and Xu (<a href="references.html#ref-hainmuellerHowMuchShould2019a" role="doc-biblioref">2019</a>)</span> contend that despite these norms, the practice and reporting of multiplicative-interaction has flaws. They distill them into two overlooked assumptions that the estimation of such models depend on:</p>
+<ol type="1">
+<li>Linear Interaction Assumption (LIE): The assumption that the effect of the treatment variable on the outcome variable changes linearly with the moderator variable. That is, interaction effect is linear and follows the functional form:</li>
+</ol>
+<p><span class="math display">\[\frac{\partial Y}{\partial D} = \beta_1 + \beta_3 X\]</span> The LIE assumption suggests that the heterogeneity in effects is such that for every one-unit increase in X, the effect of D on Y changes by <span class="math inline">\(\beta_3\)</span>, and <strong>this change in the effect remains constant across the entire range of X</strong>.</p>
+<ol start="2" type="1">
+<li>Common support: The range of values for the moderator variable where there are observations for both the treatment and control groups. To compute the marginal effect of <span class="math inline">\(D\)</span> at a given value of the moderator, <span class="math inline">\(x_0\)</span>​, two conditions must ideally be met:<br>
+</li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>there should be enough observations with X values close to <span class="math inline">\(x_0\)</span>, and<br>
+</li>
+<li>there must be variation in the treatment D at <span class="math inline">\(x_0\)</span>.</li>
+</ol>
+<p>If either condition is not met, the estimates of the conditional marginal effect rely on extrapolation or interpolation of the functional form into regions with little or no data. As a result, these effect estimates become fragile and highly dependent on the model used <span class="citation" data-cites="kingDangersExtremeCounterfactuals2006">(<a href="references.html#ref-kingDangersExtremeCounterfactuals2006" role="doc-biblioref">King and Zeng 2006</a>)</span>.</p>
+<p><strong>Solution</strong></p>
+<p><span class="citation" data-cites="hainmuellerHowMuchShould2019a">Hainmueller, Mummolo, and Xu (<a href="references.html#ref-hainmuellerHowMuchShould2019a" role="doc-biblioref">2019</a>)</span> propose few remedies to the issues.</p>
+<ul>
+<li><strong>Diagnostic Tool</strong> To asses the validity or invalidity of LIE and common support assumptions, they suggest usage of Linear-Interaction-Diagnostic (LID plots).</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="lid.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Checking, if the linear regression lines (blue) and the LOESS fits (red) diverge considerably across the range of X values, and compare the distribution of X in both groups and examine the range of X values for which there are a sufficient number of data points for the estimation of marginal effects. Taken from Page 169 in Hainmueller, J., Mummolo, J., &amp; Xu, Y. (2019). How Much Should We Trust Estimates from Multiplicative Interaction Models? Simple Tools to Improve Empirical Practice. Political Analysis, 27(2), 163–192. https://doi.org/10.1017/pan.2018.46"><img src="lid.png" style="width:110.0%;height:110.0%" alt="Checking, if the linear regression lines (blue) and the LOESS fits (red) diverge considerably across the range of X values, and compare the distribution of X in both groups and examine the range of X values for which there are a sufficient number of data points for the estimation of marginal effects. Taken from Page 169 in Hainmueller, J., Mummolo, J., &amp; Xu, Y. (2019). How Much Should We Trust Estimates from Multiplicative Interaction Models? Simple Tools to Improve Empirical Practice. Political Analysis, 27(2), 163–192. https://doi.org/10.1017/pan.2018.46" class="figure-img"></a></p>
+<figcaption>Checking, if the linear regression lines (blue) and the LOESS fits (red) diverge considerably across the range of X values, and compare the distribution of X in both groups and examine the range of X values for which there are a sufficient number of data points for the estimation of marginal effects. Taken from Page 169 in Hainmueller, J., Mummolo, J., &amp; Xu, Y. (2019). How Much Should We Trust Estimates from Multiplicative Interaction Models? Simple Tools to Improve Empirical Practice. Political Analysis, 27(2), 163–192. https://doi.org/10.1017/pan.2018.46</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Estimation- They propose two alternative estimation strategies:</p>
+<ul>
+<li><strong>Binning estimator:</strong> This approach discretizes the moderator into bins and allows for different treatment effects in each bin, capturing non-linearity. As the authors state, “the binning estimator is much more flexible as it jointly fits the interaction components of the standard model to each bin separately, thereby relaxing the LIE assumption” (p.&nbsp;177).</li>
+</ul>
+<p><span class="math display">\[
+Y = \sum_{j=1}^{3} \big\{\mu_j + \alpha_j D + \eta_j (X - x_j) + \beta_j (X - x_j)D\big\} G_j + Z\gamma + \epsilon
+\]</span></p>
+<p>where, <span class="math inline">\(G_js\)</span> are dummy variables for bins. When entire range is split into three bins according to treciles. They are defined as shown below,</p>
+<p><span class="math display">\[
+G_1 =
+\begin{cases}
+1 &amp; X &lt; \delta_{1/3}, \\
+0 &amp; \text{otherwise},
+\end{cases}
+\quad
+G_2 =
+\begin{cases}
+1 &amp; X \in [\delta_{1/3}, \delta_{2/3}], \\
+0 &amp; \text{otherwise},
+\end{cases}
+\quad
+G_3 =
+\begin{cases}
+1 &amp; X \geq \delta_{2/3}, \\
+0 &amp; \text{otherwise}.
+\end{cases}
+\]</span></p>
+<p><a href="binning.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="binning.png" class="img-fluid" style="width:100.0%"></a></p>
+<ul>
+<li><strong>Kernel estimator:</strong> This method employs non-parametric smoothing to estimate the conditional marginal effect of the treatment across the range of the moderator, again relaxing the LIE assumption. The output is a smooth function rather than a set of discrete point estimates, making it potentially less straightforward to summarize and interpret compared to the binning estimator <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+</ul>
+<p><a href="kernel.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="kernel.png" class="img-fluid" style="width:100.0%"></a></p>
+</section>
+<section id="moderation-using-interflex-package" class="level2">
+<h2 class="anchored" data-anchor-id="moderation-using-interflex-package">Moderation using <code>interflex</code> package</h2>
+<p>The solutions discussed above are incorporated by Jens Hainmueller, Jiehan Liu, Licheng Liu, Ziyi Liu, Jonathan Mummolo, Tianzhu Qin, and Yiqing Xu in <code>interflex</code> package. The functions in it estimates, interprets, and visualizes marginal effects and performs diagnostics, as proposed by <span class="citation" data-cites="hainmuellerHowMuchShould2019a">Hainmueller, Mummolo, and Xu (<a href="references.html#ref-hainmuellerHowMuchShould2019a" role="doc-biblioref">2019</a>)</span> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("interflex")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interflex)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Comes with simulated datasets</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Code on construction of simulation datasets is given below</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># No need to run. It is just for reference</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(interflex)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "s1" "s2" "s3" "s4" "s5" "s6" "s7" "s8" "s9"</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="dv">200</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>d1<span class="ot">&lt;-</span><span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),n,<span class="at">replace=</span><span class="cn">TRUE</span>) <span class="co"># dichotomous treatment</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>d2<span class="ot">&lt;-</span><span class="fu">rnorm</span>(n,<span class="dv">3</span>,<span class="dv">1</span>) <span class="co"># continuous treatment</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x<span class="ot">&lt;-</span><span class="fu">rnorm</span>(n,<span class="dv">3</span>,<span class="dv">1</span>) <span class="co"># moderator</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>z<span class="ot">&lt;-</span><span class="fu">rnorm</span>(n,<span class="dv">3</span>,<span class="dv">1</span>) <span class="co"># covariate</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>e<span class="ot">&lt;-</span><span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="dv">1</span>) <span class="co"># error term</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="do">## linear marginal effect</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>y1<span class="ot">&lt;-</span><span class="dv">5</span> <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">9</span> <span class="sc">*</span> d1 <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">*</span> d1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> z <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> e</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>y2<span class="ot">&lt;-</span><span class="dv">5</span> <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> x <span class="sc">-</span> <span class="dv">9</span> <span class="sc">*</span> d2 <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> x <span class="sc">*</span> d2 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> z <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> e</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>s1<span class="ot">&lt;-</span><span class="fu">cbind.data.frame</span>(<span class="at">Y =</span> y1, <span class="at">D =</span> d1, <span class="at">X =</span> x, <span class="at">Z1 =</span> z)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>s2<span class="ot">&lt;-</span><span class="fu">cbind.data.frame</span>(<span class="at">Y =</span> y2, <span class="at">D =</span> d2, <span class="at">X =</span> x, <span class="at">Z1 =</span> z)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="do">## quadratic marginal effect</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>) <span class="co"># uniformly distributed moderator</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>y3 <span class="ot">&lt;-</span> d1<span class="sc">*</span>(x3<span class="sc">^</span><span class="dv">2</span><span class="fl">-2.5</span>) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>d1)<span class="sc">*</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>x3<span class="sc">^</span><span class="dv">2</span><span class="fl">+2.5</span>) <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> z <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> e</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>s3 <span class="ot">&lt;-</span> <span class="fu">cbind.data.frame</span>(<span class="at">D=</span>d1, <span class="at">X=</span>x3, <span class="at">Y=</span>y3, <span class="at">Z1 =</span> z)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="do">## adding two-way fixed effects</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>n  <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>d4 <span class="ot">&lt;-</span><span class="fu">sample</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),n,<span class="at">replace=</span><span class="cn">TRUE</span>) <span class="co"># dichotomous treatment</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>x4 <span class="ot">&lt;-</span> <span class="fu">runif</span>(n, <span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>) <span class="co"># uniformly distributed moderator</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>z4 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">3</span>,<span class="dv">1</span>) <span class="co"># covariate</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="sc">*</span> <span class="fu">rep</span>(<span class="fu">rnorm</span>(n<span class="sc">/</span><span class="dv">10</span>), <span class="at">each =</span> <span class="dv">10</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">rnorm</span>(<span class="dv">10</span>), n<span class="sc">/</span><span class="dv">10</span>)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>y4 <span class="ot">&lt;-</span> d4<span class="sc">*</span>(x4<span class="sc">^</span><span class="dv">2</span><span class="fl">-2.5</span>) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">-</span>d4)<span class="sc">*</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span>x4<span class="sc">^</span><span class="dv">2</span><span class="fl">+2.5</span>) <span class="sc">+</span> <span class="dv">1</span> <span class="sc">*</span> z4 <span class="sc">+</span> alpha <span class="sc">+</span> xi <span class="sc">+</span> </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span> <span class="sc">*</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>s4 <span class="ot">&lt;-</span> <span class="fu">cbind.data.frame</span>(<span class="at">D=</span>d4, <span class="at">X=</span>x4, <span class="at">Y=</span>y4, <span class="at">Z1 =</span> z4, </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                       <span class="at">unit =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>(n<span class="sc">/</span><span class="dv">10</span>), <span class="at">each =</span> <span class="dv">10</span>),</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                       <span class="at">year =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, (n<span class="sc">/</span><span class="dv">10</span>)))</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple treatment arms</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">600</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># treatment 1</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'C'</span>),n,<span class="at">replace=</span>T)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co"># moderator</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(n,<span class="at">min=</span><span class="sc">-</span><span class="dv">3</span>, <span class="at">max =</span> <span class="dv">3</span>)</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co"># covriates</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>z1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="dv">3</span>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>z2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="dv">2</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co"># error</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,n)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>y1[<span class="fu">which</span>(d1<span class="sc">==</span><span class="st">'A'</span>)] <span class="ot">&lt;-</span> <span class="sc">-</span>x[<span class="fu">which</span>(d1<span class="sc">==</span><span class="st">'A'</span>)]</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>y1[<span class="fu">which</span>(d1<span class="sc">==</span><span class="st">'B'</span>)] <span class="ot">&lt;-</span> (<span class="dv">1</span><span class="sc">+</span>x)[<span class="fu">which</span>(d1<span class="sc">==</span><span class="st">'B'</span>)]</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>y1[<span class="fu">which</span>(d1<span class="sc">==</span><span class="st">'C'</span>)] <span class="ot">&lt;-</span> (<span class="dv">4</span><span class="sc">-</span>x<span class="sc">*</span>x<span class="sc">-</span>x)[<span class="fu">which</span>(d1<span class="sc">==</span><span class="st">'C'</span>)]</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> y1 <span class="sc">+</span> e <span class="sc">+</span> z1 <span class="sc">+</span> z2</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>s5 <span class="ot">&lt;-</span> <span class="fu">cbind.data.frame</span>(<span class="at">D=</span>d1, <span class="at">X=</span>x, <span class="at">Y=</span>y1, <span class="at">Z1 =</span> z1,<span class="at">Z2 =</span> z2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><code>s1</code> is a case of a dichotomous treatment indicator with linear marginal effects;<br>
+<code>s2</code> is a case of a continuous treatment indicator with linear marginal effects;<br>
+<code>s3</code> is a case of a dichotomous treatment indicator with nonlinear marginal effects;<br>
+<code>s4</code> is a case of a dichotomous treatment indicator, nonlinear marginal effects, with additive two-way fixed effects; and</p>
+<p><code>s5</code> is a case of a discrete treatment indicator, nonlinear marginal effects, with additive two-way fixed effects.</p>
+<section id="raw-lid-plots" class="level3">
+<h3 class="anchored" data-anchor-id="raw-lid-plots">Raw LID Plots</h3>
+<p>Let’s check different types of datsets and outputs</p>
+<ol type="1">
+<li>Dichotomous treatment indicator with linear marginal effects.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interflex</span>(<span class="at">estimator =</span> <span class="st">"raw"</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Y =</span> <span class="st">"Y"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">D =</span> <span class="st">"D"</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">X =</span> <span class="st">"X"</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> s1, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">weights =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">Ylabel =</span> <span class="st">"Outcome"</span>, <span class="at">Dlabel =</span> <span class="st">"Treatment"</span>, <span class="at">Xlabel=</span><span class="st">"Moderator"</span>, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">main =</span> <span class="st">"Raw Plot"</span>, <span class="at">cex.main =</span> <span class="fl">1.2</span>, <span class="at">ncols=</span><span class="dv">2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="moderation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Continuous treatment indicator with linear marginal effects.<br>
+</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interflex</span>(<span class="at">estimator =</span> <span class="st">"raw"</span>, <span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">data =</span> s2,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Ylabel =</span> <span class="st">"Outcome"</span>, <span class="at">Dlabel =</span> <span class="st">"Treatment"</span>, <span class="at">Xlabel=</span><span class="st">"Moderator"</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">theme.bw =</span> <span class="cn">TRUE</span>, <span class="at">show.grid =</span> <span class="cn">FALSE</span>, <span class="at">ncols=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-5-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="moderation_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Dichotomous treatment indicator with nonlinear marginal effects.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interflex</span>(<span class="at">estimator =</span> <span class="st">"raw"</span>, <span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">data =</span> s3,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">Ylabel =</span> <span class="st">"Outcome"</span>, <span class="at">Dlabel =</span> <span class="st">"Treatment"</span>, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">Xlabel=</span><span class="st">"Moderator"</span>,<span class="at">ncols=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="moderation_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation Exercise
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Interpret the three plots. What do the red and blue lines signify?</p></li>
+<li><p>In which of them LIE seems to be violated?</p></li>
+<li><p>Which seems to be suffering from lack of common support?</p></li>
+</ol>
+<p>Read the documentation with <code>?interflex</code> and <strong>3. Diagnostics</strong> section in <span class="citation" data-cites="hainmuellerHowMuchShould2019a">Hainmueller, Mummolo, and Xu (<a href="references.html#ref-hainmuellerHowMuchShould2019a" role="doc-biblioref">2019</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="binning-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="binning-estimator">Binning Estimator</h3>
+<p>We will use <code>s1</code> dataset. The data generating process underlying it is</p>
+<p><span class="math display">\[
+Y = -5 - 4X - 9D + 3X \times D + Z + 2\epsilon
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, <span class="at">data =</span> s1, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">estimator =</span> <span class="st">"binning"</span>, <span class="at">vcov.type =</span> <span class="st">"robust"</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">main =</span> <span class="st">"Marginal Effects"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>, <span class="dv">15</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="moderation_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>How are the bins created in this plot?</p>
+<p>Also, interpret the histogram at the bottom.</p>
+</div>
+</div>
+</div>
+<p>Note that interflex will also automatically report a set of statistics when estimator = “binning”, including: (1) the binning estimates and their standard errors and 95% confidence intervals, (2) the percentage of observations within each bin, (3) the L-kurtosis of the moderator, and (4) a Wald test to formally test if we can reject the linear multiplicative interaction model by comparing it with a more flexible model of multiple bins</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(out<span class="sc">$</span>tests<span class="sc">$</span>p.wald)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0.526"</code></pre>
+</div>
+</div>
+<p><strong>Interpreting the wald test p-vlue</strong> We see that the Wald test cannot reject the NULL hypothesis that the linear interaction model and the three-bin model are statistically equivalent.</p>
+<section id="when-lie-is-not-valid" class="level4">
+<h4 class="anchored" data-anchor-id="when-lie-is-not-valid">When LIE is not valid</h4>
+<p>Let’s look at dataset <code>s3</code>, which is simulated from the following data generating process,</p>
+<p><span class="math display">\[
+Y = 2.5 - 2.5D - X^2 + 2(D \times X^2) + Z + \varepsilon
+\]</span> The marginal effect of D on Y is</p>
+<p><span class="math display">\[
+\frac{\partial Y}{\partial D} = -2.5 + 2X^2
+\]</span> which is non-linear interaction. However, by estimating with linear interaction assumption, we would have missed out this facet and get biased results.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>out_li <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, <span class="at">data =</span> s3, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">estimator =</span> <span class="st">"linear"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out_li)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="moderation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Binning estimator gives a better insight into the non-linear interactive relationship.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>out_nli <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, <span class="at">data =</span> s3, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"binning"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out_nli)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="moderation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s increase the number of bins.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>out_nli_5 <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> s3, <span class="at">nbins =</span> <span class="dv">5</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">estimator =</span> <span class="st">"binning"</span>, <span class="at">main =</span> <span class="st">"With 5 bins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out_nli_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-11-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="moderation_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Conducting wald tests again, for the new models with 3 and 5 bins.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(out_nli<span class="sc">$</span>tests<span class="sc">$</span>p.wald)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0.000"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(out_nli_5<span class="sc">$</span>tests<span class="sc">$</span>p.wald)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0.000"</code></pre>
+</div>
+</div>
+<p>This time the NULL hypothesis that the linear interaction model and the three-bin model are statistically equivalent is safely rejected (p.wald = 0.00).</p>
+</section>
+</section>
+<section id="kernel-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="kernel-estimator">Kernel Estimator</h3>
+<p>Imagine, increasing the number of bins infinitely. We would be somewhat capturing the underlying relationship, in a smoothed curve <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>The kernel estimator is a method used to flexibly estimate the functional form of a marginal effect across the values of a moderator variable, relaxing the linear interaction effect (LIE) assumption and offering protection against the problem of lack of common support.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>out_ke <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, <span class="at">data =</span> s3, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">estimator =</span> <span class="st">"kernel"</span>, <span class="at">theme.bw =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. 
+Cross-validating bandwidth ... 
+Parallel computing with 4 cores...
+Optimal bw=0.5244.
+Number of evaluation points:50
+Parallel computing with 4 cores...
+</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>out_ke<span class="sc">$</span>figure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="moderation_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can change the plotting attributes, without running the <code>interflex</code> function again. See code below how it uses same <code>out_ke</code> output from <code>interflex</code> function inside a plotting command</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out_ke, <span class="at">main =</span> <span class="st">"Nonlinear Marginal Effects"</span>,</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Coefficients"</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">Xdistr =</span> <span class="st">"density"</span>, <span class="co"># Instead of histogram, density curve</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>,<span class="dv">3</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>,<span class="dv">12</span>),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">CI =</span> <span class="cn">FALSE</span>, <span class="at">cex.main =</span> <span class="fl">0.8</span>, <span class="at">cex.lab =</span> <span class="fl">0.7</span>, <span class="at">cex.axis =</span> <span class="fl">0.7</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-14-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="moderation_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The semi-parametric marginal effect estimates are stored in <code>out$est.kernel</code>.</p>
+<p>Note that we can use the file option to save a plot to a file in interflex (e.g.&nbsp;by setting <code>file = "myplot.pdf"</code> or <code>file = "myplot.png"</code>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Features of Kernel Estimator
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Advantages:</strong></p>
+<p><strong>Flexibility:</strong> Allows the conditional effect of the treatment variable to vary freely across the range of the moderator, capturing nonlinear and nonmonotonic relationships<strong>4</strong>.</p>
+<p><strong>Protection against extrapolation:</strong> Estimates the marginal effect across the full range of the moderator, highlighting areas with limited common support through wider confidence intervals<strong>57</strong>.</p>
+<p><strong>Automated bandwidth selection:</strong> The bandwidth parameter, h, which determines the smoothness of the estimated function, is automatically selected through cross-validation, minimizing subjectivity<strong>8</strong>.</p>
+<p><strong>Limitation</strong></p>
+<p>The output is a smooth function rather than a set of discrete point estimates, making it potentially less straightforward to summarize and interpret compared to the binning estimator</p>
+</div>
+</div>
+</section>
+<section id="estimation-with-fixed-effects" class="level3">
+<h3 class="anchored" data-anchor-id="estimation-with-fixed-effects">Estimation with Fixed effects</h3>
+<p>Focusing on dataset <code>s4</code>, which has the following DGP</p>
+<p><span class="math display">\[
+Y = \beta_0 + \beta_1 D + \beta_2 X^2 + \beta_3 (D \times X^2) + \beta_4 Z + \alpha + \xi + \varepsilon
+\]</span></p>
+<p>The regression includes both unit fixed effects (<span class="math inline">\(\alpha\)</span>) and year fixed effects (<span class="math inline">\(\xi\)</span>), which control for unobserved heterogeneity across units (such as individuals or firms) and years (such as time effects).</p>
+<p>Remember in <code>s4</code>, a large chunk of the variation in the outcome variable is driven by group fixed effects (see the code where simulated datasets are created above). Below is a scatterplot of the raw data (group index vs.&nbsp;outcome). Red and green dots represent treatment and control units, respectively. We can see that outcomes are highly correlated within a group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(s4, <span class="fu">aes</span>(<span class="at">x=</span>group, <span class="at">y =</span> Y, <span class="at">colour =</span> <span class="fu">as.factor</span>(D))) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">guides</span>(<span class="at">colour=</span><span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: The `&lt;scale&gt;` argument of `guides()` cannot be `FALSE`. Use "none" instead as
+of ggplot2 3.3.4.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="moderation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When fixed effects are present, it is possible that we cannot observe a clear pattern of marginal effects in the raw plot as before, while binning estimates have wide confidence intervals.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interflex</span>(<span class="at">estimator =</span> <span class="st">"raw"</span>, <span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> s4, <span class="at">weights =</span> <span class="cn">NULL</span>,<span class="at">ncols=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="moderation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># binning</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>s4.binning <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> s4, <span class="at">estimator =</span> <span class="st">"binning"</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">FE =</span> <span class="cn">NULL</span>, <span class="at">cl =</span> <span class="st">"group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(s4.binning)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img src="moderation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Similarly, kernel estimates have wide cross-validated bandwidths.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kernel</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>s4<span class="sc">$</span>wgt <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>s4.kernel <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> s4, <span class="at">estimator =</span> <span class="st">"kernel"</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">FE =</span> <span class="cn">NULL</span>, <span class="at">cl =</span> <span class="st">"group"</span>, <span class="at">weights =</span> <span class="st">"wgt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. 
+Cross-validating bandwidth ... 
+Parallel computing with 4 cores...
+Optimal bw=1.3539.
+Number of evaluation points:50
+Parallel computing with 4 cores...
+</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(s4.kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img src="moderation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The issues are caused by in-correct identification and specification of the model.</p>
+<p>The binning and kernel estimates are much more informative when fixed effects are included, by using the <code>FE</code> option. Note that the number of group indicators can exceed 2. The algorithm is optimized for a large number of fixed effects or many group indicators. The <code>cl</code> option controls the level at which standard errors are clustered.</p>
+<section id="binning-with-fe" class="level4">
+<h4 class="anchored" data-anchor-id="binning-with-fe">Binning with FE</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>s4.binning <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> s4, <span class="at">estimator =</span> <span class="st">"binning"</span>, </span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">FE =</span> <span class="fu">c</span>(<span class="st">"group"</span>, <span class="st">"year"</span>), <span class="at">cl =</span> <span class="st">"group"</span>, </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">weights =</span> <span class="st">"wgt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(s4.binning)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img src="moderation_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="kernel-with-fe" class="level4">
+<h4 class="anchored" data-anchor-id="kernel-with-fe">Kernel with FE</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>s4.kernel <span class="ot">&lt;-</span> <span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="st">"Z1"</span>, </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> s4, <span class="at">estimator =</span> <span class="st">"kernel"</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">FE =</span> <span class="fu">c</span>(<span class="st">"group"</span>,<span class="st">"year"</span>), <span class="at">cl =</span> <span class="st">"group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = 0 as the baseline group. 
+Cross-validating bandwidth ... 
+Parallel computing with 4 cores...
+Optimal bw=0.4021.
+Number of evaluation points:50
+Parallel computing with 4 cores...
+</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(s4.kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img src="moderation_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualizing-heterogeneity-in-effect" class="level3">
+<h3 class="anchored" data-anchor-id="visualizing-heterogeneity-in-effect">Visualizing Heterogeneity in Effect</h3>
+<p>We can use <code>interflex</code> to visualize predicted outcomes based on non-linear interaction that we just analysed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>s5.kernel <span class="ot">&lt;-</span><span class="fu">interflex</span>(<span class="at">Y =</span> <span class="st">"Y"</span>, <span class="at">D =</span> <span class="st">"D"</span>, <span class="at">X =</span> <span class="st">"X"</span>, <span class="at">Z =</span> <span class="fu">c</span>(<span class="st">"Z1"</span>, <span class="st">"Z2"</span>),</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> s5, <span class="at">estimator =</span> <span class="st">"kernel"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Baseline group not specified; choose treat = A as the baseline group. 
+Cross-validating bandwidth ... 
+Parallel computing with 4 cores...
+Optimal bw=0.3522.
+Number of evaluation points:50
+Parallel computing with 4 cores...
+</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(s5.kernel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img src="moderation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Or, by setting <code>pool = TRUE</code>,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(s5.kernel,<span class="at">order =</span> <span class="fu">c</span>(<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'C'</span>),</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="fu">c</span>(<span class="st">"Group A"</span>, <span class="st">"Group B"</span>, <span class="st">"Group C"</span>), <span class="at">pool =</span> T,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="st">"Three Different Groups"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="moderation_files/figure-html/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img src="moderation_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="additional-notes-on-advanced-issues" class="level3">
+<h3 class="anchored" data-anchor-id="additional-notes-on-advanced-issues">Additional Notes on Advanced Issues</h3>
+<p>The documentation of the <a href="https://yiqingxu.org/packages/interflex/RGuide.html"><code>interflex</code> package</a> also has examples of application to cases of Multiple (&gt;2) Treatment Arms, as well as analysing Difference in Treatment Effects at Different Values of the Moderator.</p>
+<p>The <code>interflex</code> function also incorporate the interaction terms between the moderator X and all covariates Z in models to reduce biases induced by their correlations <span class="citation" data-cites="blackwellReducingModelMisspecification2022">(<a href="references.html#ref-blackwellReducingModelMisspecification2022" role="doc-biblioref">Blackwell and Olson 2022</a>)</span>. Though not recommended, users can turn off this option by setting full.moderate = FALSE.</p>
+<p>While <span class="citation" data-cites="hainmuellerHowMuchShould2019a">Hainmueller, Mummolo, and Xu (<a href="references.html#ref-hainmuellerHowMuchShould2019a" role="doc-biblioref">2019</a>)</span> provide much needed disgnostics and estimation tools, <span class="citation" data-cites="beiser-mcgrathConsequencesModelMisspecification2023">Beiser-McGrath and Beiser-McGrath (<a href="references.html#ref-beiser-mcgrathConsequencesModelMisspecification2023" role="doc-biblioref">2023</a>)</span> argue that by allowing simply for non-linear interaction between treatment and moderator, “researchers can infer nonlinear interaction effects, even though the true interaction effect is linear, <strong>when variables used for covariate adjustment that are correlated with the moderator have a nonlinear effect upon the outcome of interest”</strong>. If the research includes moderated effects, the latter paper is recommended to be read.</p>
+</section>
+</section>
+<section id="in-class-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="in-class-exercise">In-class Exercise</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Use the replication dataset that you have been using till now to perform the following:</p>
+<ol type="1">
+<li><p>Identify a covariate that could plausibly be driving heterogeneity in treatment effect. You could use theoretical priors or your experience of working with this dataset to inform your choice.</p></li>
+<li><p>Write down two versions of possible moderation in the data generating process - linear and non-linear interaction ones.</p></li>
+<li><p>Make LID plots to assess your hypothesised interactions in <strong>2</strong>.</p></li>
+<li><p>Use <code>interflex</code> function to assess moderation with binning as well as kernel estimators.</p></li>
+<li><p>Use wald-test p-value from <code>interflex</code> output to comment on your inference.</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-beiser-mcgrathConsequencesModelMisspecification2023" class="csl-entry" role="listitem">
+Beiser-McGrath, Janina, and Liam F. Beiser-McGrath. 2023. <span>“The Consequences of Model Misspecification for the Estimation of Nonlinear Interaction Effects.”</span> <em>Political Analysis</em> 31 (2): 278–87. <a href="https://doi.org/10.1017/pan.2022.25">https://doi.org/10.1017/pan.2022.25</a>.
+</div>
+<div id="ref-blackwellReducingModelMisspecification2022" class="csl-entry" role="listitem">
+Blackwell, Matthew, and Michael P. Olson. 2022. <span>“Reducing Model Misspecification and Bias in the Estimation of Interactions.”</span> <em>Political Analysis</em> 30 (4): 495–514. <a href="https://doi.org/10.1017/pan.2021.19">https://doi.org/10.1017/pan.2021.19</a>.
+</div>
+<div id="ref-bramborUnderstandingInteractionModels2006" class="csl-entry" role="listitem">
+Brambor, Thomas, William Roberts Clark, and Matt Golder. 2006. <span>“Understanding Interaction Models: Improving Empirical Analyses.”</span> <em>Political Analysis</em> 14 (1): 63–82. <a href="https://doi.org/10.1093/pan/mpi014">https://doi.org/10.1093/pan/mpi014</a>.
+</div>
+<div id="ref-hainmuellerHowMuchShould2019a" class="csl-entry" role="listitem">
+Hainmueller, Jens, Jonathan Mummolo, and Yiqing Xu. 2019. <span>“How Much Should We Trust Estimates from Multiplicative Interaction Models? Simple Tools to Improve Empirical Practice.”</span> <em>Political Analysis</em> 27 (2): 163–92. <a href="https://doi.org/10.1017/pan.2018.46">https://doi.org/10.1017/pan.2018.46</a>.
+</div>
+<div id="ref-kingDangersExtremeCounterfactuals2006" class="csl-entry" role="listitem">
+King, Gary, and Langche Zeng. 2006. <span>“The Dangers of Extreme Counterfactuals.”</span> <em>Political Analysis</em> 14 (2): 131–59. <a href="https://doi.org/10.1093/pan/mpj004">https://doi.org/10.1093/pan/mpj004</a>.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The kernel estimator discussed in the Hainmueller paper is considered semi-parametric because it uses:<br>
+A non-parametric approach: to estimate the potentially nonlinear relationship between the outcome, the treatment, and the moderator.<br>
+A parametric approach: for the relationship between the outcome and the control variables.<br>
+Also see, <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation" class="uri">https://en.wikipedia.org/wiki/Kernel_density_estimation</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The code and discussion below has been adapted from the vignette of the package available at <a href="https://yiqingxu.org/packages/interflex/RGuide.html" class="uri">https://yiqingxu.org/packages/interflex/RGuide.html</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This is not fully what happens in kernel smoothening but is nevertheless a good learning/heuristic tool.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./sensitivity-mediation.html" class="pagination-link" aria-label="Session 4 - Sensitivity and Mediation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Session 4 - Sensitivity and Mediation</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom","loop":false});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
